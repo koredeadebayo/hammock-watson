@@ -17,27 +17,49 @@
  * Write your transction processor functions here
  */
 
+
 /**
- * Sample transaction
- * @param {org.hammock.network.SampleTransaction} sampleTransaction
+ * Buying Real Estate
+ * @param {org.hammock.network.BuyingRealEstate} trade
  * @transaction
  */
-async function sampleTransaction(tx) {
-    // Save the old value of the asset.
-    const oldValue = tx.asset.value;
 
-    // Update the asset with the new value.
-    tx.asset.value = tx.newValue;
+function buyingRealEstate( trade ){
+    var notaryFees = trade.notary.reassignCost + (trade.realEstate.price *trade.notary.notaryRate)
+    var agentFees = trade.realEstateAgent.feeRate * trade.realEstate.price
+    var totalCost = notaryFees + agentFees 
+   
+  
+    // Check if the buyer has enough to pay the notary, real estate agent and insurance
+    if( trade.buyer.balance < totalCost ){
+      throw new Error('Not enough funds to buy this!')
+    }
+    //deducated price of property from the buyer
+    trade.buyer.balance -= totalCost
+    //set the owner of the property to buyer
+    trade.realEstate.owner = trade.buyer
+    //pay agent fee
+    trade.realEstateAgent.balance += agentFees
+    //pay notary(government) fee
+    trade.notary.balance += notaryFees
+    // Updates the seller's balance
+    trade.seller.balance += trade.realEstate.price
+  
+    Promise.all([
+      getAssetRegistry('org.hammock.network.realEstate'),
+      getParticipantRegistry('org.hammock.network.user'),
+      getParticipantRegistry('org.hammock.network.user'),
+      getParticipantRegistry('org.hammock.network.Notary'),
+      getParticipantRegistry('org.hammock.network.agent')
+    ]).then(function(registries){
+      return (
+        registries[0].update(trade.realEstate),
+        registries[1].update(trade.seller),
+        registries[2].update(trade.buyer),
+        registries[3].update(trade.notary),
+        registries[4].update(trade.realEstateAgent)
+      )
+    })
+  }
 
-    // Get the asset registry for the asset.
-    const assetRegistry = await getAssetRegistry('org.hammock.network.SampleAsset');
-    // Update the asset in the asset registry.
-    await assetRegistry.update(tx.asset);
-
-    // Emit an event for the modified asset.
-    let event = getFactory().newEvent('org.hammock.network', 'SampleEvent');
-    event.asset = tx.asset;
-    event.oldValue = oldValue;
-    event.newValue = tx.newValue;
-    emit(event);
-}
+  

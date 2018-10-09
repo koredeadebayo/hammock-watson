@@ -1,0 +1,22 @@
+{
+  "name": "hammockapp",
+  "version": "1.0.0",
+  "description": "The future of secured property transactions",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app"
+  },
+  "dependencies": {
+    "express": "*",
+    "mongoose": "*",
+    "bcryptjs": "*",
+    "cors": "*",
+    "jsonwebtoken": "*",
+    "body-parser": "*",
+    "passport": "*",
+    "passport-jwt": "*"
+  },
+  "author": "",
+  "license": "IDS",
+  "devDependencies": {}
+}
