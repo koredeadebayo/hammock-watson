@@ -7,14 +7,17 @@
     "start": "node app"
   },
   "dependencies": {
-    "express": "*",
-    "mongoose": "*",
     "bcryptjs": "*",
-    "cors": "*",
-    "jsonwebtoken": "*",
     "body-parser": "*",
+    "cors": "*",
+    "express": "*",
+    "jsonwebtoken": "^8.3.0",
+    "mongoose": "*",
+    "nodemon": "^1.18.4",
     "passport": "*",
-    "passport-jwt": "*"
+    "passport-jwt": "*",
+    "randomstring": "^1.1.5",
+    "randomstrings": "0.0.2"
   },
   "author": "",
   "license": "IDS",
