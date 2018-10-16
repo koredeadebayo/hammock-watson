@@ -99,6 +99,17 @@ section { overflow: hidden; }
 .bg-Hammock{
   background-color: purple;
 }
+.sign-card{
+  background-color: white;
+  border-radius: 10px;
+  align: center;
+  margin-left: 400px;
+  margin-right: 400px;
+  margin-top: 40px;
+  margin-bottom: 35px;
+  width: 400px;
+  height: 500px;
+}
 /*---------------------------------------*/
 .roomy-100 {
     padding-top: 100px;
