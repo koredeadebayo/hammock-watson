@@ -5,6 +5,7 @@ const cors = require('cors');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const config = require('./config/database');
+const mailConfig = require('./config/email-setup');
 
 //Connect to Mongodb
 mongoose.connect(config.database, { useNewUrlParser: true });
@@ -22,12 +23,13 @@ mongoose.connect(config.database, { useNewUrlParser: true });
 //Set application 
 const app = express();
 
-// //Instantiate user
+//Instantiate user
 const user = require('./routes/participant');
 
 //Set port number for rest api
 var port = 3000;
 
+console.log(mailConfig.host);
 
 //MIDDLEWARES
     //Bodyparser for accessing JSON from REST Requests
