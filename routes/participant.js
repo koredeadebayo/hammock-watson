@@ -12,6 +12,7 @@ const randomstring = require('randomstring');
 const crypto = require('crypto');
 const nodemailer = require('nodemailer');
 const mailConfig = require('../config/email-setup');
+const participantCtrl = require('../controller/participant');
 
 
 // User Management 
@@ -121,6 +122,9 @@ const mailConfig = require('../config/email-setup');
                 }
                 res.status(200).send('A verification email has been sent to ' + user.email + '.');
             });
+
+            //Creating Blockchain Identity
+            participantCtrl.addUser(user);
             
             });
          });
@@ -154,6 +158,9 @@ const mailConfig = require('../config/email-setup');
                   });
               });
           });
+
+          //Add Blockchain participant to the network
+
     });
 
     //Show user profile

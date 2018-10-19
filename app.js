@@ -6,6 +6,7 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 const config = require('./config/database');
 const mailConfig = require('./config/email-setup');
+const BusinessNetworkConnection = require('composer-client').BusinessNetworkConnection;
 
 //Connect to Mongodb
 mongoose.connect(config.database, { useNewUrlParser: true });
@@ -29,7 +30,7 @@ const user = require('./routes/participant');
 //Set port number for rest api
 var port = 3000;
 
-console.log(mailConfig.host);
+console.log(BusinessNetworkConnection);
 
 //MIDDLEWARES
     //Bodyparser for accessing JSON from REST Requests

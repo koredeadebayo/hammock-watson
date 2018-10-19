@@ -19,7 +19,11 @@
     "passport": "*",
     "passport-jwt": "*",
     "randomstring": "^1.1.5",
-    "randomstrings": "0.0.2"
+    "randomstrings": "0.0.2",
+    "composer-admin": "*",
+    "composer-client": "*",
+    "composer-common": "*",
+    "composer-connector-embedded": "*"
   },
   "author": "",
   "license": "IDS",

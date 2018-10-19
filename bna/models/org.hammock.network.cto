@@ -18,23 +18,39 @@
 
 namespace org.hammock.network
 
-enum propertySales{
-  o forsale
-  o notforsale
-}
-participant user identified by userId {
-  o String userId //National registration number or Bank Verification Number
-  o String firstName
-  o String lastName
-  o String address //Permanent Address
+// enum propertySales{
+//   o forsale
+//   o notforsale
+// }
+
+participant User identified by userId{
+  o String userId //Uniquely generated code at registration to the platform
+  o String username 
   o Double balance default = 0.0
 }
 
-participant Notary identified by notaryId {
-  o String notaryId
+abstract participant ServiceProvider identified by Id{
+  o String Id
   o String username
-  o String region
-  o Double notaryRate
+  o Double balance default = 0.0
+}
+
+participant Agent extends ServiceProvider {
+  //o Double feeRate
+}
+
+participant Lawyer extends ServiceProvider {
+  //o Double feeRate
+}
+
+participant EstateValuer extends ServiceProvider {
+  //o Double feeRate
+}
+
+participant Government identified by govId {
+  o String govId
+  o String name
+  o Double govRate
   o Double reassignCost
   o Double balance default = 0.0
 }
@@ -45,12 +61,7 @@ participant Bank identified by bankId {
   o Double balance default = 0.0
 }
 
-participant agent identified by agentId {
-  o String agentId
-  o String name
-  o Double balance default = 0.0
-  o Double feeRate
-}
+
 
 asset realEstate identified by propertyId {
   o String propertyId
@@ -62,19 +73,19 @@ asset realEstate identified by propertyId {
   o String dateOfRegistration
   o String landSurveyLink
   o Double[] coordinates  
-  --> user owner
-  --> Notary government
+  --> User owner
+  --> Government government
 }
 transaction BuyingRealEstate {
-  --> user buyer
-  --> user seller
-  --> Notary notary
-  --> agent realEstateAgent
+  --> User buyer
+  --> User seller
+  --> Government government
+  --> Agent realEstateAgent
   --> realEstate realEstate
 }
 
 transaction ContractingLoan {
-  --> user debtor
+  --> User debtor
   --> Bank bank
   --> realEstate collateral
   o Double interestRate

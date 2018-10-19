@@ -47,8 +47,8 @@ function buyingRealEstate( trade ){
   
     Promise.all([
       getAssetRegistry('org.hammock.network.realEstate'),
-      getParticipantRegistry('org.hammock.network.user'),
-      getParticipantRegistry('org.hammock.network.user'),
+      getParticipantRegistry('org.hammock.network.User'),
+      getParticipantRegistry('org.hammock.network.User'),
       getParticipantRegistry('org.hammock.network.Notary'),
       getParticipantRegistry('org.hammock.network.agent')
     ]).then(function(registries){
