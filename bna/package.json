@@ -9,7 +9,8 @@
     "prepublish": "mkdirp ./dist && composer archive create --sourceType dir --sourceName . -a ./dist/hammock-watson.bna",
     "pretest": "npm run lint",
     "lint": "eslint .",
-    "test": "nyc mocha -t 0 test/*.js && cucumber-js"
+    "test": "nyc mocha -t 0 test/*.js && cucumber-js",
+    "deployNetwork": "./deployNetwork.sh"
   },
   "keywords": [
     "composer",

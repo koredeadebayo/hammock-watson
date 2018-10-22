@@ -1,6 +1,7 @@
 const BusinessNetworkConnection = require('composer-client').BusinessNetworkConnection;
 const hyperConfig = require('../config/hyperconfig');
 let businessNetworkConnection = new BusinessNetworkConnection();
+const cardService = require('../services/cardService');
 
 async function addUser(user) {
     
@@ -22,7 +23,7 @@ async function addUser(user) {
         await participantRegistry.add(participant);
         //connect to business network using the admin card
         //await businessNetworkConnection.connect(hyperConfig.networkAdminCard);
-        //console.log(hyperConfig);
+        //console.log(hyperConfig); 
         //instantiate participant registry
         //let participantRegistry = await businessNetworkConnection.getParticipantRegistry(hyperConfig.ns);
         //let factory = businessNetworkConnection.getFactory();
@@ -32,6 +33,19 @@ async function addUser(user) {
         //console.log(participant.username)
         //await participantRegistry.add(participant);
         //await businessNetworkConnection.disconnect();
+         //businessNetworkConnection.connect('admin@digitalPropertyNetwork');
+         let identity = await businessNetworkConnection.issueIdentity(`${hyperConfig.ns}.${type}#${userId}`, username);
+         //'net.biz.digitalPropertyNetwork.Person#mae@biznet.org', 'maeid1'
+        console.log(`userID = ${identity.userID}`);
+        console.log(`userSecret = ${identity.userSecret}`);
+
+        await cardService.create(identity);
+        identity.type = type;
+        // await businessNetworkConnection.disconnect();
+        // //await mongoService.insert(identity)
+
+
+        //return responseModel.successResponse("Player created", identity);
     } catch(error) {
         console.error(error);
         process.exit(1);

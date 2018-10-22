@@ -2,10 +2,9 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const config = require('../config/database');
 
-const UserSchema = new mongoose.Schema({
+const SPSchema = new mongoose.Schema({
     name: {
         type: String
-        
     },
     email: {
         type: String,
@@ -41,37 +40,46 @@ const UserSchema = new mongoose.Schema({
             type: String
          }
     }],
+    categories:{ 
+        type: String,
+        required: true
+    },
+    businessname:{ 
+        type: String,
+        required: true
+    },
+    businessreg:{ 
+        type: String,
+        required: true
+    },    
     active:{
         type: Boolean,
         default: false
-    },
-    secretToken:{
-        type: String
     }
 
 });
 
 //Third argument here is naming the collection in which the data would be stored
-const User = module.exports = mongoose.model('User', UserSchema, 'User');
+const SP = module.exports = mongoose.model('SP', SPSchema, 'SP');
 
 
 
 
-module.exports.getUserById = function(Id, callback){
-    User.findById(Id, callback);
+module.exports.getSPById = function(Id, callback){
+    SP.findById(Id, callback);
 }
 
-module.exports.getUserByUsername = function(username, callback){
+module.exports.getSPByUsername = function(username, callback){
     const query = {username:username};
-    User.findOne(query, callback);
+    SP.findOne(query, callback);
 }
 
-module.exports.addUser= function(newUser, callback){
+module.exports.addSP= function(newSP, callback){
     bcrypt.genSalt(10, (err, salt)=>{
-        bcrypt.hash(newUser.password, salt, (err, hash)=>{
+        bcrypt.hash(newSP.password, salt, (err, hash)=>{
             if(err) throw err; 
-            newUser.password = hash;
-            newUser.save(callback);
+            newSP.password = hash;
+            newSP.save(callback);
 
         });
     });
@@ -83,4 +91,3 @@ module.exports.comparePassword = function(candidatePassword, hash, callback) {
         callback(null, isMatch);
     });
 }
-
