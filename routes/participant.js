@@ -186,47 +186,50 @@ const participantCtrl = require('../controller/participant');
            name: req.body.name,
            email: req.body.email,
            password: req.body.password,
+           businessname: req.body.businessname,
            username: req.body.username,
            userId: req.body.userId,
-           address: req.body.address,
+           //address: req.body.address,
+           categories: req.body.categories,
+           businessreg: req.body.businessreg,
            //secretToken : newSecretToken
          });
 
          
          
-         User.addUser(newUser, (err, user)=>{
+         SP.addSP(newSP, (err, sp)=>{
             if(err){
                 res.json({success: false, msg: 'Falied to register the account'});
             }else{
-                res.json({success: true, msg: 'User registered'});
+                res.json({success: true, msg: 'Service Provider registered'});
             }
         });
 
         
     });
     //Authenticate - Passport-jwt enables the authentication works fluidly
-    router.post('/auth', (req, res, next) =>{
+    router.post('/spauth', (req, res, next) =>{
         const username = req.body.username;
         const password = req.body.password;
 
 
 
-        User.getUserByUsername(username, (err, user)=>{
+        SP.getSPByUsername(username, (err, sp)=>{
             if(err)throw err;
-            if(!user){
-                return  res.json({success:false, message:'User not found'});
+            if(!sp){
+                return  res.json({success:false, message:'Service Provider not found'});
             }
 
             // console.log('mailTransporter');
             //Check if the user is active and ready to login
-            //console.log(user.active);
-            if(!user.active){
-                return res.json({success:false, message:'User account not verified'});
-            }
-            User.comparePassword(password, user.password, (err, isMatch) =>{
+            //console.log(sp.active);
+             if(!sp.active){
+                 return res.json({success:false, message:'Service Provider account not verified'});
+             }
+            SP.comparePassword(password, sp.password, (err, isMatch) =>{
                 if(err)  throw err;
                 if(isMatch){
-                        const token = jwt.sign({data:user}, config.secret,{
+                        const token = jwt.sign({data:sp}, config.secret,{
                             expiresIn: 604800 //1 week
                         });
 
@@ -234,11 +237,12 @@ const participantCtrl = require('../controller/participant');
                     res.json({
                         success:true,
                         token: 'JWT '+token,
-                        user:{
-                            id:user._id,
-                            name: user.name,
-                            username: user.username,
-                            email: user.email
+                        sp:{
+                            id:sp._id,
+                            name: sp.name,
+                            username: sp.username,
+                            email: sp.email,
+                            businessname: sp.businessname
                             }
                         });
                 }else{

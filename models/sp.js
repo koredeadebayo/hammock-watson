@@ -14,13 +14,13 @@ const SPSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    username: {
-        type: String,
-        unique: true
-    },
     userId:{
         type: String,
         unique: true
+    },
+    username:{ 
+        type: String,
+        required: true
     },
     address:[
         {
@@ -71,6 +71,11 @@ module.exports.getSPById = function(Id, callback){
 
 module.exports.getSPByUsername = function(username, callback){
     const query = {username:username};
+    SP.findOne(query, callback);
+}
+
+module.exports.getSPByBusinessname = function(businessname, callback){
+    const query = {businessname:businessname};
     SP.findOne(query, callback);
 }
 
