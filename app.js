@@ -26,6 +26,7 @@ const app = express();
 
 //Instantiate user
 const user = require('./routes/participant');
+const asset = require('./routes/asset');
 
 //Set port number for rest api
 var port = 3000;
@@ -43,6 +44,7 @@ console.log(BusinessNetworkConnection);
     require('./config/passport')(passport);
 
 app.use('/users', user);
+app.use('/assets', asset);
 // Index Route
 app.get('/', (req, res) => {
     res.send('invaild endpoint');

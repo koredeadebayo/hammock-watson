@@ -30,7 +30,7 @@ const participantCtrl = require('../controller/participant');
            password: req.body.password,
            username: req.body.username,
            userId: req.body.userId,
-           address: req.body.address,
+           //address: req.body.address,
            //secretToken : newSecretToken
          });
 
@@ -107,7 +107,6 @@ const participantCtrl = require('../controller/participant');
                  if (err) { 
                      return res.status(500).send({ msg: err.message }); 
                  }
-             //console.log(token);
              // Send the email
             const transporter = nodemailer.createTransport(mailConfig);
             //Set mail address
@@ -166,7 +165,7 @@ const participantCtrl = require('../controller/participant');
     });
 
     //Show user profile
-    router.get('/profile', passport.authenticate('jwt', {session:false}), (req, res, next) => {
+    router.get('/profile', passport.authenticate('user-role',{session:false}), (req, res, next) => {
         res.json({user: req.user});
     });
     
@@ -223,9 +222,9 @@ const participantCtrl = require('../controller/participant');
             // console.log('mailTransporter');
             //Check if the user is active and ready to login
             //console.log(sp.active);
-             if(!sp.active){
-                 return res.json({success:false, message:'Service Provider account not verified'});
-             }
+            //  if(!sp.active){
+            //      return res.json({success:false, message:'Service Provider account not verified'});
+            //  }
             SP.comparePassword(password, sp.password, (err, isMatch) =>{
                 if(err)  throw err;
                 if(isMatch){
@@ -253,7 +252,11 @@ const participantCtrl = require('../controller/participant');
     });
     //Authenticate
 
-    //Dashboard                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+    //Dashboard 
+    //Show Service Providers profile
+    router.get('/spprofile', passport.authenticate('sp-role',{session:false}), (req, res, next) => {
+        res.json({sp: req.sp});
+    });                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 
 //Banks Management
     //Register

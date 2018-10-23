@@ -12,7 +12,7 @@ async function addRealEstate(realEstateData) {
         let type = "RealEstate";
         let userType = "User";
 
-        let businessNetDefination = await businessNetworkConnection.connect(hyperConfig.networkAdminCard);
+        let businessNetDefination = await businessNetworkConnection.connect(realEstateData.usercard);
         let factory = businessNetworkConnection.getBusinessNetwork().getFactory();
 
         let assetRegistry = await businessNetworkConnection.getAssetRegistry(`${hyperConfig.ns}.${type}`);
@@ -28,6 +28,7 @@ async function addRealEstate(realEstateData) {
 
         let result = await assetRegistry.add(newRealEstate);
 
+        await businessNetworkConnection.disconnect();
         res.json({success: true, msg: 'Your real estate registered'});
     } catch (err) {
 

@@ -21,19 +21,7 @@ async function addUser(user) {
 
         let participantRegistry = await businessNetworkConnection.getParticipantRegistry(`${hyperConfig.ns}.${type}`);
         await participantRegistry.add(participant);
-        //connect to business network using the admin card
-        //await businessNetworkConnection.connect(hyperConfig.networkAdminCard);
-        //console.log(hyperConfig); 
-        //instantiate participant registry
-        //let participantRegistry = await businessNetworkConnection.getParticipantRegistry(hyperConfig.ns);
-        //let factory = businessNetworkConnection.getFactory();
-        
-        //let participant = factory.newResource('org.hammock.network', 'User', userId);
-        //participant.username = username;
-        //console.log(participant.username)
-        //await participantRegistry.add(participant);
-        //await businessNetworkConnection.disconnect();
-         //businessNetworkConnection.connect('admin@digitalPropertyNetwork');
+
          let identity = await businessNetworkConnection.issueIdentity(`${hyperConfig.ns}.${type}#${userId}`, username);
          //'net.biz.digitalPropertyNetwork.Person#mae@biznet.org', 'maeid1'
         console.log(`userID = ${identity.userID}`);
@@ -41,7 +29,7 @@ async function addUser(user) {
 
         await cardService.create(identity);
         identity.type = type;
-        // await businessNetworkConnection.disconnect();
+        await businessNetworkConnection.disconnect();
         // //await mongoService.insert(identity)
 
 
