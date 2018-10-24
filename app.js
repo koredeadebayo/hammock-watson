@@ -45,7 +45,7 @@ console.log(BusinessNetworkConnection);
 
 app.use('/users', user);
 app.use('/assets', asset);
-// Index Route
+// Index Route 
 app.get('/', (req, res) => {
     res.send('invaild endpoint');
   });

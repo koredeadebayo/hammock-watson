@@ -6,6 +6,7 @@ const router = express.Router();
 const passport = require('passport');
 const User = require('../models/user');
 const SP =  require('../models/sp');
+const Gov = require('../models/gov');
 const Token = require('../models/token');
 const config = require('../config/database');
 const jwt = require('jsonwebtoken');
@@ -14,6 +15,7 @@ const crypto = require('crypto');
 const nodemailer = require('nodemailer');
 const mailConfig = require('../config/email-setup');
 const participantCtrl = require('../controller/participant');
+
 
 
 // User Management 
@@ -140,6 +142,7 @@ const participantCtrl = require('../controller/participant');
 
         //const token = req.body.token;
         //console.log(token);
+
          Token.findOne({ token: req.query.token }, function (err, token) {
              if (!token) 
                  return res.status(400).send({ type: 'not-verified', msg: 'We were unable to find a valid token. Your token may have expired.' });
@@ -265,10 +268,69 @@ const participantCtrl = require('../controller/participant');
 
     //Dashboard
 
-//Agent Management
+//Goverment Management
     //Register
+    router.post('/addgov', (req, res, next) =>{
+        //res.send('Register User');
+
+        //Secret Token for each user
+        //const newSecretToken = randomstring.generate();
+
+        let newGov = new Gov({
+           govId: req.body.govId,
+           name: req.body.name,
+           password: req.body.password
+         });
+
+         
+         
+         Gov.addGov(newGov, (err, gov)=>{
+            if(err){
+                res.json({success: false, msg: 'Falied to register the Government account'});
+            }else{
+                res.json({success: true, msg: 'Government registered'});
+            }
+        });
+
+        
+    });
+
     
     //Authenticate
+    router.post('/govauth', (req, res, next) =>{
+        const name = req.body.name;
+        const password = req.body.password;
+
+
+
+        Gov.getGovByName(name, (err, gov)=>{
+            if(err)throw err;
+            if(!gov){
+                return  res.json({success:false, message:'Government not found'});
+            }
+
+            Gov.comparePassword(password, gov.password, (err, isMatch) =>{
+                if(err)  throw err;
+                if(isMatch){
+                        const token = jwt.sign({data:gov}, config.secret,{
+                            expiresIn: 604800 //1 week
+                        });
+
+
+                    res.json({
+                        success:true,
+                        token: 'JWT '+token,
+                        user:{
+                            id:gov._id,
+                            name: gov.name
+                            }
+                        });
+                }else{
+                    return res.json({success: false, msg:'Wrong Password'});
+                }
+            });
+        });
+    });
 
     //Dashboard
 

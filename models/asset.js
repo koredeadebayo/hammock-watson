@@ -8,12 +8,12 @@ const AssetSchema = new mongoose.Schema({
         required: true,
         ref: 'User' 
     },
-    assetId: {
+    propertyId: {
         type: String,
         unique: true
     },
-    squaremeter: {
-        type: String,
+    squareMeters: {
+        type: Number,
         required: true
     },
     certificateno: {
@@ -24,35 +24,35 @@ const AssetSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    // owner:{
-    //     type: String,
-    //     unique: true
-    // },
+    owner:{
+         type: String,
+         unique: true
+     },
     occupation:{
         type: String,
         required: true
     },
 
-    // location:{
-    //     type: String,
-    //     unique: true
-    // },
-    // This shown have the coordinate of the building the longitude and latitude
+    location:{
+        type: String,
+        //unique: true
+    },
+    //This shown have the coordinate of the building the longitude and latitude
     
     location_sketch:{
         type: String,
-        unique: true
+        //unique: true
     },
     picture:{
         type: String,
-        unique: true
+        //unique: true
     },
     dateOfReg:{
         type: Date,
     },
     surveyPlan:{
         type: String,
-        unique: true
+        //unique: true
     },
     address:[
         {
@@ -75,8 +75,23 @@ const AssetSchema = new mongoose.Schema({
     approved:{
         type: Boolean,
         default: false
-    },
+    }
+    // government:{
+    
+    // }
 
+    // "$class": "org.hammock.network.realEstate",
+    // "propertyId": "string",
+    // "address": "string",
+    // "squareMeters": 0,
+    // "price": 0,
+    // "imagelink": "string",
+    // "description": "string",
+    // "dateOfRegistration": "string",
+    // "landSurveyLink": "string",
+    // "coordinates": [],
+    // "owner": {},
+    // "government": {}
 });
 
 //Third argument here is naming the collection in which the data would be stored
@@ -88,21 +103,14 @@ const Asset = module.exports = mongoose.model('Asset', AssetSchema, 'Asset');
 module.exports.getAssetById = function(Id, callback){
     Asset.findById(Id, callback);
 }
-
-// module.exports.getAssetByUsername = function(username, callback){
-//     const query = {username:username};
-//     User.findOne(query, callback);
-// }
+ 
+ module.exports.getAssetByPropertyId = function(propertyId, callback){
+     const query = {propertyId:propertyId};
+     Asset.findOne(query, callback); 
+ }
 
  module.exports.addAsset= function(newAsset, callback){
-//     bcrypt.genSalt(10, (err, salt)=>{
-//         bcrypt.hash(newUser.password, salt, (err, hash)=>{
-//             if(err) throw err; 
-//             newUser.password = hash;
-//             newUser.save(callback);
-
-//         });
-//     });
+    newAsset.save(callback);
  }
 
 // module.exports.comparePassword = function(candidatePassword, hash, callback) {
