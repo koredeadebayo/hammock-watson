@@ -13,7 +13,7 @@ mongoose.connect(config.database, { useNewUrlParser: true });
 
  //Checking if connection worked well
  mongoose.connection.on('connected', ()=>{
-    console.log('Database successfully connected');
+    console.log('Database successfully connected - <'+config.database+'>');
  });
 
 //Checking if connection worked well
@@ -21,7 +21,7 @@ mongoose.connect(config.database, { useNewUrlParser: true });
     console.log('Database error:' +err);
  });
 
-//Set application 
+//Set application
 const app = express();
 
 //Instantiate user
@@ -37,15 +37,19 @@ console.log(BusinessNetworkConnection);
     app.use(bodyParser.json());
     //CORS for Domain protection
     app.use(cors());
-    //Passport Middlware 
+
+    //Set static folder
+    app.use(express.static(path.join(__dirname, "public")));
+    //Passport Middlware
     app.use(passport.initialize());
     app.use(passport.session());
     require('./config/passport')(passport);
 
 app.use('/users', user);
+
 // Index Route
 app.get('/', (req, res) => {
-    res.send('invaild endpoint');
+    res.send('Just another end point');
   });
 
 
