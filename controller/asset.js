@@ -9,28 +9,6 @@ async function addAsset(assetData) {
         //console.log(assetData);
     try {
 
-        // let type = "Marble";
-        // let userType = "Player";
-
-        // let bizNetDefination = await bizNetConnection.connect(config.networkAdminCard);
-        // let factory = bizNetConnection.getBusinessNetwork().getFactory();
-
-        // let assetRegistry = await bizNetConnection.getAssetRegistry(`${config.ns}.${type}`);
-
-        // let ownerRelations = factory.newRelationship(config.ns, userType, marbleData.owner);
-        // let newMarble = factory.newResource(config.ns, type, marbleData.marbleId);
-
-        // delete marbleData.owner;
-
-        // newMarble.owner = ownerRelations;
-
-        // newMarble = Object.assign(newMarble, marbleData);
-
-        // let res = await assetRegistry.add(newMarble);
-
-        // return responseModel.successResponse("Marble added", res);
-
-
         let type = "realEstate";
         let userType = "User";
         let govType = "Government";
@@ -67,6 +45,64 @@ async function addAsset(assetData) {
 
 }
 
+
+
+async function tradeAsset(assetData, userData) {
+
+    try {
+
+        let type = "BuyingRealEstate"
+        let userType = "User"
+        let assetType = "realEstate"
+
+        let currentOwner = userData;
+
+        // if (!(currentOwner && currentOwner.length)) {
+        //     return responseModel.successResponse("Invalid credentials", {});
+        // } else {
+        //     currentOwner = currentOwner[0];
+        // }
+
+        let currentOwnerCard = `${currentOwner.blockUserID}@${hyperConfig.networkName}`;
+        let bizNetDefination = await businessNetworkConnection.connect(currentOwnerCard);
+        let factory = bizNetDefination.getFactory();
+
+        delete tradeMarbleData.creds;
+
+        let newOwnerRelation = factory.newRelationship(hyperConfig.ns, userType, tradeMarbleData.transactionData.newOwnerEmail);
+
+        let marbleRelation = factory.newRelationship(config.ns, assetType, tradeMarbleData.transactionData.marbleId);
+
+        let transData = {
+            "marble": marbleRelation,
+            "newOwner": newOwnerRelation
+        }
+
+
+        const newTransaction = factory.newTransaction(`${config.ns}`, type);
+
+        trans = Object.assign(newTransaction, transData);
+
+        let res = await bizNetConnection.submitTransaction(trans);
+
+        return responseModel.successResponse("Marbles traded", res);
+
+    } catch (err) {
+
+        console.log("in err");
+
+        errMessage = typeof err == 'string' ? err : err.message;
+
+        return responseModel.failResponse("Transaction", {}, errMessage);
+    }
+
+
+}
+
+
+
+
 module.exports = {
-    addAsset
+    addAsset,
+    tradeAsset
 }

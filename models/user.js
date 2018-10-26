@@ -45,7 +45,10 @@ const UserSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    secretToken:{
+    blockUserID:{
+        type: String
+    },
+    blockUserSecret:{
         type: String
     }
 

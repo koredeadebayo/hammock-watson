@@ -21,14 +21,26 @@ const GovSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
+    },
+    govRate: {
+        type:Number,
+        required: true
+    },
+    reassignCost: {
+        type: Number,
+        required: true
+    },
+    blockUserID: {
+        type: String
+    },
+    blockUserSecret:{
+        type: String
     }
-
+    
 });
 
 //Third argument here is naming the collection in which the data would be stored
 const Gov = module.exports = mongoose.model('Gov', GovSchema, 'Gov');
-
-
 
 
 module.exports.getGovById = function(Id, callback){

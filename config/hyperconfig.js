@@ -19,7 +19,7 @@ module.exports = {
                     },
                     "orderer": "300"
                 }
-            }
+            } 
         },
         "channels": {
             "composerchannel": {

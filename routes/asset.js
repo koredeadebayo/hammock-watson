@@ -69,22 +69,16 @@ router.post('/approve', passport.authenticate('gov-role', {session:false}),  (re
     //Capture the goverment Id from the route passport strategy
 
     const propertyId = req.body.propertyId;
+    const gov = req.body.name;
 
     console.log(propertyId);
-    
+
     Asset.getAssetByPropertyId(propertyId, (err, asset)=>{
         if(err)throw err;
         if(!asset){
             return  res.json({success:false, message:'Asset not found'});
         }
-        // console.log(asset);
-        // if (asset.approved) return res.status(400).send({ type: 'already-verified', msg: 'Asset has already been verified.' });
-        
-        // asset.approved = true;
-        // asset.save(function(err){
-        //     if(err) {return res.status(500).send({msg: err.message}); }
-        //     res.status(200).send("Asset has been verified.");
-        // });
+
 
         let blockAsset =
         {
@@ -105,11 +99,76 @@ router.post('/approve', passport.authenticate('gov-role', {session:false}),  (re
         console.log(blockAsset.propertyId);
         //Add Asset to the blockchain 
         assetCtrl.addAsset(blockAsset);
-        console.log(blockAsset.propertyId);
+        res.json({success: true, msg: 'Registration Successful Listed'});
+        //console.log(blockAsset.propertyId);
     });
-    
     
     
 
 });
+//
+router.get('/list', passport.authenticate('user-role', {session:false}), async (req, res) => {
+        //List all approve properties     
+        Asset.find({approved:true}, function(err, assets) {
+            if (err) throw err;
+            res.json({success: true, msg: assets});
+        });
+
+});
+
+router.post('/list/:government', passport.authenticate('user-role', {session:false}), async (req, res) => {
+    
+    const gov = req.params.government;
+
+    Asset.find({approved:true, government:gov}, function(err, assets){
+        if (err) throw err;
+        res.json({succes: true, msg: assets});
+    });
+
+});
+
+//Government Listing the Properties in their Region
+router.get('/list/:owner', passport.authenticate('gov-role', {session:false}), async (req, res) => {
+    const gov = req.body.name;   
+    console.log(req.body);
+    const owner = req.params.owner;
+
+    Asset.find({approved:true, owner:owner, government:gov}, function(err, assets){
+        if (err) throw err;
+        res.json({succes: true, msg: assets});
+    });
+
+});
+
+
+
+
+
+
+
+        /* {
+        *	"creds": {
+        *		"userID":"fnameP3",
+        *		"userSecret":"IXFZZIqXUmmM"
+        * },
+        *	"transactionData":
+        * {
+        *		"marbleId": "m2",
+        *		"newOwnerEmail": "player4@gmail.com"
+        * }
+        */
+
+router.post('/tradeAsset', passport.authenticate('user-role', {session:false}), async (req, res) => {
+    const buydetail = {
+        username: req.body.username,
+        land: req.body.User
+    }
+    user = req.user;
+
+    let result = await assetCtrl.tradeAsset(req.body, user);
+
+    //res.status(result.code).send(result);
+
+});
+    
 module.exports = router;

@@ -160,6 +160,7 @@ const participantCtrl = require('../controller/participant');
                   });
                   //Add Blockchain participant to the network
                   participantCtrl.addUser(user);
+                  console.log(user);
               });
           });
 
@@ -235,7 +236,7 @@ const participantCtrl = require('../controller/participant');
                             expiresIn: 604800 //1 week
                         });
 
-
+ 
                     res.json({
                         success:true,
                         token: 'JWT '+token,
@@ -279,7 +280,9 @@ const participantCtrl = require('../controller/participant');
         let newGov = new Gov({
            govId: req.body.govId,
            name: req.body.name,
-           password: req.body.password
+           password: req.body.password,
+           govRate: 200,
+           reassignCost: 0
          });
 
          
@@ -290,6 +293,7 @@ const participantCtrl = require('../controller/participant');
             }else{
                 res.json({success: true, msg: 'Government registered'});
             }
+            participantCtrl.addGov(gov);
         });
 
         

@@ -14,6 +14,7 @@ async function create(identity) {
         description: identity.userID + "'s identity",
     };
 
+    console.log(identity);
 
     const idCardData = new IdCard(metadata, hyperConfig.connectionProfile);
     const idCardName = BusinessNetworkCardStore.getDefaultCardName(idCardData);
@@ -25,7 +26,7 @@ async function create(identity) {
     return;
 
 }
-
+ 
 
 
 module.exports = {
