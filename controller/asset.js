@@ -6,7 +6,7 @@ let businessNetworkConnection  = new BusinessNetworkConnection();
 
 
 async function addAsset(assetData) {
-        //console.log(assetData);
+        console.log(assetData);
     try {
 
         let type = "realEstate";
@@ -28,11 +28,11 @@ async function addAsset(assetData) {
         newRealEstate.owner = ownerRelations;
         newRealEstate.government = governmentRelations;
 
-
+        //console.log("on the way");
         newRealEstate = Object.assign(newRealEstate, assetData);
 
         let result = await assetRegistry.add(newRealEstate);
-
+        //console.log(result);
         await businessNetworkConnection.disconnect();
         console.log("succesful");
         //res.json({success: true, msg: 'Your real estate registered'});
@@ -47,7 +47,7 @@ async function addAsset(assetData) {
 
 
 
-async function tradeAsset(assetData, userData) {
+async function tradeAsset(transferData) {
 
     try {
 

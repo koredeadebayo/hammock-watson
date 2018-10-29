@@ -24,14 +24,14 @@ const participantCtrl = require('../controller/participant');
         //res.send('Register User');
 
         //Secret Token for each user
-        //const newSecretToken = randomstring.generate();
+        const newUserId = randomstring.generate(12);
 
         let newUser = new User({
            name: req.body.name,
            email: req.body.email,
            password: req.body.password,
            username: req.body.username,
-           userId: req.body.userId,
+           userId: newUserId,
            //address: req.body.address,
            //secretToken : newSecretToken
          });
@@ -133,7 +133,7 @@ const participantCtrl = require('../controller/participant');
     });
     
     //Confirm Token
-    router.get('/confirm',  (req, res, next) =>{
+    router.get('/confirm', async  (req, res) =>{
         //console.log(req.query.token);
         //const url = require('url');
         //const querystring = require('querystring');
@@ -281,8 +281,7 @@ const participantCtrl = require('../controller/participant');
            govId: req.body.govId,
            name: req.body.name,
            password: req.body.password,
-           govRate: 200,
-           reassignCost: 0
+           govRate: req.body.govRate
          });
 
          

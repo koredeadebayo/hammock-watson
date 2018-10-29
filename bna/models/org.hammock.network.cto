@@ -51,7 +51,6 @@ participant Government identified by govId {
   o String govId
   o String name
   o Double govRate
-  o Double reassignCost
   o Double balance default = 0.0
 }
 
@@ -65,14 +64,13 @@ participant Bank identified by bankId {
 
 asset realEstate identified by propertyId {
   o String propertyId
-  o String address
+  o String[] address
   o Double squareMeters
   o Double price
-  o String imagelink
   o String description
   o String dateOfRegistration
-  o String landSurveyLink
-  o Double[] coordinates  
+  o Double[] coordinates
+  o String certificateno  
   --> User owner
   --> Government government
 }
@@ -80,7 +78,6 @@ transaction BuyingRealEstate {
   --> User buyer
   --> User seller
   --> Government government
-  --> Agent realEstateAgent
   --> realEstate realEstate
 }
 

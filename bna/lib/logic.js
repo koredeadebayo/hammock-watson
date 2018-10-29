@@ -24,10 +24,9 @@
  * @transaction
  */
 
-function buyingRealEstate( trade ){
-    var notaryFees = trade.notary.reassignCost + (trade.realEstate.price *trade.notary.notaryRate)
-    var agentFees = trade.realEstateAgent.feeRate * trade.realEstate.price
-    var totalCost = notaryFees + agentFees 
+function buyingRealEstate(trade){
+    var transferCharges = (trade.government.govRate/100) * trade.realEstate.price
+    var totalCost = transferCharges + trade.realEstate.price 
    
   
     // Check if the buyer has enough to pay the notary, real estate agent and insurance
@@ -38,10 +37,8 @@ function buyingRealEstate( trade ){
     trade.buyer.balance -= totalCost
     //set the owner of the property to buyer
     trade.realEstate.owner = trade.buyer
-    //pay agent fee
-    trade.realEstateAgent.balance += agentFees
-    //pay notary(government) fee
-    trade.notary.balance += notaryFees
+    //pay Government fee
+    trade.government.balance += transferCharges
     // Updates the seller's balance
     trade.seller.balance += trade.realEstate.price
   
@@ -49,15 +46,13 @@ function buyingRealEstate( trade ){
       getAssetRegistry('org.hammock.network.realEstate'),
       getParticipantRegistry('org.hammock.network.User'),
       getParticipantRegistry('org.hammock.network.User'),
-      getParticipantRegistry('org.hammock.network.Notary'),
-      getParticipantRegistry('org.hammock.network.agent')
+      getParticipantRegistry('org.hammock.network.Government')
     ]).then(function(registries){
       return (
         registries[0].update(trade.realEstate),
         registries[1].update(trade.seller),
         registries[2].update(trade.buyer),
-        registries[3].update(trade.notary),
-        registries[4].update(trade.realEstateAgent)
+        registries[3].update(trade.government)
       )
     })
   }

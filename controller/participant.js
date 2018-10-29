@@ -25,8 +25,8 @@ async function addUser(user) {
 
          let identity = await businessNetworkConnection.issueIdentity(`${hyperConfig.ns}.${type}#${userId}`, username);
          
-        //console.log(`userID = ${identity.userID}`);
-        //console.log(`userSecret = ${identity.userSecret}`);
+        console.log(`userID = ${identity.userID}`);
+        console.log(`userSecret = ${identity.userSecret}`);
         
         //Add the above Card Details to the user
         user.blockUserID = identity.userID;
@@ -58,7 +58,7 @@ async function addGov(gov) {
         let govId = gov.govId; //Government Id generated at registration
         let name = gov.name; //Username generated inputed at registration
         let govRate = gov.govRate;
-        let reassignCost = gov.reassignCost;
+    
         
         let bizNetDefination = await businessNetworkConnection.connect(hyperConfig.networkAdminCard);
         let factory = businessNetworkConnection.getBusinessNetwork().getFactory();
@@ -67,7 +67,7 @@ async function addGov(gov) {
 
         participant.name = name;
         participant.govRate = govRate;
-        participant.reassignCost = reassignCost;
+
 
         let participantRegistry = await businessNetworkConnection.getParticipantRegistry(`${hyperConfig.ns}.${type}`);
         await participantRegistry.add(participant);

@@ -26,10 +26,6 @@ const GovSchema = new mongoose.Schema({
         type:Number,
         required: true
     },
-    reassignCost: {
-        type: Number,
-        required: true
-    },
     blockUserID: {
         type: String
     },

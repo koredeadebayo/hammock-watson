@@ -9,6 +9,8 @@ const router = express.Router();
 const passport = require('passport');
 const assetCtrl = require('../controller/asset');
 const Gov = require('../models/gov');
+const TradeRequest = require('../models/traderequest');
+const randomstring = require('randomstring');
 
     /*{
     *	"assetId": "123123",
@@ -31,7 +33,7 @@ const Gov = require('../models/gov');
 router.post('/add', passport.authenticate('user-role', {session:false}), async (req, res)=>{
     let user = req.user;
     //console.log(user);
-    
+    const newpropertyId = randomstring.generate(12);
     // "$class": "org.hammock.network.realEstate",
     // "propertyId": "string",
     // "address": "string",
@@ -49,10 +51,11 @@ router.post('/add', passport.authenticate('user-role', {session:false}), async (
          _userId: user._id,
          owner: user.username,
          certificateno: req.body.certificateno,
-         propertyId: req.body.propertyId,
+         propertyId: newpropertyId,
          squareMeters: req.body.squareMeters,
          description: req.body.description,
-         occupation: req.body.occupation
+         occupation: req.body.occupation,
+         government: req.body.government
      }); 
 
      Asset.addAsset(newAsset, (err, asset)=>{
@@ -66,37 +69,37 @@ router.post('/add', passport.authenticate('user-role', {session:false}), async (
 });
 
 router.post('/approve', passport.authenticate('gov-role', {session:false}),  (req, res, next)=>{
-    //Capture the goverment Id from the route passport strategy
+    //Capture the goverment Id from the route passport 
+    const gov = req.user.name;
 
     const propertyId = req.body.propertyId;
-    const gov = req.body.name;
+    
+    //console.log(req.user.name);
 
-    console.log(propertyId);
 
     Asset.getAssetByPropertyId(propertyId, (err, asset)=>{
         if(err)throw err;
         if(!asset){
             return  res.json({success:false, message:'Asset not found'});
         }
-
+        asset.approved = true;
+        asset.government = gov;
+        asset.save();
 
         let blockAsset =
         {
-            
             propertyId: asset.propertyId,
-            address: "string", //Make Array
+            address: [], //Make Array
             squareMeters: asset.squareMeters,
             price: 0,
-            imagelink: "string",
             description: asset.description,
-            dateOfRegistration: "string",
-            landSurveyLink: "string",
+            dateOfRegistration: "Todays date",
             coordinates: [],
-            owner: "1029192", //replace with owner username (asset.owner)
-            government:"string" // replace with the government (capture from the post req)
-            //Add certificateno : "string"
+            owner: asset.owner, //replace with owner username (asset.owner)
+            government:gov, // replace with the government (capture from the post req)
+            certificateno : asset.certificateno
         }
-        console.log(blockAsset.propertyId);
+        //console.log(blockAsset.propertyId);
         //Add Asset to the blockchain 
         assetCtrl.addAsset(blockAsset);
         res.json({success: true, msg: 'Registration Successful Listed'});
@@ -122,21 +125,20 @@ router.post('/list/:government', passport.authenticate('user-role', {session:fal
 
     Asset.find({approved:true, government:gov}, function(err, assets){
         if (err) throw err;
-        res.json({succes: true, msg: assets});
+        res.json({success: true, msg: assets});
     });
 
 });
 
 //Government Listing the Properties in their Region
 router.get('/list/:owner', passport.authenticate('gov-role', {session:false}), async (req, res) => {
-    const gov = req.body.name;   
-    console.log(req.body);
+    res.json({gov:req.user.name});
     const owner = req.params.owner;
 
     Asset.find({approved:true, owner:owner, government:gov}, function(err, assets){
-        if (err) throw err;
-        res.json({succes: true, msg: assets});
-    });
+         if (err) throw err;
+         res.json({success: true, msg: assets});
+     });
 
 });
 
@@ -157,18 +159,126 @@ router.get('/list/:owner', passport.authenticate('gov-role', {session:false}), a
         *		"newOwnerEmail": "player4@gmail.com"
         * }
         */
+router.post('/makeforsale', passport.authenticate('user-role', {session:false}), async (req, res) => {
+   let owner = req.user.username;
+   let propertyId = req.body.propertyId;
+   let price = req.body.price;
 
-router.post('/tradeAsset', passport.authenticate('user-role', {session:false}), async (req, res) => {
-    const buydetail = {
-        username: req.body.username,
-        land: req.body.User
+   Asset.getAssetByPropertyId(propertyId, (err, asset)=>{
+    if(err)throw err;
+    if(!asset){
+        return  res.json({success:false, message:'Asset not found'});
     }
-    user = req.user;
+    if (!asset.approved){
+        return res.json({success:false, message:"Property is not approved"});
+    }
+    if(asset.owner !== owner){
+        return res.json({success:false, message:"Unauthorized"})
+    }
+    if(asset.forsale){
+        return res.json({success: false, message:"Property is already listed for sale"});
+    }else{
+        asset.forsale = true;
+        asset.price = price;
+        asset.save();
+        return res.json({success: true, message:"Success! Property is listed for sale"});
+    }
+            
+   });
+});
 
-    let result = await assetCtrl.tradeAsset(req.body, user);
+router.post('/makerequest', passport.authenticate('user-role', {session:false}), async (req, res) => {
+    let propertyId = req.body.propertyId;
+    let buyer = req.user.name;
+
+    Asset.getAssetByPropertyId(propertyId, (err, asset)=>{
+        if(err)throw err;
+        if(!asset){
+            return res.json({success: false, msg:"Asset not found"});
+        }
+        if(!asset.approved){
+            return res.json({success: false, msg:"Asset not approved"});
+        }
+
+        const price = asset.price;
+
+        let newTradeRequest = new TradeRequest({
+            buyer: buyer,
+            price: price,
+            propertyId: propertyId
+        });
+
+
+        TradeRequest.addTradeRequest(newTradeRequest, (err,TradeRequest)=>{
+                if(err){
+                    //console.log(err);
+                    res.json({success: false, msg: 'Request Falied '});
+                }else{
+                    res.json({success: true, msg: 'Request successful'});
+                }
+        });
+    });
 
     //res.status(result.code).send(result);
 
 });
+
+
+router.post('/acceptrequest', passport.authenticate('user-role', {session:false}), async (req, res) => {
+    const owner = req.user.name;
+    const propertyId = req.body.propertyId;
+    const price = req.body.price;
+
+    Asset.getAssetByPropertyId(propertyId, (err, asset)=>{
+        if(err) throw err;
+        if(!asset){
+            res.json({success: false, msg: "Property not found!"});
+        }  
+        if(!asset.approved){
+            res.json({success: false, msg: "Trade not allowed, Property not approved"});
+        }
+        if(asset.owner !== owner){
+            res.json({success: false, msg:"Trade not allowed"});
+        }
+        
+
+        TradeRequest.getTradeRequestByPropertyId(propertyId, (err, tradeRequest)=>{
+            if (err) throw err;
+            asset.price = price;
+            asset.save(); 
+            tradeRequest.accepted = true;
+            tradeRequest.save();
+        });
+    });
+});
+
+router.post('/transferasset', passport.authenticate('user-role', {session:false}), async (req, res)=>{
+    const owner = req.user.name;
+
+    User.getUserByUsername(owner, (err, user)=>{
+        if (err) throw err;
+        const userID = user.blockUserID;
+        const userSecret = user.blockUserSecret;
+
+        const propertyId = req.body.propertyId;
+        const buyer = req.body.buyer;
+
+        let transferData = {
+            userID: user.blockUserID,
+            userSecret: user.blockUserSecret,
+            propertyId: req.body.propertyId,
+            buyer: req.body.buyer
+        }
+
+        assetCtrl.tradeAsset(transferData);
+
+    });
+
     
+
+
+
+});
+
+
 module.exports = router;

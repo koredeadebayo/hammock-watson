@@ -75,10 +75,17 @@ const AssetSchema = new mongoose.Schema({
     approved:{
         type: Boolean,
         default: false
+    },
+    price:{
+        type: Number
+    },
+    government:{
+        type: String
+    },
+    forsale:{
+        type: Boolean,
+        default: false
     }
-    // government:{
-    
-    // }
 
     // "$class": "org.hammock.network.realEstate",
     // "propertyId": "string",
