@@ -24,7 +24,7 @@
  * @transaction
  */
 
-function buyingRealEstate(trade){
+async function buyingRealEstate(trade){
     var transferCharges = (trade.government.govRate/100) * trade.realEstate.price
     var totalCost = transferCharges + trade.realEstate.price 
    
@@ -35,26 +35,21 @@ function buyingRealEstate(trade){
     }
     //deducated price of property from the buyer
     trade.buyer.balance -= totalCost
+    const buyerRegistry = await getParticipantRegistry('org.hammock.network.User')
+    await buyerRegistry.update(trade.buyer);
     //set the owner of the property to buyer
     trade.realEstate.owner = trade.buyer
+    const assetRegistry = await getAssetRegistry('org.hammock.network.realEstate')
+    await assetRegistry.update(trade.realEstate);
     //pay Government fee
     trade.government.balance += transferCharges
+    const governmentRegistry = await getParticipantRegistry('org.hammock.network.Government')
+    await governmentRegistry.update(trade.government);
     // Updates the seller's balance
     trade.seller.balance += trade.realEstate.price
+    const sellerRegistry = await getParticipantRegistry('org.hammock.network.User')
+    await sellerRegistry.update(trade.seller);
   
-    Promise.all([
-      getAssetRegistry('org.hammock.network.realEstate'),
-      getParticipantRegistry('org.hammock.network.User'),
-      getParticipantRegistry('org.hammock.network.User'),
-      getParticipantRegistry('org.hammock.network.Government')
-    ]).then(function(registries){
-      return (
-        registries[0].update(trade.realEstate),
-        registries[1].update(trade.seller),
-        registries[2].update(trade.buyer),
-        registries[3].update(trade.government)
-      )
-    })
   }
 
   

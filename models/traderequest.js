@@ -3,11 +3,6 @@ const config = require('../config/database');
 const Schema = mongoose.Schema;
 
 const tradeRequestSchema = new Schema({
-    _userId: { 
-        type: mongoose.Schema.Types.ObjectId, 
-        required: true,
-        ref: 'User' 
-    },
     buyer: { 
         type: String, 
         required: true 
@@ -23,6 +18,10 @@ const tradeRequestSchema = new Schema({
     rejected:{
         type: Boolean,
         default: false
+    },
+    price:{
+        type: Number,
+        required: true
     },
     createdAt: {
         type: Date, 

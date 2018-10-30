@@ -3,14 +3,29 @@
   "version": "1.0.0",
   "description": "The future of secured property transactions",
   "main": "app.js",
+  "engines": {
+    "node": "8.12.0"
+  },
   "scripts": {
     "start": "node app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/korvictech/hammock-watson.git"
   },
   "dependencies": {
     "bcryptjs": "*",
     "body-parser": "*",
+    "cfenv": "1.0.x",
+    "composer-admin": "*",
+    "composer-client": "*",
+    "composer-common": "*",
+    "composer-connector-embedded": "*",
+    "connect-mongo": "^1.3.2",
+    "cookie-parser": "^1.4.3",
     "cors": "*",
     "crypto": "^1.0.1",
+    "dotenv": "^1.2.0",
     "express": "*",
     "jsonwebtoken": "^8.3.0",
     "mongoose": "*",
@@ -20,10 +35,7 @@
     "passport-jwt": "*",
     "randomstring": "^1.1.5",
     "randomstrings": "0.0.2",
-    "composer-admin": "*",
-    "composer-client": "*",
-    "composer-common": "*",
-    "composer-connector-embedded": "*"
+    "express-session": "^1.15.6"
   },
   "author": "",
   "license": "IDS",
