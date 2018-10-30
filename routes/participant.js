@@ -6,6 +6,7 @@ const router = express.Router();
 const passport = require('passport');
 const User = require('../models/user');
 const SP =  require('../models/sp');
+const Gov = require('../models/gov');
 const Token = require('../models/token');
 const config = require('../config/database');
 const jwt = require('jsonwebtoken');
@@ -16,6 +17,7 @@ const mailConfig = require('../config/email-setup');
 const participantCtrl = require('../controller/participant');
 
 
+<<<<<<< HEAD
 // User Management
 
   //get
@@ -23,20 +25,24 @@ const participantCtrl = require('../controller/participant');
       res.send("REGISTER HERE");
 
   });
+=======
+
+// User Management 
+>>>>>>> ece23869bc6a0b09b18ad684c9e2b3cc6887c7f0
     //Register
     router.post('/reg', (req, res, next) =>{
         //res.send('Register User');
 
         //Secret Token for each user
-        //const newSecretToken = randomstring.generate();
+        const newUserId = randomstring.generate(12);
 
         let newUser = new User({
            name: req.body.name,
            email: req.body.email,
            password: req.body.password,
            username: req.body.username,
-           userId: req.body.userId,
-           address: req.body.address,
+           userId: newUserId,
+           //address: req.body.address,
            //secretToken : newSecretToken
          });
 
@@ -111,7 +117,6 @@ const participantCtrl = require('../controller/participant');
                  if (err) {
                      return res.status(500).send({ msg: err.message });
                  }
-             //console.log(token);
              // Send the email
             const transporter = nodemailer.createTransport(mailConfig);
             //Set mail address
@@ -136,13 +141,14 @@ const participantCtrl = require('../controller/participant');
     });
 
     //Confirm Token
-    router.get('/confirm',  (req, res, next) =>{
+    router.get('/confirm', async  (req, res) =>{
         //console.log(req.query.token);
         //const url = require('url');
         //const querystring = require('querystring');
 
         //const token = req.body.token;
         //console.log(token);
+
          Token.findOne({ token: req.query.token }, function (err, token) {
              if (!token)
                  return res.status(400).send({ type: 'not-verified', msg: 'We were unable to find a valid token. Your token may have expired.' });
@@ -160,13 +166,18 @@ const participantCtrl = require('../controller/participant');
                   });
                   //Add Blockchain participant to the network
                   participantCtrl.addUser(user);
+                  console.log(user);
               });
           });
 
     });
 
     //Show user profile
+<<<<<<< HEAD
     router.get('/profile', passport.authenticate('user-role', {session:false}), (req, res, next) => {
+=======
+    router.get('/profile', passport.authenticate('user-role',{session:false}), (req, res, next) => {
+>>>>>>> ece23869bc6a0b09b18ad684c9e2b3cc6887c7f0
         res.json({user: req.user});
     });
 
@@ -224,9 +235,9 @@ const participantCtrl = require('../controller/participant');
             // console.log('mailTransporter');
             //Check if the user is active and ready to login
             //console.log(sp.active);
-             if(!sp.active){
-                 return res.json({success:false, message:'Service Provider account not verified'});
-             }
+            //  if(!sp.active){
+            //      return res.json({success:false, message:'Service Provider account not verified'});
+            //  }
             SP.comparePassword(password, sp.password, (err, isMatch) =>{
                 if(err)  throw err;
                 if(isMatch){
@@ -234,7 +245,7 @@ const participantCtrl = require('../controller/participant');
                             expiresIn: 604800 //1 week
                         });
 
-
+ 
                     res.json({
                         success:true,
                         token: 'JWT '+token,
@@ -254,7 +265,15 @@ const participantCtrl = require('../controller/participant');
     });
     //Authenticate
 
+<<<<<<< HEAD
     //Dashboard
+=======
+    //Dashboard 
+    //Show Service Providers profile
+    router.get('/spprofile', passport.authenticate('sp-role',{session:false}), (req, res, next) => {
+        res.json({sp: req.sp});
+    });                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+>>>>>>> ece23869bc6a0b09b18ad684c9e2b3cc6887c7f0
 
 //Banks Management
     //Register
@@ -263,10 +282,75 @@ const participantCtrl = require('../controller/participant');
 
     //Dashboard
 
-//Agent Management
+//Goverment Management
     //Register
+<<<<<<< HEAD
 
+=======
+    router.post('/addgov', (req, res, next) =>{
+        //res.send('Register User');
+
+        //Secret Token for each user
+        //const newSecretToken = randomstring.generate();
+
+        let newGov = new Gov({
+           govId: req.body.govId,
+           name: req.body.name,
+           password: req.body.password,
+           govRate: req.body.govRate
+         });
+
+         
+         
+         Gov.addGov(newGov, (err, gov)=>{
+            if(err){
+                res.json({success: false, msg: 'Falied to register the Government account'});
+            }else{
+                res.json({success: true, msg: 'Government registered'});
+            }
+            participantCtrl.addGov(gov);
+        });
+
+        
+    });
+
+    
+>>>>>>> ece23869bc6a0b09b18ad684c9e2b3cc6887c7f0
     //Authenticate
+    router.post('/govauth', (req, res, next) =>{
+        const name = req.body.name;
+        const password = req.body.password;
+
+
+
+        Gov.getGovByName(name, (err, gov)=>{
+            if(err)throw err;
+            if(!gov){
+                return  res.json({success:false, message:'Government not found'});
+            }
+
+            Gov.comparePassword(password, gov.password, (err, isMatch) =>{
+                if(err)  throw err;
+                if(isMatch){
+                        const token = jwt.sign({data:gov}, config.secret,{
+                            expiresIn: 604800 //1 week
+                        });
+
+
+                    res.json({
+                        success:true,
+                        token: 'JWT '+token,
+                        user:{
+                            id:gov._id,
+                            name: gov.name
+                            }
+                        });
+                }else{
+                    return res.json({success: false, msg:'Wrong Password'});
+                }
+            });
+        });
+    });
 
     //Dashboard
 

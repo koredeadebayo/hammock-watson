@@ -26,6 +26,7 @@ const app = express();
 
 //Instantiate user
 const user = require('./routes/participant');
+const asset = require('./routes/asset');
 
 //Set port number for rest api
 var port = 3000;
@@ -46,8 +47,13 @@ console.log(BusinessNetworkConnection);
     require('./config/passport')(passport);
 
 app.use('/users', user);
+<<<<<<< HEAD
 
 // Index Route
+=======
+app.use('/assets', asset);
+// Index Route 
+>>>>>>> ece23869bc6a0b09b18ad684c9e2b3cc6887c7f0
 app.get('/', (req, res) => {
     res.send('Just another end point');
   });

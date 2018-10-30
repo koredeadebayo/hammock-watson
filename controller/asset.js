@@ -5,39 +5,104 @@ let businessNetworkConnection  = new BusinessNetworkConnection();
 
 
 
-async function addRealEstate(realEstateData) {
-
+async function addAsset(assetData) {
+        console.log(assetData);
     try {
 
-        let type = "RealEstate";
+        let type = "realEstate";
         let userType = "User";
+        let govType = "Government";
 
         let businessNetDefination = await businessNetworkConnection.connect(hyperConfig.networkAdminCard);
         let factory = businessNetworkConnection.getBusinessNetwork().getFactory();
 
         let assetRegistry = await businessNetworkConnection.getAssetRegistry(`${hyperConfig.ns}.${type}`);
 
-        let ownerRelations = factory.newRelationship(hyperConfig.ns, userType, realEstateData.owner);
-        let newRealEstate = factory.newResource(hyperConfig.ns, type, realEstateData.assetId);
+        let ownerRelations = factory.newRelationship(hyperConfig.ns, userType, assetData.owner);
+        let governmentRelations = factory.newRelationship(hyperConfig.ns, govType, assetData.government)
+        let newRealEstate = factory.newResource(hyperConfig.ns, type, assetData.propertyId);
 
-        delete realEstateData.owner;
+        delete assetData.owner;
+        delete assetData.government;
 
         newRealEstate.owner = ownerRelations;
+        newRealEstate.government = governmentRelations;
 
-        newRealEstate = Object.assign(newRealEstate, realEstateData);
+        //console.log("on the way");
+        newRealEstate = Object.assign(newRealEstate, assetData);
 
         let result = await assetRegistry.add(newRealEstate);
-
-        res.json({success: true, msg: 'Your real estate registered'});
+        //console.log(result);
+        await businessNetworkConnection.disconnect();
+        console.log("succesful");
+        //res.json({success: true, msg: 'Your real estate registered'});
     } catch (err) {
 
         errMessage = typeof err == 'string' ? err : err.message;
-        res.json({success: true, msg: "Create Real Estate failed"});
+        //res.json({success: true, msg: "Create Real Estate failed"});
     }
 
 
 }
 
+
+
+async function tradeAsset(transferData) {
+
+    try {
+
+        let type = "BuyingRealEstate"
+        let userType = "User"
+        let assetType = "realEstate"
+
+        let currentOwner = userData;
+
+        // if (!(currentOwner && currentOwner.length)) {
+        //     return responseModel.successResponse("Invalid credentials", {});
+        // } else {
+        //     currentOwner = currentOwner[0];
+        // }
+
+        let currentOwnerCard = `${currentOwner.blockUserID}@${hyperConfig.networkName}`;
+        let bizNetDefination = await businessNetworkConnection.connect(currentOwnerCard);
+        let factory = bizNetDefination.getFactory();
+
+        delete tradeMarbleData.creds;
+
+        let newOwnerRelation = factory.newRelationship(hyperConfig.ns, userType, tradeMarbleData.transactionData.newOwnerEmail);
+
+        let marbleRelation = factory.newRelationship(config.ns, assetType, tradeMarbleData.transactionData.marbleId);
+
+        let transData = {
+            "marble": marbleRelation,
+            "newOwner": newOwnerRelation
+        }
+
+
+        const newTransaction = factory.newTransaction(`${config.ns}`, type);
+
+        trans = Object.assign(newTransaction, transData);
+
+        let res = await bizNetConnection.submitTransaction(trans);
+
+        return responseModel.successResponse("Marbles traded", res);
+
+    } catch (err) {
+
+        console.log("in err");
+
+        errMessage = typeof err == 'string' ? err : err.message;
+
+        return responseModel.failResponse("Transaction", {}, errMessage);
+    }
+
+
+}
+
+
+
+
 module.exports = {
-    addRealEstate
+    addAsset,
+    tradeAsset
 }
