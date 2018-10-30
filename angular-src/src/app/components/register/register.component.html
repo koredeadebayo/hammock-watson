@@ -1,0 +1,54 @@
+<!--========== top header ==========-->
+<div class="general-top-header">
+    <!-- Swiper Wrapper -->
+    <div class="swiper-wrapper">
+        <div class="s-promo-block-v4 g-fullheight--xs g-bg-position--center swiper-slide" style="background: url('assets/img/1920x1080/real-estate-bg-dark.jpg');">
+            <div class="container g-ver-center--xs">
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="g-margin-b-50--xs">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Swiper Wrapper -->
+</div>
+
+<!-- Form -->
+<div id="js__scroll-to-appointment" class="g-bg-color--sky-light g-padding-y-80--xs g-padding-y-125--sm">
+    <div class="container g-bg-color--white g-box-shadow__dark-lightest-v3">
+        <div class="row">
+            <!-- Form -->
+            <div class="col-md-12 js__form-eqaul-height-v1">
+                <div class="g-padding-x-40--xs g-padding-y-50--xs">
+                    <h2 class="g-font-size-24--xs g-color--primary g-margin-b-50--xs">Create an account</h2>
+                    <form (submit)="onRegisterSubmit()">
+                        <div class="row g-margin-b-30--xs g-margin-b-50--md">
+                            <div class="col-sm-12 g-margin-b-30--xs g-margin-b-0--md">
+                                <input type="text" [(ngModel)]="name" name="name" class="form-control s-form-v4__input g-padding-l-0--xs" placeholder="* Full Name">
+                            </div>
+                            <div class="col-sm-12">
+                                <input type="text" [(ngModel)]="username" name="username" class="form-control s-form-v4__input g-padding-l-0--xs" placeholder="* Username">
+                            </div>
+                            <div class="col-sm-12 g-margin-b-30--xs g-margin-b-0--md">
+                                <input type="text" [(ngModel)]="email" name="email" class="form-control s-form-v4__input g-padding-l-0--xs" placeholder="* Email">
+                            </div>
+                            <div class="col-sm-12 g-margin-b-30--xs g-margin-b-0--md">
+                                <input type="password" [(ngModel)]="password" name="password" class="form-control s-form-v4__input g-padding-l-0--xs" placeholder="* Password">
+                            </div>
+                        </div>
+                        <div class="g-text-center--xs">
+                            <button type="submit" class="text-uppercase s-btn s-btn--md s-btn--primary-bg g-radius--50 g-padding-x-70--xs g-margin-b-20--xs">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- End Form -->
+
+
+        </div>
+    </div>
+</div>
+<!-- End Form -->

@@ -5,7 +5,7 @@ const config = require('../config/database');
 const UserSchema = new mongoose.Schema({
     name: {
         type: String
-        
+
     },
     email: {
         type: String,
@@ -27,7 +27,7 @@ const UserSchema = new mongoose.Schema({
         {
          street:{
             type: String
-         }, 
+         },
          city:{
             type: String
          },
@@ -72,7 +72,7 @@ module.exports.getUserByUsername = function(username, callback){
 module.exports.addUser= function(newUser, callback){
     bcrypt.genSalt(10, (err, salt)=>{
         bcrypt.hash(newUser.password, salt, (err, hash)=>{
-            if(err) throw err; 
+            if(err) throw err;
             newUser.password = hash;
             newUser.save(callback);
 
@@ -86,4 +86,3 @@ module.exports.comparePassword = function(candidatePassword, hash, callback) {
         callback(null, isMatch);
     });
 }
-

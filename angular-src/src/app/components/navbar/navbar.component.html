@@ -1,0 +1,60 @@
+<!--========== HEADER V2 ==========-->
+        <header class="navbar-fixed-top s-header-v2 js__header-sticky">
+            <!-- Navbar -->
+            <nav class="s-header-v2__navbar">
+                <div class="container g-display-table--lg">
+                    <!-- Navbar Row -->
+                    <div class="s-header-v2__navbar-row">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="s-header-v2__navbar-col">
+                            <button type="button" class="collapsed s-header-v2__toggle" data-toggle="collapse" data-target="#nav-collapse" aria-expanded="false">
+                                <span class="s-header-v2__toggle-icon-bar"></span>
+                            </button>
+                        </div>
+
+                        <div class="s-header-v2__navbar-col s-header-v2__navbar-col-width--180">
+                            <!-- Logo -->
+                            <div class="s-header-v2__logo">
+                                <a [routerLink]="['/']" class="s-header-v2__logo-link">
+                                    <img class="s-header-v2__logo-img s-header-v2__logo-img--default" src="assets/img/hammock-logo-sm.png" alt="Hammock Logo">
+                                    <img class="s-header-v2__logo-img s-header-v2__logo-img--shrink" src="assets/img/hammock-logo-sm-1.png" alt="Hammock Logo">
+                                </a>
+                            </div>
+                            <!-- End Logo -->
+                        </div>
+
+                        <div class="s-header-v2__navbar-col s-header-v2__navbar-col--right">
+                            <!-- Collect the nav links, forms, and other content for toggling -->
+                            <div class="collapse navbar-collapse s-header-v2__navbar-collapse" id="nav-collapse">
+                                <ul class="s-header-v2__nav">
+                                    <!-- Home -->
+                                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}" class="dropdown s-header-v2__nav-item">
+                                        <a  [routerLink]="['/']"  class="s-header-v2__nav-link -is-active" data-toggle="dropdown" role="button"> Home</a>
+                                    </li>
+                                    <!-- End Home -->
+
+                                    <!-- Pages -->
+                                    <li class="dropdown s-header-v2__nav-item s-header-v2__dropdown-on-hover">
+                                        <a href="javascript:void(0);" class="dropdown-toggle s-header-v2__nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Trade <span class="g-font-size-10--xs g-margin-l-5--xs ti-angle-down"></span></a>
+                                        <ul class="dropdown-menu s-header-v2__dropdown-menu">
+                                            <li [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}" ><a  [routerLink]="['/buy-property']" class="s-header-v2__dropdown-menu-link">Buy Property</a></li>
+                                            <li [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}" ><a [routerLink]="['/sell-property']"  class="s-header-v2__dropdown-menu-link">Sell  Property</a></li>
+                                        </ul>
+                                    </li>
+                                    <!-- End Pages -->
+
+                                    <li class="s-header-v2__nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}" ><a  [routerLink]="['/about']" class="s-header-v2__nav-link">About</a></li>
+                                    <li class="s-header-v2__nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}" ><a  [routerLink]="['/login']" class="s-header-v2__nav-link">Sign In</a></li>
+                                    <li class="s-header-v2__nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}" ><a  [routerLink]="['/register']" class="s-header-v2__nav-link">Create Account</a></li>
+                                    <li class="s-header-v2__nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}" ><a [routerLink]="['/contacts']" class="s-header-v2__nav-link s-header-v2__nav-link--dark">Contacts</a></li>
+                                </ul>
+                            </div>
+                            <!-- End Nav Menu -->
+                        </div>
+                    </div>
+                    <!-- End Navbar Row -->
+                </div>
+            </nav>
+            <!-- End Navbar -->
+        </header>
+        <!--========== END HEADER V2 ==========-->

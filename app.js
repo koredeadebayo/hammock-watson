@@ -51,7 +51,7 @@ else{
 
 
 
-//Set application 
+//Set application
 const app = express();
 
 //Use SSL connection provided by Bluemix. No setup required besides redirecting all HTTP requests to HTTPS
@@ -68,9 +68,6 @@ const app = express();
 //Instantiate user
 const user = require('./routes/participant');
 const asset = require('./routes/asset');
-
-//Set port number for rest api
-var port = 3000;
 
 
 //MIDDLEWARES
@@ -90,6 +87,10 @@ var port = 3000;
     cookie: { secure: true }
     }));
     //Passport Middlware 
+
+    //Set static folder
+    app.use(express.static(path.join(__dirname, "public")));
+    //Passport Middlware
     app.use(passport.initialize());
     app.use(passport.session());
     require('./config/passport')(passport);
@@ -98,7 +99,7 @@ app.use('/users', user);
 app.use('/assets', asset);
 // Index Route 
 app.get('/', (req, res) => {
-    res.send('invaild endpoint');
+    res.send('Just another end point');
   });
 
 

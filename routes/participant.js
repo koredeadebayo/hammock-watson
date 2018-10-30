@@ -1,5 +1,5 @@
 /*
-    Participant Management Routes 
+    Participant Management Routes
 */
 const express = require('express');
 const router = express.Router();
@@ -17,8 +17,18 @@ const mailConfig = require('../config/email-setup');
 const participantCtrl = require('../controller/participant');
 
 
+<<<<<<< HEAD
+// User Management
+
+  //get
+  router.get('/register',  (req, res, next) =>{
+      res.send("REGISTER HERE");
+
+  });
+=======
 
 // User Management 
+>>>>>>> ece23869bc6a0b09b18ad684c9e2b3cc6887c7f0
     //Register
     router.post('/reg', (req, res, next) =>{
         //res.send('Register User');
@@ -36,8 +46,6 @@ const participantCtrl = require('../controller/participant');
            //secretToken : newSecretToken
          });
 
-         
-         
          User.addUser(newUser, (err, user)=>{
             if(err){
                 res.json({success: false, msg: 'Falied to register the account'});
@@ -46,7 +54,7 @@ const participantCtrl = require('../controller/participant');
             }
         });
 
-        
+
     });
     //Authenticate - Passport-jwt enables the authentication works fluidly
     router.post('/auth', (req, res, next) =>{
@@ -91,7 +99,7 @@ const participantCtrl = require('../controller/participant');
             });
         });
     });
-    
+
     //Verify user account by sending mail to the user. This would also be used incase the token has expired
     router.post('/verify',  (req, res, next) =>{
         const username = req.body.username;
@@ -102,56 +110,54 @@ const participantCtrl = require('../controller/participant');
                 return  res.json({success:false, message:'User not found'});
             }
             //console.log(user);
-            //generate the token and 
+            //generate the token and
             //Create a verification token for this user
              const token = new Token({ _userId: user._id, token: crypto.randomBytes(16).toString('hex') });
              token.save(function (err) {
-                 if (err) { 
-                     return res.status(500).send({ msg: err.message }); 
+                 if (err) {
+                     return res.status(500).send({ msg: err.message });
                  }
              // Send the email
             const transporter = nodemailer.createTransport(mailConfig);
             //Set mail address
-            const mailOptions = { 
+            const mailOptions = {
                 from: 'victor@crestsage.com',
                 to: user.email,
                 subject: 'Account Verification Token',
-                text: 'Hello,\n\n' + 'Please verify your account by clicking the link: \nhttp:\/\/' + req.headers.host + '\/users/confirm\/?token=' + token.token + '.\n' 
+                text: 'Hello,\n\n' + 'Please verify your account by clicking the link: \nhttp:\/\/' + req.headers.host + '\/users/confirm\/?token=' + token.token + '.\n'
             };
             transporter.sendMail(mailOptions, function (err) {
-                if (err) { 
-                    return res.status(500).send({ msg: err.message }); 
+                if (err) {
+                    return res.status(500).send({ msg: err.message });
                 }
                 res.status(200).send('A verification email has been sent to ' + user.email + '.');
             });
 
 
-            
+
             });
          });
-        
+
     });
-    
+
     //Confirm Token
     router.get('/confirm', async  (req, res) =>{
         //console.log(req.query.token);
         //const url = require('url');
         //const querystring = require('querystring');
 
-
-
         //const token = req.body.token;
         //console.log(token);
 
          Token.findOne({ token: req.query.token }, function (err, token) {
-             if (!token) 
+             if (!token)
                  return res.status(400).send({ type: 'not-verified', msg: 'We were unable to find a valid token. Your token may have expired.' });
-     
+
             // If we found a token, find a matching user
               User.findOne({ _id: token._userId }, function (err, user) {
                   if (!user) return res.status(400).send({ msg: 'We were unable to find a user for this token.' });
                   if (user.active) return res.status(400).send({ type: 'already-verified', msg: 'This user has already been verified.' });
-     
+
                  // Verify and save the user
                   user.active = true;
                   user.save(function (err) {
@@ -164,20 +170,23 @@ const participantCtrl = require('../controller/participant');
               });
           });
 
-          
-
     });
 
     //Show user profile
+<<<<<<< HEAD
+    router.get('/profile', passport.authenticate('user-role', {session:false}), (req, res, next) => {
+=======
     router.get('/profile', passport.authenticate('user-role',{session:false}), (req, res, next) => {
+>>>>>>> ece23869bc6a0b09b18ad684c9e2b3cc6887c7f0
         res.json({user: req.user});
     });
-    
+
     //Dashboard
     router.get('/user', async (req, res) =>{
 
     });
-//Notary Management       
+
+    //Notary Management
     //Register
     router.post('/spreg', (req, res, next) =>{
         //res.send('Register User');
@@ -198,8 +207,8 @@ const participantCtrl = require('../controller/participant');
            //secretToken : newSecretToken
          });
 
-         
-         
+
+
          SP.addSP(newSP, (err, sp)=>{
             if(err){
                 res.json({success: false, msg: 'Falied to register the account'});
@@ -208,7 +217,7 @@ const participantCtrl = require('../controller/participant');
             }
         });
 
-        
+
     });
     //Authenticate - Passport-jwt enables the authentication works fluidly
     router.post('/spauth', (req, res, next) =>{
@@ -256,21 +265,28 @@ const participantCtrl = require('../controller/participant');
     });
     //Authenticate
 
+<<<<<<< HEAD
+    //Dashboard
+=======
     //Dashboard 
     //Show Service Providers profile
     router.get('/spprofile', passport.authenticate('sp-role',{session:false}), (req, res, next) => {
         res.json({sp: req.sp});
     });                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+>>>>>>> ece23869bc6a0b09b18ad684c9e2b3cc6887c7f0
 
 //Banks Management
     //Register
-    
+
     //Authenticate
 
     //Dashboard
 
 //Goverment Management
     //Register
+<<<<<<< HEAD
+
+=======
     router.post('/addgov', (req, res, next) =>{
         //res.send('Register User');
 
@@ -299,6 +315,7 @@ const participantCtrl = require('../controller/participant');
     });
 
     
+>>>>>>> ece23869bc6a0b09b18ad684c9e2b3cc6887c7f0
     //Authenticate
     router.post('/govauth', (req, res, next) =>{
         const name = req.body.name;
