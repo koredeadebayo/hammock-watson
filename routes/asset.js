@@ -190,6 +190,7 @@ router.post('/makeforsale', passport.authenticate('user-role', {session:false}),
 router.post('/makerequest', passport.authenticate('user-role', {session:false}), async (req, res) => {
     let propertyId = req.body.propertyId;
     let buyer = req.user.name;
+    const price = req.body.price;
 
     Asset.getAssetByPropertyId(propertyId, (err, asset)=>{
         if(err)throw err;
@@ -199,8 +200,8 @@ router.post('/makerequest', passport.authenticate('user-role', {session:false}),
         if(!asset.approved){
             return res.json({success: false, msg:"Asset not approved"});
         }
-
-        const price = asset.price;
+ 
+        
 
         let newTradeRequest = new TradeRequest({
             buyer: buyer,
@@ -211,7 +212,7 @@ router.post('/makerequest', passport.authenticate('user-role', {session:false}),
 
         TradeRequest.addTradeRequest(newTradeRequest, (err,TradeRequest)=>{
                 if(err){
-                    //console.log(err);
+                    console.log(err);
                     res.json({success: false, msg: 'Request Falied '});
                 }else{
                     res.json({success: true, msg: 'Request successful'});
@@ -225,12 +226,14 @@ router.post('/makerequest', passport.authenticate('user-role', {session:false}),
 
 
 router.post('/acceptrequest', passport.authenticate('user-role', {session:false}), async (req, res) => {
-    const owner = req.user.name;
+    const owner = req.user.username;
+    //console.log(owner);
     const propertyId = req.body.propertyId;
-    const price = req.body.price;
+
 
     Asset.getAssetByPropertyId(propertyId, (err, asset)=>{
         if(err) throw err;
+        //console.log(asset.owner);
         if(!asset){
             res.json({success: false, msg: "Property not found!"});
         }  
@@ -238,21 +241,63 @@ router.post('/acceptrequest', passport.authenticate('user-role', {session:false}
             res.json({success: false, msg: "Trade not allowed, Property not approved"});
         }
         if(asset.owner !== owner){
+            console.log(asset.owner);
+
+            console.log(owner);
             res.json({success: false, msg:"Trade not allowed"});
         }
         
 
         TradeRequest.getTradeRequestByPropertyId(propertyId, (err, tradeRequest)=>{
+            console.log(tradeRequest.accepted);
             if (err) throw err;
-            asset.price = price;
+            asset.price = tradeRequest.price;
             asset.save(); 
             tradeRequest.accepted = true;
             tradeRequest.save();
+            res.json({success: true, msg:"Trade Accepted"});
         });
     });
 });
 
-router.post('/transferasset', passport.authenticate('user-role', {session:false}), async (req, res)=>{
+router.post('/rejectrequest', passport.authenticate('user-role', {session:false}), async (req, res) => {
+    const owner = req.user.username;
+    //console.log(owner);
+    const propertyId = req.body.propertyId;
+
+
+    Asset.getAssetByPropertyId(propertyId, (err, asset)=>{
+        if(err) throw err;
+        //console.log(asset.owner);
+        if(!asset){
+            res.json({success: false, msg: "Property not found!"});
+        }  
+        if(!asset.approved){
+            res.json({success: false, msg: "Not allowed, Property not approved"});
+        }
+        if(asset.owner !== owner){
+            console.log(asset.owner);
+
+            console.log(owner);
+            res.json({success: false, msg:"Not allowed"});
+        }
+        
+
+        TradeRequest.getTradeRequestByPropertyId(propertyId, (err, tradeRequest)=>{
+            console.log(tradeRequest.accepted);
+            if (err) throw err;
+            asset.price = tradeRequest.price;
+            asset.save(); 
+            tradeRequest.rejected = true;
+            tradeRequest.delete();
+            res.json({success: true, msg:"Trade Rejected"});
+        });
+    });
+});
+
+
+
+router.post('/rejectasset', passport.authenticate('user-role', {session:false}), async (req, res)=>{
     const owner = req.user.name;
 
     User.getUserByUsername(owner, (err, user)=>{
