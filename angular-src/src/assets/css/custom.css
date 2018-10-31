@@ -1,3 +1,7 @@
 .general-top-header .swiper-wrapper .swiper-slide {
     height: 90px;
 }
+
+.custom-form input.form-control.s-form-v4__input {
+    text-transform: none;
+}

@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -15,7 +16,11 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 
 import {ValidService} from './services/valid.service';
+import {AuthService} from './services/auth.service';
 //import { FlashMessagesModule } from 'angular2-flash-messages';
+
+import { NgFlashMessagesModule } from 'ng-flash-messages';
+
 
 
 const appRoutes: Routes = [
@@ -41,10 +46,11 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
     HttpModule,
+    BrowserAnimationsModule,
+    NgFlashMessagesModule,
     RouterModule.forRoot(appRoutes)
-    //FlashMessagesModule
   ],
-  providers: [ValidService],
+  providers: [ValidService,AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

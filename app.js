@@ -47,13 +47,11 @@ console.log(BusinessNetworkConnection);
     require('./config/passport')(passport);
 
 app.use('/users', user);
-<<<<<<< HEAD
 
 // Index Route
-=======
+
 app.use('/assets', asset);
-// Index Route 
->>>>>>> ece23869bc6a0b09b18ad684c9e2b3cc6887c7f0
+// Index Route
 app.get('/', (req, res) => {
     res.send('Just another end point');
   });

@@ -16,8 +16,6 @@ const nodemailer = require('nodemailer');
 const mailConfig = require('../config/email-setup');
 const participantCtrl = require('../controller/participant');
 
-
-<<<<<<< HEAD
 // User Management
 
   //get
@@ -25,12 +23,10 @@ const participantCtrl = require('../controller/participant');
       res.send("REGISTER HERE");
 
   });
-=======
 
-// User Management 
->>>>>>> ece23869bc6a0b09b18ad684c9e2b3cc6887c7f0
+// User Management
     //Register
-    router.post('/reg', (req, res, next) =>{
+    router.post('/register', (req, res, next) =>{
         //res.send('Register User');
 
         //Secret Token for each user
@@ -173,11 +169,9 @@ const participantCtrl = require('../controller/participant');
     });
 
     //Show user profile
-<<<<<<< HEAD
-    router.get('/profile', passport.authenticate('user-role', {session:false}), (req, res, next) => {
-=======
+    //router.get('/profile', passport.authenticate('user-role', {session:false}), (req, res, next) => {
+
     router.get('/profile', passport.authenticate('user-role',{session:false}), (req, res, next) => {
->>>>>>> ece23869bc6a0b09b18ad684c9e2b3cc6887c7f0
         res.json({user: req.user});
     });
 
@@ -245,7 +239,7 @@ const participantCtrl = require('../controller/participant');
                             expiresIn: 604800 //1 week
                         });
 
- 
+
                     res.json({
                         success:true,
                         token: 'JWT '+token,
@@ -265,15 +259,11 @@ const participantCtrl = require('../controller/participant');
     });
     //Authenticate
 
-<<<<<<< HEAD
     //Dashboard
-=======
-    //Dashboard 
     //Show Service Providers profile
     router.get('/spprofile', passport.authenticate('sp-role',{session:false}), (req, res, next) => {
         res.json({sp: req.sp});
-    });                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
->>>>>>> ece23869bc6a0b09b18ad684c9e2b3cc6887c7f0
+    });
 
 //Banks Management
     //Register
@@ -284,9 +274,7 @@ const participantCtrl = require('../controller/participant');
 
 //Goverment Management
     //Register
-<<<<<<< HEAD
 
-=======
     router.post('/addgov', (req, res, next) =>{
         //res.send('Register User');
 
@@ -300,8 +288,8 @@ const participantCtrl = require('../controller/participant');
            govRate: req.body.govRate
          });
 
-         
-         
+
+
          Gov.addGov(newGov, (err, gov)=>{
             if(err){
                 res.json({success: false, msg: 'Falied to register the Government account'});
@@ -311,11 +299,10 @@ const participantCtrl = require('../controller/participant');
             participantCtrl.addGov(gov);
         });
 
-        
+
     });
 
-    
->>>>>>> ece23869bc6a0b09b18ad684c9e2b3cc6887c7f0
+
     //Authenticate
     router.post('/govauth', (req, res, next) =>{
         const name = req.body.name;
