@@ -1,0 +1,14 @@
+{
+    "composer": {
+      "cardstore": {
+        "type": "@ampretia/composer-wallet-ibmcos",
+        "desc": "Uses the IBM Cloud Object Store",
+        "options": {
+          "bucketName": "carddir",
+          "endpoint": "s3.eu-gb.objectstorage.softlayer.net",
+          "apikey": "MnxMgyz2jsm7hsfweDFojWPKXvxtMYNvAGKtA-kqDlN8",
+          "serviceInstanceId": "crn:v1:bluemix:public:cloud-object-storage:global:a/416def5e19524269b2ab79b75d4e56b7:a1297697-933a-4c5a-9cff-04487473e1d8::"
+        }
+      }
+    }
+  }

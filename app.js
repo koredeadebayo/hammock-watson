@@ -75,17 +75,17 @@ const asset = require('./routes/asset');
     app.use(bodyParser.json());
     //CORS for Domain protection
     app.use(cors());
-    app.use(cookieParser());
-    app.use(session({
-    secret: config.secret || 'this_is_a_default_session_secret_in_case_one_is_not_defined',
-    resave: true,
-    store: new MongoStore({
-        url: sessionDB,
-        autoReconnect: true
-    }),
-    saveUninitialized : false,
-    cookie: { secure: true }
-    }));
+    // app.use(cookieParser());
+    // app.use(session({
+    // secret: config.secret || 'this_is_a_default_session_secret_in_case_one_is_not_defined',
+    // resave: true,
+    // store: new MongoStore({
+    //     url: sessionDB,
+    //     autoReconnect: true
+    // }),
+    // saveUninitialized : false,
+    // cookie: { secure: true }
+    // }));
     //Passport Middlware 
 
     //Set static folder
