@@ -27,6 +27,8 @@
     "crypto": "^1.0.1",
     "dotenv": "^1.2.0",
     "express": "*",
+    "express-history-api-fallback": "^2.2.1",
+    "express-session": "^1.15.6",
     "jsonwebtoken": "^8.3.0",
     "mongoose": "*",
     "nodemailer": "^4.6.8",
@@ -34,8 +36,7 @@
     "passport": "*",
     "passport-jwt": "*",
     "randomstring": "^1.1.5",
-    "randomstrings": "0.0.2",
-    "express-session": "^1.15.6"
+    "randomstrings": "0.0.2"
   },
   "author": "",
   "license": "IDS",

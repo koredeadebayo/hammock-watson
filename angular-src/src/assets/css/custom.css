@@ -5,3 +5,6 @@
 .custom-form input.form-control.s-form-v4__input {
     text-transform: none;
 }
+.custom-sm-form-container {
+    max-width: 450px;
+}

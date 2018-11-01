@@ -28,11 +28,29 @@ export class LoginComponent implements OnInit {
       password: this.password
     }
     this.authService.authenticateUser(user).subscribe(data => {
-      if(data.success){
+      console.log(data);
+      console.log(data.message);
 
+      if(data.success){
+        this.authService.storeUserData(data.token, data.user);
+
+        this.ngFlashMessageService.showFlashMessage({
+          messages: ['You are now logged in'],
+          dismissible: true,
+          timeout: 3000,
+          type: 'success'
+        });
+
+        this.router.navigate(['/dashboard']);
       }
       else{
-        
+        this.ngFlashMessageService.showFlashMessage({
+          messages: [data.message],
+          dismissible: true,
+          timeout: 3000,
+          type: 'danger'
+        });
+
       }
     });
   }
