@@ -33,12 +33,12 @@ async function addUser(user) {
         
         //Add the above Card Details to the user
         user.blockUserID = identity.userID;
-        //console.log(user);
+        //console.log(user); 
         user.blockUserSecret = identity.userSecret; 
         user.save();
 
-        let result = await businessNetworkConnection.ping();
-        console.log(`participant = ${result.participant ? result.participant : '<no participant found>'}`);
+        //let result = await businessNetworkConnection.ping();
+        //console.log(`participant = ${result.participant ? result.participant : '<no participant found>'}`);
         //let result = await cardService.create(identity);
         identity.type = type;
         //console.log(result)

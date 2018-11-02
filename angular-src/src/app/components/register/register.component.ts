@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 import { ValidService } from '../../services/valid.service';
-//import { FlashMessagesService } from 'angular2-flash-messages';
+import { AuthService } from '../../services/auth.service';
+import { NgFlashMessageService } from 'ng-flash-messages';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -13,7 +17,12 @@ export class RegisterComponent implements OnInit {
   email: String;
   password: String;
   //private flashMessage: FlashMessagesService
-  constructor(private validService: ValidService) { }
+  constructor(
+    private validService: ValidService,
+    private ngFlashMessageService: NgFlashMessageService,
+    private authService: AuthService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }
@@ -27,17 +36,48 @@ export class RegisterComponent implements OnInit {
     }
     //Required Fields
     if(!this.validService.validRegister(user)){
-      console.log("Fill in all fields");
-      //this.flashMessage.show("Please fill in all fields",{cssClass:'alert-danger', timeout: 3000});
+      this.ngFlashMessageService.showFlashMessage({
+        messages: ["Please fill in all fields"],
+        dismissible: true,
+        timeout: 3000,
+        type: 'danger'
+      });
+
       return false;
     }
     //Validate Emails
     if(!this.validService.validEmail(user.email)){
-      console.log("Use Valid Email");
-      //this.flashMessage.show("Please use a valid email",{cssClass:'alert-danger', timeout: 3000});
-      
+      this.ngFlashMessageService.showFlashMessage({
+        messages: ["Please use a valid email"],
+        dismissible: true,
+        timeout: 3000,
+        type: 'danger'
+      });
       return false;
     }
+
+    //Register User
+    this.authService.registerUser(user).subscribe(data => {
+      if(data.success){
+        this.ngFlashMessageService.showFlashMessage({
+          messages: ["You are now registered and can log in"],
+          dismissible: true,
+          timeout: 3000,
+          type: 'success'
+        });
+        this.router.navigate(['/login']);
+      }
+      else{
+        this.ngFlashMessageService.showFlashMessage({
+          messages: ["Something went wrong"],
+          dismissible: true,
+          timeout: 3000,
+          type: 'danger'
+        });
+        this.router.navigate(['/register']);
+      }
+    });
+
   }
 
 }

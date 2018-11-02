@@ -16,7 +16,6 @@ const nodemailer = require('nodemailer');
 const mailConfig = require('../config/email-setup');
 const participantCtrl = require('../controller/participant');
 
-
 // User Management
 
   //get
@@ -24,9 +23,11 @@ const participantCtrl = require('../controller/participant');
       res.send("REGISTER HERE");
 
   });
-  
+
+// User Management
+
     //Register
-    router.post('/reg', (req, res, next) =>{
+    router.post('/register', (req, res, next) =>{
         //res.send('Register User');
 
         //Secret Token for each user
@@ -63,7 +64,7 @@ const participantCtrl = require('../controller/participant');
 
         User.getUserByUsername(username, (err, user)=>{
             if(err)throw err;
-        
+
             if(!user){
                 return  res.json({success:false, message:'User not found'});
             }
@@ -72,7 +73,10 @@ const participantCtrl = require('../controller/participant');
             //Check if the user is active and ready to login
             //console.log(user.active);
 
-            
+            if(!user.active){
+                return res.json({success:false, message:'User account not verified'});
+            }
+
             User.comparePassword(password, user.password, (err, isMatch) =>{
                 if(err)  throw err;
                 if(isMatch){
@@ -95,10 +99,8 @@ const participantCtrl = require('../controller/participant');
                     return res.json({success: false, msg:'Wrong Password'});
                 }
             });
-            
-            if(!user.active){
-                return res.json({success:false, message:'User account not verified'});
-            }
+
+
         });
     });
 
@@ -197,6 +199,10 @@ const participantCtrl = require('../controller/participant');
     });
 
     //Show user profile
+    //router.get('/profile', passport.authenticate('user-role', {session:false}), (req, res, next) => {
+
+    router.get('/profile', passport.authenticate('user-role',{session:false}), (req, res, next) => {
+
     router.get('/profile', passport.authenticate('user-role', {session:false}), (req, res, next) => {
         res.json({user: req.user});
     });
@@ -265,7 +271,7 @@ const participantCtrl = require('../controller/participant');
                             expiresIn: 604800 //1 week
                         });
 
- 
+
                     res.json({
                         success:true,
                         token: 'JWT '+token,
@@ -289,7 +295,9 @@ const participantCtrl = require('../controller/participant');
     //Show Service Providers profile
     router.get('/spprofile', passport.authenticate('sp-role',{session:false}), (req, res, next) => {
         res.json({sp: req.sp});
-    });                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+    });
+  });
+
 
 //Banks Management
     //Register
@@ -300,6 +308,33 @@ const participantCtrl = require('../controller/participant');
 
 //Goverment Management
     //Register
+    router.post('/addgov', (req, res, next) =>{
+        //res.send('Register User');
+
+        //Secret Token for each user
+        //const newSecretToken = randomstring.generate();
+
+        let newGov = new Gov({
+           govId: req.body.govId,
+           name: req.body.name,
+           password: req.body.password,
+           govRate: req.body.govRate
+         });
+
+
+
+         Gov.addGov(newGov, (err, gov)=>{
+            if(err){
+                res.json({success: false, msg: 'Falied to register the Government account'});
+            }else{
+                res.json({success: true, msg: 'Government registered'});
+            }
+            participantCtrl.addGov(gov);
+        });
+
+
+    });
+
     //Authenticate
     router.post('/govauth', (req, res, next) =>{
         const name = req.body.name;
@@ -319,7 +354,6 @@ const participantCtrl = require('../controller/participant');
                         const token = jwt.sign({data:gov}, config.secret,{
                             expiresIn: 604800 //1 week
                         });
-
 
                     res.json({
                         success:true,
