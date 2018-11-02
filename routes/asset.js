@@ -12,22 +12,6 @@ const Gov = require('../models/gov');
 const TradeRequest = require('../models/traderequest');
 const randomstring = require('randomstring');
 
-    /*{
-    *	"assetId": "123123",
-    *	"squaremeter": "SMALL",
-    *	"certificate": "PURPLE",
-    *	"description": "utkarsh18ife@gmail.com",
-    *   "owner": ""//owner's username on the platform
-    *   "occupation": ""//
-    *   "state": ""/
-    *   "location": ""//longitude and latitude
-    *   "location_sketch": ""/image
-    *   "address": ""//
-    *   "picture":""//image of property
-    *   "dateOfReg":""//Regexed to filter input dd-mm-yy
-    *   "surveyPlan": ""//image
-    *  }
-    */
 
 //Asset Creation
 router.post('/add', passport.authenticate('user-role', {session:false}), async (req, res)=>{

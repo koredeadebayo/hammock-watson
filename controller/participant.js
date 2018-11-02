@@ -1,7 +1,6 @@
 const BusinessNetworkConnection = require('composer-client').BusinessNetworkConnection;
 const hyperConfig = require('../config/hyperconfig');
-const connectionoptions = require('../config/connectionOpt');
-let businessNetworkConnection = new BusinessNetworkConnection(connectionoptions);
+let businessNetworkConnection = new BusinessNetworkConnection();
 const cardService = require('../services/cardService');
 const response = require('../services/response');
 
@@ -36,10 +35,7 @@ async function addUser(user) {
         //console.log(user); 
         user.blockUserSecret = identity.userSecret; 
         user.save();
-
-        let result = await businessNetworkConnection.ping();
-        //console.log(`participant = ${result.participant ? result.participant : '<no participant found>'}`);
-        //let result = await cardService.create(identity);
+        let result = await cardService.create(identity);
         //identity.type = type;
         //console.log(result)
         await businessNetworkConnection.disconnect();
@@ -47,11 +43,12 @@ async function addUser(user) {
 
 
 
-        //return responseModel.successResponse("Player created", identity);
+        return response.successResponse('User was created');
+
     } catch(error) {
+        
         console.error(error);
-        return response.failResponse(error);
-        //process.exit(1);
+        return response.failResponse('User wasn\'t created');
     }
 }
  

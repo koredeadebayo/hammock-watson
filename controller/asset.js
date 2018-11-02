@@ -2,8 +2,7 @@ const hyperConfig = require('../config/hyperconfig');
 //const cardService = require('../services/cardService');
 const BusinessNetworkConnection = require('composer-client').BusinessNetworkConnection;
 let businessNetworkConnection  = new BusinessNetworkConnection();
-
-
+//console.log(businessNetworkConnection);
 
 async function addAsset(assetData) {
         console.log(assetData);
