@@ -5,7 +5,7 @@ let businessNetworkConnection = new BusinessNetworkConnection(connectionoptions)
 const cardService = require('../services/cardService');
 const response = require('../services/response');
 
-console.log(businessNetworkConnection);
+//console.log(businessNetworkConnection);
 
 async function addUser(user) {
     
@@ -32,15 +32,15 @@ async function addUser(user) {
         console.log(`userSecret = ${identity.userSecret}`);
         
         //Add the above Card Details to the user
-        user.blockUserID = identity.userID;
+        user.blockUserID = identity.userID; 
         //console.log(user); 
         user.blockUserSecret = identity.userSecret; 
         user.save();
 
-        //let result = await businessNetworkConnection.ping();
+        let result = await businessNetworkConnection.ping();
         //console.log(`participant = ${result.participant ? result.participant : '<no participant found>'}`);
         //let result = await cardService.create(identity);
-        identity.type = type;
+        //identity.type = type;
         //console.log(result)
         await businessNetworkConnection.disconnect();
         // //await mongoService.insert(identity)
