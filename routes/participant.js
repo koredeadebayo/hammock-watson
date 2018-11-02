@@ -178,6 +178,7 @@ const participantCtrl = require('../controller/participant');
     //router.get('/profile', passport.authenticate('user-role', {session:false}), (req, res, next) => {
 
     router.get('/profile', passport.authenticate('user-role',{session:false}), (req, res, next) => {
+
     router.get('/profile', passport.authenticate('user-role', {session:false}), (req, res, next) => {
         res.json({user: req.user});
     });
