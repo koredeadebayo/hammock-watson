@@ -85,23 +85,37 @@ router.post('/approve', passport.authenticate('gov-role', {session:false}),  (re
         asset.approved = true;
         asset.government = gov;
         asset.save();
+        const owner = asset.owner;
+         
+        User.getUserByUsername(owner, (err, user)=>{
+            if (err) throw err;
+            let userId = user.userId;
+            Gov.getGovByName(gov, (err, government)=>{
+                if(err) throw err;
+                
+                govId = government.govId;
 
-        let blockAsset =
-        {
-            propertyId: asset.propertyId,
-            address: [], //Make Array
-            squareMeters: asset.squareMeters,
-            price: 0,
-            description: asset.description,
-            dateOfRegistration: "Todays date",
-            coordinates: [],
-            owner: asset.owner, //replace with owner username (asset.owner)
-            government:gov, // replace with the government (capture from the post req)
-            certificateno : asset.certificateno
-        }
-        //console.log(blockAsset.propertyId);
-        //Add Asset to the blockchain 
-        assetCtrl.addAsset(blockAsset);
+                let blockAsset ={
+                    propertyId: asset.propertyId,
+                    address: [], //Make Array
+                    squareMeters: asset.squareMeters,
+                    price: 0,
+                    description: asset.description,
+                    dateOfRegistration: "Todays date",
+                    coordinates: [],
+                    owner: userId, //replace with owner username (asset.owner)
+                    government:govId, // replace with the government (capture from the post req)
+                    certificateno : asset.certificateno
+                }
+            //console.log(blockAsset.propertyId);
+            //Add Asset to the blockchain 
+            assetCtrl.addAsset(blockAsset);
+            }) 
+            
+
+        });
+
+        
         res.json({success: true, msg: 'Registration Successful Listed'});
         //console.log(blockAsset.propertyId);
     });
@@ -253,10 +267,15 @@ router.post('/acceptrequest', passport.authenticate('user-role', {session:false}
             if (err) throw err;
             asset.price = tradeRequest.price;
             asset.save(); 
+            console.log(tradeRequest.price)
             tradeRequest.accepted = true;
             tradeRequest.save();
             res.json({success: true, msg:"Trade Accepted"});
+            assetCtrl.updateAsset(asset);
         });
+
+        
+       
     });
 });
 
@@ -289,7 +308,7 @@ router.post('/rejectrequest', passport.authenticate('user-role', {session:false}
             asset.price = tradeRequest.price;
             asset.save(); 
             tradeRequest.rejected = true;
-            tradeRequest.delete();
+            tradeRequest.save();
             res.json({success: true, msg:"Trade Rejected"});
         });
     });
@@ -297,32 +316,49 @@ router.post('/rejectrequest', passport.authenticate('user-role', {session:false}
 
 
 
-router.post('/rejectasset', passport.authenticate('user-role', {session:false}), async (req, res)=>{
-    const owner = req.user.name;
+router.post('/transferasset', passport.authenticate('user-role', {session:false}), async (req, res)=>{
+    const owner = req.user.username;
 
     User.getUserByUsername(owner, (err, user)=>{
         if (err) throw err;
+        console.log(user);
+        const Id = user.userId;
         const userID = user.blockUserID;
         const userSecret = user.blockUserSecret;
-
+;
         const propertyId = req.body.propertyId;
         const buyer = req.body.buyer;
+        User.getUserByUsername(buyer, (err, user)=>{
+            if (err) throw err;
+            const buyerId = user.userId;
 
-        let transferData = {
-            userID: user.blockUserID,
-            userSecret: user.blockUserSecret,
-            propertyId: req.body.propertyId,
-            buyer: req.body.buyer
-        }
+            Asset.getAssetByPropertyId(propertyId, (err, asset)=>{
+                if (err) throw err;
 
-        assetCtrl.tradeAsset(transferData);
+                const gov = asset.government;
+                Gov.getGovByName(gov, (err, gov)=>{
+                    if (err) throw err;
+
+                    const govId = gov.govId;
+
+                    let transferData = {
+                        Id: Id,
+                        userID: userID,
+                        userSecret: userSecret,
+                        propertyId: req.body.propertyId,
+                        buyer: buyerId,
+                        govId: govId
+                    }
+            
+                    assetCtrl.tradeAsset(transferData);
+                });
+               
+                
+
+            }); 
+        });
 
     });
-
-    
-
-
-
 });
 
 

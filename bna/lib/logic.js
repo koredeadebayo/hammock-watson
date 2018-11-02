@@ -28,7 +28,7 @@ async function buyingRealEstate(trade){
     var transferCharges = (trade.government.govRate/100) * trade.realEstate.price
     var totalCost = transferCharges + trade.realEstate.price 
    
-  
+    console.log("testing");
     // Check if the buyer has enough to pay the notary, real estate agent and insurance
     if( trade.buyer.balance < totalCost ){
       throw new Error('Not enough funds to buy this!')
@@ -41,10 +41,12 @@ async function buyingRealEstate(trade){
     trade.realEstate.owner = trade.buyer
     const assetRegistry = await getAssetRegistry('org.hammock.network.realEstate')
     await assetRegistry.update(trade.realEstate);
+
     //pay Government fee
     trade.government.balance += transferCharges
     const governmentRegistry = await getParticipantRegistry('org.hammock.network.Government')
-    await governmentRegistry.update(trade.government);
+    const govpay =await governmentRegistry.update(trade.government);
+    //console.log(govpay);
     // Updates the seller's balance
     trade.seller.balance += trade.realEstate.price
     const sellerRegistry = await getParticipantRegistry('org.hammock.network.User')

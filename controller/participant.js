@@ -1,8 +1,11 @@
 const BusinessNetworkConnection = require('composer-client').BusinessNetworkConnection;
 const hyperConfig = require('../config/hyperconfig');
-let businessNetworkConnection = new BusinessNetworkConnection();
+const connectionoptions = require('../config/connectionOpt');
+let businessNetworkConnection = new BusinessNetworkConnection(connectionoptions);
 const cardService = require('../services/cardService');
 const response = require('../services/response');
+
+console.log(businessNetworkConnection);
 
 async function addUser(user) {
     
@@ -34,8 +37,11 @@ async function addUser(user) {
         user.blockUserSecret = identity.userSecret; 
         user.save();
 
-        await cardService.create(identity);
+        let result = await businessNetworkConnection.ping();
+        console.log(`participant = ${result.participant ? result.participant : '<no participant found>'}`);
+        //let result = await cardService.create(identity);
         identity.type = type;
+        //console.log(result)
         await businessNetworkConnection.disconnect();
         // //await mongoService.insert(identity)
 

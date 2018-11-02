@@ -81,10 +81,3 @@ transaction BuyingRealEstate {
   --> realEstate realEstate
 }
 
-transaction ContractingLoan {
-  --> User debtor
-  --> Bank bank
-  --> realEstate collateral
-  o Double interestRate
-  o Integer durationInMonths
-}

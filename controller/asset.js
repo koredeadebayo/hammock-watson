@@ -49,13 +49,15 @@ async function addAsset(assetData) {
 
 async function tradeAsset(transferData) {
 
+    console.log(transferData);
     try {
 
         let type = "BuyingRealEstate"
         let userType = "User"
+        let govType = "Government"
         let assetType = "realEstate"
 
-        let currentOwner = userData;
+        let currentOwner = transferData;
 
         // if (!(currentOwner && currentOwner.length)) {
         //     return responseModel.successResponse("Invalid credentials", {});
@@ -63,29 +65,41 @@ async function tradeAsset(transferData) {
         //     currentOwner = currentOwner[0];
         // }
 
-        let currentOwnerCard = `${currentOwner.blockUserID}@${hyperConfig.networkName}`;
+        
+
+        let currentOwnerCard = `${transferData.userID}@${hyperConfig.networkName}`;
         let bizNetDefination = await businessNetworkConnection.connect(currentOwnerCard);
         let factory = bizNetDefination.getFactory();
 
-        delete tradeMarbleData.creds;
+        delete transferData.blockUserID;
+        //delete transferData.userID;
 
-        let newOwnerRelation = factory.newRelationship(hyperConfig.ns, userType, tradeMarbleData.transactionData.newOwnerEmail);
+        let currentOwnerRelation = factory.newRelationship(hyperConfig.ns, userType, transferData.Id);
+        let newOwnerRelation = factory.newRelationship(hyperConfig.ns, userType, transferData.buyer);
 
-        let marbleRelation = factory.newRelationship(config.ns, assetType, tradeMarbleData.transactionData.marbleId);
+        let assetRelation = factory.newRelationship(hyperConfig.ns, assetType, transferData.propertyId);
+        let govRelation = factory.newRelationship(hyperConfig.ns, govType, transferData.govId); 
 
         let transData = {
-            "marble": marbleRelation,
-            "newOwner": newOwnerRelation
+            //"$class": "org.hammock.network.BuyingRealEstate",
+            "seller": currentOwnerRelation,
+            "buyer": newOwnerRelation,
+            "government": govRelation,
+            "realEstate": assetRelation,
+            //"transactionId": "",
+            //timestamp: Date.now()
         }
+        //console.log(transData);
 
 
-        const newTransaction = factory.newTransaction(`${config.ns}`, type);
+        const newTransaction = factory.newTransaction(`${hyperConfig.ns}`, type);
 
+        
         trans = Object.assign(newTransaction, transData);
-
-        let res = await bizNetConnection.submitTransaction(trans);
-
-        return responseModel.successResponse("Marbles traded", res);
+        
+        let res = await businessNetworkConnection.submitTransaction(trans);
+        
+        console.log(res);
 
     } catch (err) {
 
@@ -93,16 +107,36 @@ async function tradeAsset(transferData) {
 
         errMessage = typeof err == 'string' ? err : err.message;
 
-        return responseModel.failResponse("Transaction", {}, errMessage);
+        console.log(err);
     }
 
 
 }
 
 
+async function updateAsset(assetData){
+    try{
 
+        let businessNetDefination = await businessNetworkConnection.connect(hyperConfig.networkAdminCard);
+        assetRegistry = await businessNetworkConnection.getAssetRegistry('org.hammock.network.realEstate')
+        asset = await assetRegistry.get(assetData.propertyId);
+        let factory = businessNetworkConnection.getBusinessNetwork().getFactory();
+
+        
+        asset.price = assetData.price;
+        console.log(asset);
+        assetRegistry.update(asset);
+
+
+
+    }catch(err){
+        console.log(err);
+        process.exit(1);
+    }
+}
 
 module.exports = {
     addAsset,
-    tradeAsset
+    tradeAsset,
+    updateAsset
 }

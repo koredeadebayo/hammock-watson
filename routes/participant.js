@@ -52,6 +52,8 @@ const participantCtrl = require('../controller/participant');
 
 
     });
+
+
     //Authenticate - Passport-jwt enables the authentication works fluidly
     router.post('/auth', (req, res, next) =>{
         const username = req.body.username;
@@ -169,6 +171,28 @@ const participantCtrl = require('../controller/participant');
                   console.log(user);
               });
           });
+
+    });
+
+    //List All users
+    router.get('/list',  async (req, res) => {
+        //List all approve properties     
+        User.find({active:true}, function(err, users) {
+            if (err) throw err;
+            res.json({success: true, msg: users});
+        });
+
+    });
+    
+    //Get user with username
+    router.get('/list:username',  async (req, res) => {
+        //List all approve properties 
+        const username = req.params.username;
+        
+        User.find({active:true, username:username}, function(err, user) {
+            if (err) throw err;
+            res.json({success: true, msg: user});
+        });
 
     });
 
