@@ -1,7 +1,6 @@
 const BusinessNetworkConnection = require('composer-client').BusinessNetworkConnection;
 const hyperConfig = require('../config/hyperconfig');
-const connectionoptions = require('../config/connectionOpt');
-let businessNetworkConnection = new BusinessNetworkConnection(connectionoptions);
+let businessNetworkConnection = new BusinessNetworkConnection();
 const cardService = require('../services/cardService');
 const response = require('../services/response');
 
@@ -32,26 +31,30 @@ async function addUser(user) {
         console.log(`userSecret = ${identity.userSecret}`);
 
         //Add the above Card Details to the user
+<<<<<<< HEAD
         user.blockUserID = identity.userID;
         //console.log(user);
         user.blockUserSecret = identity.userSecret;
+=======
+        user.blockUserID = identity.userID; 
+        //console.log(user); 
+        user.blockUserSecret = identity.userSecret; 
+>>>>>>> fce07b4c6b73a8bc3c0c5453fd99298858253720
         user.save();
-
-        //let result = await businessNetworkConnection.ping();
-        //console.log(`participant = ${result.participant ? result.participant : '<no participant found>'}`);
-        //let result = await cardService.create(identity);
-        identity.type = type;
+        let result = await cardService.create(identity);
+        //identity.type = type;
         //console.log(result)
         await businessNetworkConnection.disconnect();
         // //await mongoService.insert(identity)
 
 
 
-        //return responseModel.successResponse("Player created", identity);
+        return response.successResponse('User was created');
+
     } catch(error) {
+        
         console.error(error);
-        return response.failResponse(error);
-        //process.exit(1);
+        return response.failResponse('User wasn\'t created');
     }
 }
 

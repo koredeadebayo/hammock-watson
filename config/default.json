@@ -1,0 +1,16 @@
+{
+    "composer": {
+      "wallet": {
+        "type": "composer-wallet-cloudant",
+        "options": {
+          "database": "card-store",
+          "username": "58a68326-9591-496f-8f1c-6751552cbb5b-bluemix",
+          "password": "1db168d1c774bf0f1c02e3d92f905c71997d8f7827c023fa14f3159fe376736e",
+          "host": "58a68326-9591-496f-8f1c-6751552cbb5b-bluemix.cloudant.com",
+          "port": 443,
+          "url": "https://58a68326-9591-496f-8f1c-6751552cbb5b-bluemix:1db168d1c774bf0f1c02e3d92f905c71997d8f7827c023fa14f3159fe376736e@58a68326-9591-496f-8f1c-6751552cbb5b-bluemix.cloudant.com"
+        }
+      }
+    }
+  }
+  

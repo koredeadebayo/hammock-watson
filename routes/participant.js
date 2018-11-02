@@ -154,23 +154,32 @@ const participantCtrl = require('../controller/participant');
                   if (!user) return res.status(400).send({ msg: 'We were unable to find a user for this token.' });
                   if (user.active) return res.status(400).send({ type: 'already-verified', msg: 'This user has already been verified.' });
 
-                 // Verify and save the user
-                  user.active = true;
-                  user.save(function (err) {
-                    if (err) { return res.status(500).send({ msg: err.message }); }
-                      res.status(200).send("The account has been verified. Please log in.");
-                  });
+                //  // Verify and save the user
+                //   user.active = true;
+                //   user.save(function (err) {
+                //     if (err) { return res.status(500).send({ msg: err.message }); }
+                //       res.status(200).send();
+                //   });
                   //Add Blockchain participant to the network
-                  participantCtrl.addUser(user);
-                  console.log(user);
+                  let result = participantCtrl.addUser(user, (err)=>{
+                    if (err) throw err; 
+                    user.active = true;
+                    user.save();
+                    res.status(200).send({msg:"The account has been verified. Please log in."})
+                  });
               });
           });
 
     });
 
     //List All users
+<<<<<<< HEAD
     router.get('/list',  async (req, res) => {
         //List all approve properties
+=======
+    router.post('/list',  async (req, res) => {
+        //List all approve properties     
+>>>>>>> fce07b4c6b73a8bc3c0c5453fd99298858253720
         User.find({active:true}, function(err, users) {
             if (err) throw err;
             res.json({success: true, msg: users});
@@ -179,8 +188,13 @@ const participantCtrl = require('../controller/participant');
     });
 
     //Get user with username
+<<<<<<< HEAD
     router.get('/list:username',  async (req, res) => {
         //List all approve properties
+=======
+    router.post('/list/:username',  async (req, res) => {
+        //List all approve properties 
+>>>>>>> fce07b4c6b73a8bc3c0c5453fd99298858253720
         const username = req.params.username;
 
         User.find({active:true, username:username}, function(err, user) {
@@ -191,10 +205,6 @@ const participantCtrl = require('../controller/participant');
     });
 
     //Show user profile
-    //router.get('/profile', passport.authenticate('user-role', {session:false}), (req, res, next) => {
-
-    router.get('/profile', passport.authenticate('user-role',{session:false}), (req, res, next) => {
-
     router.get('/profile', passport.authenticate('user-role', {session:false}), (req, res, next) => {
         res.json({user: req.user});
     });
@@ -288,7 +298,7 @@ const participantCtrl = require('../controller/participant');
     router.get('/spprofile', passport.authenticate('sp-role',{session:false}), (req, res, next) => {
         res.json({sp: req.sp});
     });
-  });
+
 
 
 //Banks Management
