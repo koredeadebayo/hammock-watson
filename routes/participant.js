@@ -18,14 +18,6 @@ const participantCtrl = require('../controller/participant');
 
 // User Management
 
-  //get
-  router.get('/register',  (req, res, next) =>{
-      res.send("REGISTER HERE");
-
-  });
-
-// User Management
-
     //Register
     router.post('/register', (req, res, next) =>{
         //res.send('Register User');
@@ -178,19 +170,19 @@ const participantCtrl = require('../controller/participant');
 
     //List All users
     router.get('/list',  async (req, res) => {
-        //List all approve properties     
+        //List all approve properties
         User.find({active:true}, function(err, users) {
             if (err) throw err;
             res.json({success: true, msg: users});
         });
 
     });
-    
+
     //Get user with username
     router.get('/list:username',  async (req, res) => {
-        //List all approve properties 
+        //List all approve properties
         const username = req.params.username;
-        
+
         User.find({active:true, username:username}, function(err, user) {
             if (err) throw err;
             res.json({success: true, msg: user});

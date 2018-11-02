@@ -5,17 +5,17 @@ let businessNetworkConnection = new BusinessNetworkConnection(connectionoptions)
 const cardService = require('../services/cardService');
 const response = require('../services/response');
 
-console.log(businessNetworkConnection);
+//console.log(businessNetworkConnection);
 
 async function addUser(user) {
-    
-    
+
+
 
     try {
         let type = 'User';
         let userId = user.userId; //User Id generated at registration
         let username = user.username; //Username generated inputed at registration
-        
+
         let bizNetDefination = await businessNetworkConnection.connect(hyperConfig.networkAdminCard);
         let factory = businessNetworkConnection.getBusinessNetwork().getFactory();
 
@@ -27,14 +27,14 @@ async function addUser(user) {
         await participantRegistry.add(participant);
 
          let identity = await businessNetworkConnection.issueIdentity(`${hyperConfig.ns}.${type}#${userId}`, username);
-         
+
         console.log(`userID = ${identity.userID}`);
         console.log(`userSecret = ${identity.userSecret}`);
-        
+
         //Add the above Card Details to the user
         user.blockUserID = identity.userID;
-        //console.log(user); 
-        user.blockUserSecret = identity.userSecret; 
+        //console.log(user);
+        user.blockUserSecret = identity.userSecret;
         user.save();
 
         //let result = await businessNetworkConnection.ping();
@@ -54,9 +54,9 @@ async function addUser(user) {
         //process.exit(1);
     }
 }
- 
+
 async function addGov(gov) {
-    
+
     console.log(gov);
 
     try {
@@ -64,8 +64,8 @@ async function addGov(gov) {
         let govId = gov.govId; //Government Id generated at registration
         let name = gov.name; //Username generated inputed at registration
         let govRate = gov.govRate;
-    
-        
+
+
         let bizNetDefination = await businessNetworkConnection.connect(hyperConfig.networkAdminCard);
         let factory = businessNetworkConnection.getBusinessNetwork().getFactory();
 
@@ -85,7 +85,7 @@ async function addGov(gov) {
 
         gov.blockUserID = identity.userID;
         //console.log(user);
-        gov.blockUserSecret = identity.userSecret; 
+        gov.blockUserSecret = identity.userSecret;
         gov.save();
 
         await cardService.create(identity);
