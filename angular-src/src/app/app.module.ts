@@ -17,6 +17,7 @@ import { FooterComponent } from './components/footer/footer.component';
 
 import {ValidService} from './services/valid.service';
 import {AuthService} from './services/auth.service';
+import {UserService} from './services/user.service';
 //import { FlashMessagesModule } from 'angular2-flash-messages';
 
 import { NgFlashMessagesModule } from 'ng-flash-messages';
@@ -61,7 +62,7 @@ const appRoutes: Routes = [
     NgFlashMessagesModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [ValidService,AuthService],
+  providers: [ValidService,AuthService,UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -93,6 +93,7 @@ const root = path.join(__dirname, "public");
 
     //Set static folder
     app.use(express.static(root));
+
     app.use(fallback('index.html', { root }));
 
     //Passport Middlware

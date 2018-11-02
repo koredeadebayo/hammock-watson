@@ -41,7 +41,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-navbar></app-navbar>\n<router-outlet></router-outlet>\n<app-footer></app-footer>\n"
+module.exports = "\n<router-outlet></router-outlet>\n<app-footer></app-footer>\n"
 
 /***/ }),
 
@@ -108,8 +108,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_footer_footer_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/footer/footer.component */ "./src/app/components/footer/footer.component.ts");
 /* harmony import */ var _services_valid_service__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./services/valid.service */ "./src/app/services/valid.service.ts");
 /* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./services/auth.service */ "./src/app/services/auth.service.ts");
-/* harmony import */ var ng_flash_messages__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ng-flash-messages */ "./node_modules/ng-flash-messages/ng-flash-messages.umd.js");
-/* harmony import */ var ng_flash_messages__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(ng_flash_messages__WEBPACK_IMPORTED_MODULE_17__);
+/* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./services/user.service */ "./src/app/services/user.service.ts");
+/* harmony import */ var ng_flash_messages__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ng-flash-messages */ "./node_modules/ng-flash-messages/ng-flash-messages.umd.js");
+/* harmony import */ var ng_flash_messages__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(ng_flash_messages__WEBPACK_IMPORTED_MODULE_18__);
+/* harmony import */ var _components_navbar2_navbar2_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/navbar2/navbar2.component */ "./src/app/components/navbar2/navbar2.component.ts");
+/* harmony import */ var _components_adminpanel_adminpanel_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/adminpanel/adminpanel.component */ "./src/app/components/adminpanel/adminpanel.component.ts");
+/* harmony import */ var _components_adminproperty_adminproperty_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/adminproperty/adminproperty.component */ "./src/app/components/adminproperty/adminproperty.component.ts");
+/* harmony import */ var _components_adminusers_adminusers_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/adminusers/adminusers.component */ "./src/app/components/adminusers/adminusers.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -133,14 +138,22 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
 //import { FlashMessagesModule } from 'angular2-flash-messages';
+
+
+
+
 
 var appRoutes = [
     { path: '', component: _components_home_home_component__WEBPACK_IMPORTED_MODULE_10__["HomeComponent"] },
     { path: 'register', component: _components_register_register_component__WEBPACK_IMPORTED_MODULE_9__["RegisterComponent"] },
     { path: 'login', component: _components_login_login_component__WEBPACK_IMPORTED_MODULE_8__["LoginComponent"] },
     { path: 'dashboard', component: _components_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_11__["DashboardComponent"] },
-    { path: 'profile', component: _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_12__["ProfileComponent"] }
+    { path: 'profile', component: _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_12__["ProfileComponent"] },
+    { path: 'adminpanel', component: _components_adminpanel_adminpanel_component__WEBPACK_IMPORTED_MODULE_20__["AdminpanelComponent"] },
+    { path: 'admin/property', component: _components_adminproperty_adminproperty_component__WEBPACK_IMPORTED_MODULE_21__["AdminpropertyComponent"] },
+    { path: 'admin/users', component: _components_adminusers_adminusers_component__WEBPACK_IMPORTED_MODULE_22__["AdminusersComponent"] }
 ];
 var AppModule = /** @class */ (function () {
     function AppModule() {
@@ -156,21 +169,222 @@ var AppModule = /** @class */ (function () {
                 _components_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_11__["DashboardComponent"],
                 _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_12__["ProfileComponent"],
                 _components_header_header_component__WEBPACK_IMPORTED_MODULE_13__["HeaderComponent"],
-                _components_footer_footer_component__WEBPACK_IMPORTED_MODULE_14__["FooterComponent"]
+                _components_footer_footer_component__WEBPACK_IMPORTED_MODULE_14__["FooterComponent"],
+                _components_navbar2_navbar2_component__WEBPACK_IMPORTED_MODULE_19__["Navbar2Component"],
+                _components_adminpanel_adminpanel_component__WEBPACK_IMPORTED_MODULE_20__["AdminpanelComponent"],
+                _components_adminproperty_adminproperty_component__WEBPACK_IMPORTED_MODULE_21__["AdminpropertyComponent"],
+                _components_adminusers_adminusers_component__WEBPACK_IMPORTED_MODULE_22__["AdminusersComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
                 _angular_http__WEBPACK_IMPORTED_MODULE_4__["HttpModule"],
                 _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_1__["BrowserAnimationsModule"],
-                ng_flash_messages__WEBPACK_IMPORTED_MODULE_17__["NgFlashMessagesModule"],
+                ng_flash_messages__WEBPACK_IMPORTED_MODULE_18__["NgFlashMessagesModule"],
                 _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterModule"].forRoot(appRoutes)
             ],
-            providers: [_services_valid_service__WEBPACK_IMPORTED_MODULE_15__["ValidService"], _services_auth_service__WEBPACK_IMPORTED_MODULE_16__["AuthService"]],
+            providers: [_services_valid_service__WEBPACK_IMPORTED_MODULE_15__["ValidService"], _services_auth_service__WEBPACK_IMPORTED_MODULE_16__["AuthService"], _services_user_service__WEBPACK_IMPORTED_MODULE_17__["UserService"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/components/adminpanel/adminpanel.component.css":
+/*!****************************************************************!*\
+  !*** ./src/app/components/adminpanel/adminpanel.component.css ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvYWRtaW5wYW5lbC9hZG1pbnBhbmVsLmNvbXBvbmVudC5jc3MifQ== */"
+
+/***/ }),
+
+/***/ "./src/app/components/adminpanel/adminpanel.component.html":
+/*!*****************************************************************!*\
+  !*** ./src/app/components/adminpanel/adminpanel.component.html ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<app-navbar2></app-navbar2>\n"
+
+/***/ }),
+
+/***/ "./src/app/components/adminpanel/adminpanel.component.ts":
+/*!***************************************************************!*\
+  !*** ./src/app/components/adminpanel/adminpanel.component.ts ***!
+  \***************************************************************/
+/*! exports provided: AdminpanelComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AdminpanelComponent", function() { return AdminpanelComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var AdminpanelComponent = /** @class */ (function () {
+    function AdminpanelComponent() {
+    }
+    AdminpanelComponent.prototype.ngOnInit = function () {
+    };
+    AdminpanelComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-adminpanel',
+            template: __webpack_require__(/*! ./adminpanel.component.html */ "./src/app/components/adminpanel/adminpanel.component.html"),
+            styles: [__webpack_require__(/*! ./adminpanel.component.css */ "./src/app/components/adminpanel/adminpanel.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], AdminpanelComponent);
+    return AdminpanelComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/components/adminproperty/adminproperty.component.css":
+/*!**********************************************************************!*\
+  !*** ./src/app/components/adminproperty/adminproperty.component.css ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvYWRtaW5wcm9wZXJ0eS9hZG1pbnByb3BlcnR5LmNvbXBvbmVudC5jc3MifQ== */"
+
+/***/ }),
+
+/***/ "./src/app/components/adminproperty/adminproperty.component.html":
+/*!***********************************************************************!*\
+  !*** ./src/app/components/adminproperty/adminproperty.component.html ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<app-navbar2></app-navbar2>\n"
+
+/***/ }),
+
+/***/ "./src/app/components/adminproperty/adminproperty.component.ts":
+/*!*********************************************************************!*\
+  !*** ./src/app/components/adminproperty/adminproperty.component.ts ***!
+  \*********************************************************************/
+/*! exports provided: AdminpropertyComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AdminpropertyComponent", function() { return AdminpropertyComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var AdminpropertyComponent = /** @class */ (function () {
+    function AdminpropertyComponent() {
+    }
+    AdminpropertyComponent.prototype.ngOnInit = function () {
+    };
+    AdminpropertyComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-adminproperty',
+            template: __webpack_require__(/*! ./adminproperty.component.html */ "./src/app/components/adminproperty/adminproperty.component.html"),
+            styles: [__webpack_require__(/*! ./adminproperty.component.css */ "./src/app/components/adminproperty/adminproperty.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], AdminpropertyComponent);
+    return AdminpropertyComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/components/adminusers/adminusers.component.css":
+/*!****************************************************************!*\
+  !*** ./src/app/components/adminusers/adminusers.component.css ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvYWRtaW51c2Vycy9hZG1pbnVzZXJzLmNvbXBvbmVudC5jc3MifQ== */"
+
+/***/ }),
+
+/***/ "./src/app/components/adminusers/adminusers.component.html":
+/*!*****************************************************************!*\
+  !*** ./src/app/components/adminusers/adminusers.component.html ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<app-navbar2></app-navbar2>\n"
+
+/***/ }),
+
+/***/ "./src/app/components/adminusers/adminusers.component.ts":
+/*!***************************************************************!*\
+  !*** ./src/app/components/adminusers/adminusers.component.ts ***!
+  \***************************************************************/
+/*! exports provided: AdminusersComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AdminusersComponent", function() { return AdminusersComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../services/user.service */ "./src/app/services/user.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var AdminusersComponent = /** @class */ (function () {
+    function AdminusersComponent(userService) {
+        this.userService = userService;
+        this.userService.getUsers()
+            .subscribe(function (users) {
+            console.log(users);
+            //this.users = users;
+        });
+    }
+    AdminusersComponent.prototype.ngOnInit = function () {
+    };
+    AdminusersComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-adminusers',
+            template: __webpack_require__(/*! ./adminusers.component.html */ "./src/app/components/adminusers/adminusers.component.html"),
+            styles: [__webpack_require__(/*! ./adminusers.component.css */ "./src/app/components/adminusers/adminusers.component.css")]
+        }),
+        __metadata("design:paramtypes", [_services_user_service__WEBPACK_IMPORTED_MODULE_1__["UserService"]])
+    ], AdminusersComponent);
+    return AdminusersComponent;
 }());
 
 
@@ -384,7 +598,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--========== SWIPER SLIDER ==========-->\n<div class=\"s-swiper js__swiper-slider\">\n    <!-- Swiper Wrapper -->\n    <div class=\"swiper-wrapper\">\n        <div class=\"s-promo-block-v4 g-fullheight--xs g-bg-position--center swiper-slide\" style=\"background: url('assets/img/1920x1080/real-estate-bg.jpg');\">\n            <div class=\"container g-ver-center--xs\">\n                <div class=\"row\">\n                    <div class=\"col-md-7\">\n                        <div class=\"g-margin-b-50--xs\">\n                            <h1 class=\"g-font-size-32--xs g-font-size-45--sm g-font-size-60--md g-color--white\">Unlocking Real Estate Capital in Africa<br></h1>\n                            <p class=\"g-font-size-18--xs g-font-size-22--sm g-color--white-opacity\">Making Real Estate Transactions in Africa Hassle-free.</p>\n                        </div>\n                        <a [routerLink]=\"['/register']\" class=\"text-uppercase s-btn s-btn--md s-btn--white-brd g-radius--50 g-padding-x-50--xs\">Get Started</a>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"s-promo-block-v4 g-fullheight--xs g-bg-position--center swiper-slide\" style=\"background: url('assets/img/1920x1080/real-estate-bg-02.jpg');\">\n            <div class=\"container g-text-right--xs g-ver-center--xs\">\n                <div class=\"row\">\n                    <div class=\"col-md-7 col-md-offset-5\">\n                        <div class=\"g-margin-b-50--xs\">\n                            <h2 class=\"g-font-size-32--xs g-font-size-45--sm g-font-size-55--md g-color--white\">Digitalizing the African Real Estate Market<br></h2>\n                            <p class=\"g-font-size-18--xs g-font-size-22--sm g-color--white-opacity\">Secured Transactions on Blockchain.</p>\n                        </div>\n                        <a [routerLink]=\"['/about']\" class=\"text-uppercase s-btn s-btn--md s-btn--white-brd g-radius--50 g-padding-x-50--xs\">Learn More</a>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n    <!-- End Swiper Wrapper -->\n\n    <!-- Pagination -->\n    <div class=\"s-swiper__pagination-v1 s-swiper__pagination-v1--bc s-swiper__pagination-v1--white js__swiper-pagination\"></div>\n</div>\n<!--========== END SWIPER SLIDER ==========-->\n\n<!--========== PAGE CONTENT ==========-->\n<!-- Services -->\n<div class=\"container g-padding-y-80--xs g-padding-y-125--sm\">\n    <div class=\"row g-margin-b-10--xs\">\n        <div class=\"col-md-6 g-margin-b-60--xs g-margin-b-0--lg\">\n            <!-- Masonry Grid -->\n            <div class=\"row g-row-col--5 g-overflow--hidden js__masonry\">\n                <div class=\"col-xs-6 js__masonry-sizer\"></div>\n                <div class=\"col-xs-6 g-full-width--xs g-margin-b-10--xs g-margin-b-0--sm js__masonry-item\">\n                    <div class=\"wow fadeInDown\" data-wow-duration=\".3\" data-wow-delay=\".1s\">\n                        <img class=\"img-responsive\" src=\"assets/img/400x550/real-estate-feat-01.jpg\" alt=\"Image\">\n                    </div>\n                </div>\n                <div class=\"col-xs-6 g-full-width--xs g-margin-b-10--xs js__masonry-item\">\n                    <div class=\"wow fadeInRight\" data-wow-duration=\".3\" data-wow-delay=\".3s\">\n                        <img class=\"img-responsive\" src=\"assets/img/970x647/city-view-real-estate.jpg\" alt=\"Image\">\n                    </div>\n                </div>\n                <div class=\"col-xs-6 g-full-width--xs js__masonry-item\">\n                    <div class=\"wow fadeInRight\" data-wow-duration=\".3\" data-wow-delay=\".5s\">\n                        <img class=\"img-responsive\" src=\"assets/img/970x647/house-by-the-beach.jpg\" alt=\"Image\">\n                    </div>\n                </div>\n            </div>\n            <!-- End Masonry Grid -->\n        </div>\n        <div class=\"col-md-5 g-margin-b-10--xs g-margin-b-0--lg g-margin-t-10--lg g-margin-l-20--lg\">\n            <div class=\"g-margin-b-30--xs\">\n                <p class=\"text-uppercase g-font-size-14--xs g-font-weight--700 g-color--primary g-letter-spacing--2 g-margin-b-15--xs\">Hammock</p>\n                <h2 class=\"g-font-size-32--xs g-font-size-36--sm\">Register, Sell and Buy Assets Securely, all on one platform.</h2>\n                <p>Acquiring Real estate assets has been a tough process for many investors in Africa, considering the time it takes to complete the purchase process or validation process, This platform takes away the bulk of the stress involved and makes it easy to perform Real Estate transaction.</p>\n            </div>\n            <div class=\"row\">\n                <ul class=\"list-unstyled col-xs-4 g-full-width--xs g-ul-li-tb-5--xs g-margin-b-20--xs g-margin-b-0--sm\">\n                    <li><i class=\"g-font-size-12--xs g-color--primary g-margin-r-10--xs ti-check\"></i>Fast</li>\n\n                </ul>\n                <ul class=\"list-unstyled col-xs-4 g-full-width--xs g-ul-li-tb-5--xs g-margin-b-20--xs g-margin-b-0--sm\">\n                    <li><i class=\"g-font-size-12--xs g-color--primary g-margin-r-10--xs ti-check\"></i>Secure</li>\n\n                </ul>\n                <ul class=\"list-unstyled col-xs-4 g-full-width--xs g-ul-li-tb-5--xs\">\n                    <li><i class=\"g-font-size-12--xs g-color--primary g-margin-r-10--xs ti-check\"></i>Easy</li>\n                </ul>\n            </div>\n        </div>\n    </div>\n</div>\n<!-- End Services -->\n\n<!-- Process -->\n<div class=\"g-bg-color--primary-ltr\">\n    <div class=\"container g-padding-y-80--xs g-padding-y-125--sm\">\n        <div class=\"g-text-center--xs g-margin-b-100--xs\">\n            <p class=\"text-uppercase g-font-size-14--xs g-font-weight--700 g-color--white-opacity g-letter-spacing--2 g-margin-b-25--xs\"></p>\n            <h2 class=\"g-font-size-32--xs g-font-size-36--sm g-color--white\">How it Works</h2>\n        </div>\n        <ul class=\"list-inline row g-margin-b-100--xs\">\n            <!-- Process -->\n            <li class=\"col-sm-3 col-xs-6 g-full-width--xs s-process-v1 g-margin-b-60--xs g-margin-b-0--md\">\n                <div class=\"center-block g-text-center--xs\">\n                    <div class=\"g-margin-b-30--xs\">\n                        <span class=\"g-display-inline-block--xs g-width-100--xs g-height-100--xs g-font-size-38--xs g-color--primary g-bg-color--white g-box-shadow__dark-lightest-v4 g-padding-x-20--xs g-padding-y-20--xs g-radius--circle\">01</span>\n                    </div>\n                    <div class=\"g-padding-x-20--xs\">\n                        <h3 class=\"g-font-size-18--xs g-color--white\">Register</h3>\n                        <p class=\"g-color--white-opacity\">Create Account/Sign in to the platform.</p>\n                    </div>\n                </div>\n            </li>\n            <!-- End Process -->\n\n            <!-- Process -->\n            <li class=\"col-sm-3 col-xs-6 g-full-width--xs s-process-v1 g-margin-b-60--xs g-margin-b-0--md\">\n                <div class=\"center-block g-text-center--xs\">\n                    <div class=\"g-margin-b-30--xs\">\n                        <span class=\"g-display-inline-block--xs g-width-100--xs g-height-100--xs g-font-size-38--xs g-color--primary g-bg-color--white g-box-shadow__dark-lightest-v4 g-padding-x-20--xs g-padding-y-20--xs g-radius--circle\">02</span>\n                    </div>\n                    <div class=\"g-padding-x-20--xs\">\n                        <h3 class=\"g-font-size-18--xs g-color--white\">Browse Properties</h3>\n                        <p class=\"g-color--white-opacity\">Look through the platform to see available properties</p>\n                    </div>\n                </div>\n            </li>\n            <!-- End Process -->\n\n            <!-- Process -->\n            <li class=\"col-sm-3 col-xs-6 g-full-width--xs s-process-v1 g-margin-b-60--xs g-margin-b-0--sm\">\n                <div class=\"center-block g-text-center--xs\">\n                    <div class=\"g-margin-b-30--xs\">\n                        <span class=\"g-display-inline-block--xs g-width-100--xs g-height-100--xs g-font-size-38--xs g-color--primary g-bg-color--white g-box-shadow__dark-lightest-v4 g-padding-x-20--xs g-padding-y-20--xs g-radius--circle\">03</span>\n                    </div>\n                    <div class=\"g-padding-x-20--xs\">\n                        <h3 class=\"g-font-size-18--xs g-color--white\">Buy Property</h3>\n                        <p class=\"g-color--white-opacity\">Purchase your property of interest.</p>\n                    </div>\n                </div>\n            </li>\n            <!-- End Process -->\n\n            <!-- Process -->\n            <li class=\"col-sm-3 col-xs-6 g-full-width--xs s-process-v1\">\n                <div class=\"center-block g-text-center--xs\">\n                    <div class=\"g-margin-b-30--xs\">\n                        <span class=\"g-display-inline-block--xs g-width-100--xs g-height-100--xs g-font-size-38--xs g-color--primary g-bg-color--white g-box-shadow__dark-lightest-v4 g-padding-x-20--xs g-padding-y-20--xs g-radius--circle\">04</span>\n                    </div>\n                    <div class=\"g-padding-x-20--xs\">\n                        <h3 class=\"g-font-size-18--xs g-color--white\">Get Proof of Asset</h3>\n                        <p class=\"g-color--white-opacity\">All needed document, would be made available without stress.</p>\n                    </div>\n                </div>\n            </li>\n            <!-- End Process -->\n        </ul>\n\n        <div class=\"g-text-center--xs\">\n            <div class=\"wow fadeInUp\" data-wow-duration=\".3\" data-wow-delay=\".1s\">\n                <a [routerLink]=\"['/register']\" class=\"text-uppercase s-btn s-btn--md s-btn--white-bg g-radius--50\">GET STARTED</a>\n            </div>\n        </div>\n    </div>\n</div>\n<!-- End Process -->\n\n<!-- Features -->\n<div class=\"g-hor-divider__solid--sky-light\">\n    <div class=\"container g-padding-y-80--xs g-padding-y-125--sm\">\n        <div class=\"row g-margin-b-60--xs g-margin-b-70--md\">\n\n            <div class=\"col-sm-4 g-margin-b-60--xs g-margin-b-0--md\">\n              <!-- Media -->\n              <div class=\"clearfix\">\n                  <div class=\"g-media g-width-60--xs\">\n                      <div class=\"wow fadeInUp\" data-wow-duration=\".3\" data-wow-delay=\".3s\">\n                        <img class=\"img-responsive\" src=\"assets/img/icons/register-asset.png\" alt=\"Register Properties\" />\n\n                      </div>\n                  </div>\n                  <div class=\"g-media__body g-padding-x-20--xs\">\n                      <h3 class=\"g-font-size-18--xs g-margin-b-10--xs\">Register Properties</h3>\n                      <p class=\"g-margin-b-0--xs\">Register your properties and ensure that all newly purchased properties are registered on this platform</p>\n                  </div>\n              </div>\n              <!-- End Media -->\n            </div>\n            <div class=\"col-sm-4 g-margin-b-60--xs g-margin-b-0--md\">\n                <!-- Media -->\n                <div class=\"clearfix\">\n                    <div class=\"g-media g-width-60--xs\">\n                        <div class=\"wow fadeInUp\" data-wow-duration=\".3\" data-wow-delay=\".1s\">\n                            <img class=\"img-responsive\" src=\"assets/img/icons/browse-asset.png\" alt=\"Browse Properties\" />\n                        </div>\n                    </div>\n                    <div class=\"g-media__body g-padding-x-20--xs\">\n                        <h3 class=\"g-font-size-18--xs g-margin-b-10--xs\">Browse Properties</h3>\n                        <p class=\"g-margin-b-0--xs\">Check out properties on our platform.</p>\n                    </div>\n                </div>\n                <!-- End Media -->\n            </div>\n            <div class=\"col-sm-4\">\n                <!-- Media -->\n                <div class=\"clearfix\">\n                    <div class=\"g-media g-width-60--xs\">\n                        <div class=\"wow fadeInUp\" data-wow-duration=\".3\" data-wow-delay=\".2s\">\n                          <img class=\"img-responsive\" src=\"assets/img/icons/transact-asset.png\" alt=\"Buy and Sell Properties\" />\n\n                        </div>\n                    </div>\n                    <div class=\"g-media__body g-padding-x-20--xs\">\n                        <h3 class=\"g-font-size-18--xs g-margin-b-10--xs\">Buy / Sell Properties</h3>\n                        <p class=\"g-margin-b-0--xs\">Perform basic Real Estate transactions on the platform, buy properties and sell them with Ease.</p>\n                    </div>\n                </div>\n                <!-- End Media -->\n            </div>\n        </div>\n\n        <div class=\"row g-margin-b-60--xs g-margin-b-70--md\">\n            <div class=\"col-sm-4 g-margin-b-60--xs g-margin-b-0--md\">\n                <!-- Media -->\n                <div class=\"clearfix\">\n                    <div class=\"g-media g-width-60--xs\">\n                        <div class=\"wow fadeInUp\" data-wow-duration=\".3\" data-wow-delay=\".4s\">\n                            <img class=\"img-responsive\" src=\"assets/img/icons/secure-asset.png\" alt=\"Secure Transaction\" />\n                        </div>\n                    </div>\n                    <div class=\"g-media__body g-padding-x-20--xs\">\n                        <h3 class=\"g-font-size-18--xs g-margin-b-10--xs\">Secure Transactions</h3>\n                        <p class=\"g-margin-b-0--xs\">All Transactions are carried on the blockchain network and they are secured and safe.</p>\n                    </div>\n                </div>\n                <!-- End Media -->\n            </div>\n            <div class=\"col-sm-4 g-margin-b-60--xs g-margin-b-0--md\">\n                <!-- Media -->\n                <div class=\"clearfix\">\n                    <div class=\"g-media g-width-60--xs\">\n                        <div class=\"wow fadeInUp\" data-wow-duration=\".3\" data-wow-delay=\".5s\">\n                            <img class=\"img-responsive\" src=\"assets/img/icons/insight-asset.png\" alt=\"Obtain Data Driven Insight on Properties\" />\n                        </div>\n                    </div>\n                    <div class=\"g-media__body g-padding-x-20--xs\">\n                        <h3 class=\"g-font-size-18--xs g-margin-b-10--xs\">Obtain Data Driven Insights</h3>\n                        <p class=\"g-margin-b-0--xs\">Engaging the power of Artificial Intelligence, data driven insights could be pulled from all asset data to help with Real Estate Investment decisions.</p>\n                    </div>\n                </div>\n                <!-- End Media -->\n            </div>\n            <div class=\"col-sm-4\">\n                <!-- Media -->\n                <div class=\"clearfix\">\n                    <div class=\"g-media g-width-60--xs\">\n                        <div class=\"wow fadeInUp\" data-wow-duration=\".3\" data-wow-delay=\".6s\">\n                            <img class=\"img-responsive\" src=\"assets/img/icons/getfunding-asset.png\" alt=\"Get Funding Properties\" />\n                        </div>\n                    </div>\n                    <div class=\"g-media__body g-padding-x-20--xs\">\n                        <h3 class=\"g-font-size-18--xs g-margin-b-10--xs\">Obtaining Funding</h3>\n                        <p class=\"g-margin-b-0--xs\">Financial Service Institutions would find it easy to verify properties which are to be used to obtain funding.</p>\n                    </div>\n                </div>\n                <!-- End Media -->\n            </div>\n        </div>\n    </div>\n</div>\n<!-- End Features -->\n\n<!-- Parallax -->\n<div class=\"s-promo-block-v5 g-bg-position--center js__parallax-window\" style=\"background: url(assets/img/1920x1080/real-estate-bg.jpg) 50% 0 no-repeat fixed;\">\n    <div class=\"container g-text-center--xs g-padding-y-80--xs g-padding-y-125--sm\">\n        <div class=\"g-margin-b-80--xs\">\n            <h2 class=\"g-font-size-40--xs g-font-size-50--sm g-font-size-60--md g-color--white\">Real Estate Transactions made easy</h2>\n        </div>\n        <a [routerLink]=\"['/register']\" class=\"text-uppercase s-btn s-btn--md s-btn--white-brd g-radius--50\">Get Started</a>\n    </div>\n</div>\n<!-- End Parallax -->\n\n<!--========== END PAGE CONTENT ==========-->\n"
+module.exports = "<app-navbar></app-navbar>\n\n<!--========== SWIPER SLIDER ==========-->\n<div class=\"s-swiper js__swiper-slider\">\n    <!-- Swiper Wrapper -->\n    <div class=\"swiper-wrapper\">\n        <div class=\"s-promo-block-v4 g-fullheight--xs g-bg-position--center swiper-slide\" style=\"background: url('assets/img/1920x1080/real-estate-bg.jpg');\">\n            <div class=\"container g-ver-center--xs\">\n                <div class=\"row\">\n                    <div class=\"col-md-7\">\n                        <div class=\"g-margin-b-50--xs\">\n                            <h1 class=\"g-font-size-32--xs g-font-size-45--sm g-font-size-60--md g-color--white\">Unlocking Real Estate Capital in Africa<br></h1>\n                            <p class=\"g-font-size-18--xs g-font-size-22--sm g-color--white-opacity\">Making Real Estate Transactions in Africa Hassle-free.</p>\n                        </div>\n                        <a [routerLink]=\"['/register']\" class=\"text-uppercase s-btn s-btn--md s-btn--white-brd g-radius--50 g-padding-x-50--xs\">Get Started</a>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"s-promo-block-v4 g-fullheight--xs g-bg-position--center swiper-slide\" style=\"background: url('assets/img/1920x1080/real-estate-bg-02.jpg');\">\n            <div class=\"container g-text-right--xs g-ver-center--xs\">\n                <div class=\"row\">\n                    <div class=\"col-md-7 col-md-offset-5\">\n                        <div class=\"g-margin-b-50--xs\">\n                            <h2 class=\"g-font-size-32--xs g-font-size-45--sm g-font-size-55--md g-color--white\">Digitalizing the African Real Estate Market<br></h2>\n                            <p class=\"g-font-size-18--xs g-font-size-22--sm g-color--white-opacity\">Secured Transactions on Blockchain.</p>\n                        </div>\n                        <a [routerLink]=\"['/about']\" class=\"text-uppercase s-btn s-btn--md s-btn--white-brd g-radius--50 g-padding-x-50--xs\">Learn More</a>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n    <!-- End Swiper Wrapper -->\n\n    <!-- Pagination -->\n    <div class=\"s-swiper__pagination-v1 s-swiper__pagination-v1--bc s-swiper__pagination-v1--white js__swiper-pagination\"></div>\n</div>\n<!--========== END SWIPER SLIDER ==========-->\n\n<!--========== PAGE CONTENT ==========-->\n<!-- Services -->\n<div class=\"container g-padding-y-80--xs g-padding-y-125--sm\">\n    <div class=\"row g-margin-b-10--xs\">\n        <div class=\"col-md-6 g-margin-b-60--xs g-margin-b-0--lg\">\n            <!-- Masonry Grid -->\n            <div class=\"row g-row-col--5 g-overflow--hidden js__masonry\">\n                <div class=\"col-xs-6 js__masonry-sizer\"></div>\n                <div class=\"col-xs-6 g-full-width--xs g-margin-b-10--xs g-margin-b-0--sm js__masonry-item\">\n                    <div class=\"wow fadeInDown\" data-wow-duration=\".3\" data-wow-delay=\".1s\">\n                        <img class=\"img-responsive\" src=\"assets/img/400x550/real-estate-feat-01.jpg\" alt=\"Image\">\n                    </div>\n                </div>\n                <div class=\"col-xs-6 g-full-width--xs g-margin-b-10--xs js__masonry-item\">\n                    <div class=\"wow fadeInRight\" data-wow-duration=\".3\" data-wow-delay=\".3s\">\n                        <img class=\"img-responsive\" src=\"assets/img/970x647/city-view-real-estate.jpg\" alt=\"Image\">\n                    </div>\n                </div>\n                <div class=\"col-xs-6 g-full-width--xs js__masonry-item\">\n                    <div class=\"wow fadeInRight\" data-wow-duration=\".3\" data-wow-delay=\".5s\">\n                        <img class=\"img-responsive\" src=\"assets/img/970x647/house-by-the-beach.jpg\" alt=\"Image\">\n                    </div>\n                </div>\n            </div>\n            <!-- End Masonry Grid -->\n        </div>\n        <div class=\"col-md-5 g-margin-b-10--xs g-margin-b-0--lg g-margin-t-10--lg g-margin-l-20--lg\">\n            <div class=\"g-margin-b-30--xs\">\n                <p class=\"text-uppercase g-font-size-14--xs g-font-weight--700 g-color--primary g-letter-spacing--2 g-margin-b-15--xs\">Hammock</p>\n                <h2 class=\"g-font-size-32--xs g-font-size-36--sm\">Register, Sell and Buy Assets Securely, all on one platform.</h2>\n                <p>Acquiring Real estate assets has been a tough process for many investors in Africa, considering the time it takes to complete the purchase process or validation process, This platform takes away the bulk of the stress involved and makes it easy to perform Real Estate transaction.</p>\n            </div>\n            <div class=\"row\">\n                <ul class=\"list-unstyled col-xs-4 g-full-width--xs g-ul-li-tb-5--xs g-margin-b-20--xs g-margin-b-0--sm\">\n                    <li><i class=\"g-font-size-12--xs g-color--primary g-margin-r-10--xs ti-check\"></i>Fast</li>\n\n                </ul>\n                <ul class=\"list-unstyled col-xs-4 g-full-width--xs g-ul-li-tb-5--xs g-margin-b-20--xs g-margin-b-0--sm\">\n                    <li><i class=\"g-font-size-12--xs g-color--primary g-margin-r-10--xs ti-check\"></i>Secure</li>\n\n                </ul>\n                <ul class=\"list-unstyled col-xs-4 g-full-width--xs g-ul-li-tb-5--xs\">\n                    <li><i class=\"g-font-size-12--xs g-color--primary g-margin-r-10--xs ti-check\"></i>Easy</li>\n                </ul>\n            </div>\n        </div>\n    </div>\n</div>\n<!-- End Services -->\n\n<!-- Process -->\n<div class=\"g-bg-color--primary-ltr\">\n    <div class=\"container g-padding-y-80--xs g-padding-y-125--sm\">\n        <div class=\"g-text-center--xs g-margin-b-100--xs\">\n            <p class=\"text-uppercase g-font-size-14--xs g-font-weight--700 g-color--white-opacity g-letter-spacing--2 g-margin-b-25--xs\"></p>\n            <h2 class=\"g-font-size-32--xs g-font-size-36--sm g-color--white\">How it Works</h2>\n        </div>\n        <ul class=\"list-inline row g-margin-b-100--xs\">\n            <!-- Process -->\n            <li class=\"col-sm-3 col-xs-6 g-full-width--xs s-process-v1 g-margin-b-60--xs g-margin-b-0--md\">\n                <div class=\"center-block g-text-center--xs\">\n                    <div class=\"g-margin-b-30--xs\">\n                        <span class=\"g-display-inline-block--xs g-width-100--xs g-height-100--xs g-font-size-38--xs g-color--primary g-bg-color--white g-box-shadow__dark-lightest-v4 g-padding-x-20--xs g-padding-y-20--xs g-radius--circle\">01</span>\n                    </div>\n                    <div class=\"g-padding-x-20--xs\">\n                        <h3 class=\"g-font-size-18--xs g-color--white\">Register</h3>\n                        <p class=\"g-color--white-opacity\">Create Account/Sign in to the platform.</p>\n                    </div>\n                </div>\n            </li>\n            <!-- End Process -->\n\n            <!-- Process -->\n            <li class=\"col-sm-3 col-xs-6 g-full-width--xs s-process-v1 g-margin-b-60--xs g-margin-b-0--md\">\n                <div class=\"center-block g-text-center--xs\">\n                    <div class=\"g-margin-b-30--xs\">\n                        <span class=\"g-display-inline-block--xs g-width-100--xs g-height-100--xs g-font-size-38--xs g-color--primary g-bg-color--white g-box-shadow__dark-lightest-v4 g-padding-x-20--xs g-padding-y-20--xs g-radius--circle\">02</span>\n                    </div>\n                    <div class=\"g-padding-x-20--xs\">\n                        <h3 class=\"g-font-size-18--xs g-color--white\">Browse Properties</h3>\n                        <p class=\"g-color--white-opacity\">Look through the platform to see available properties</p>\n                    </div>\n                </div>\n            </li>\n            <!-- End Process -->\n\n            <!-- Process -->\n            <li class=\"col-sm-3 col-xs-6 g-full-width--xs s-process-v1 g-margin-b-60--xs g-margin-b-0--sm\">\n                <div class=\"center-block g-text-center--xs\">\n                    <div class=\"g-margin-b-30--xs\">\n                        <span class=\"g-display-inline-block--xs g-width-100--xs g-height-100--xs g-font-size-38--xs g-color--primary g-bg-color--white g-box-shadow__dark-lightest-v4 g-padding-x-20--xs g-padding-y-20--xs g-radius--circle\">03</span>\n                    </div>\n                    <div class=\"g-padding-x-20--xs\">\n                        <h3 class=\"g-font-size-18--xs g-color--white\">Buy Property</h3>\n                        <p class=\"g-color--white-opacity\">Purchase your property of interest.</p>\n                    </div>\n                </div>\n            </li>\n            <!-- End Process -->\n\n            <!-- Process -->\n            <li class=\"col-sm-3 col-xs-6 g-full-width--xs s-process-v1\">\n                <div class=\"center-block g-text-center--xs\">\n                    <div class=\"g-margin-b-30--xs\">\n                        <span class=\"g-display-inline-block--xs g-width-100--xs g-height-100--xs g-font-size-38--xs g-color--primary g-bg-color--white g-box-shadow__dark-lightest-v4 g-padding-x-20--xs g-padding-y-20--xs g-radius--circle\">04</span>\n                    </div>\n                    <div class=\"g-padding-x-20--xs\">\n                        <h3 class=\"g-font-size-18--xs g-color--white\">Get Proof of Asset</h3>\n                        <p class=\"g-color--white-opacity\">All needed document, would be made available without stress.</p>\n                    </div>\n                </div>\n            </li>\n            <!-- End Process -->\n        </ul>\n\n        <div class=\"g-text-center--xs\">\n            <div class=\"wow fadeInUp\" data-wow-duration=\".3\" data-wow-delay=\".1s\">\n                <a [routerLink]=\"['/register']\" class=\"text-uppercase s-btn s-btn--md s-btn--white-bg g-radius--50\">GET STARTED</a>\n            </div>\n        </div>\n    </div>\n</div>\n<!-- End Process -->\n\n<!-- Features -->\n<div class=\"g-hor-divider__solid--sky-light\">\n    <div class=\"container g-padding-y-80--xs g-padding-y-125--sm\">\n        <div class=\"row g-margin-b-60--xs g-margin-b-70--md\">\n\n            <div class=\"col-sm-4 g-margin-b-60--xs g-margin-b-0--md\">\n              <!-- Media -->\n              <div class=\"clearfix\">\n                  <div class=\"g-media g-width-60--xs\">\n                      <div class=\"wow fadeInUp\" data-wow-duration=\".3\" data-wow-delay=\".3s\">\n                        <img class=\"img-responsive\" src=\"assets/img/icons/register-asset.png\" alt=\"Register Properties\" />\n\n                      </div>\n                  </div>\n                  <div class=\"g-media__body g-padding-x-20--xs\">\n                      <h3 class=\"g-font-size-18--xs g-margin-b-10--xs\">Register Properties</h3>\n                      <p class=\"g-margin-b-0--xs\">Register your properties and ensure that all newly purchased properties are registered on this platform</p>\n                  </div>\n              </div>\n              <!-- End Media -->\n            </div>\n            <div class=\"col-sm-4 g-margin-b-60--xs g-margin-b-0--md\">\n                <!-- Media -->\n                <div class=\"clearfix\">\n                    <div class=\"g-media g-width-60--xs\">\n                        <div class=\"wow fadeInUp\" data-wow-duration=\".3\" data-wow-delay=\".1s\">\n                            <img class=\"img-responsive\" src=\"assets/img/icons/browse-asset.png\" alt=\"Browse Properties\" />\n                        </div>\n                    </div>\n                    <div class=\"g-media__body g-padding-x-20--xs\">\n                        <h3 class=\"g-font-size-18--xs g-margin-b-10--xs\">Browse Properties</h3>\n                        <p class=\"g-margin-b-0--xs\">Check out properties on our platform.</p>\n                    </div>\n                </div>\n                <!-- End Media -->\n            </div>\n            <div class=\"col-sm-4\">\n                <!-- Media -->\n                <div class=\"clearfix\">\n                    <div class=\"g-media g-width-60--xs\">\n                        <div class=\"wow fadeInUp\" data-wow-duration=\".3\" data-wow-delay=\".2s\">\n                          <img class=\"img-responsive\" src=\"assets/img/icons/transact-asset.png\" alt=\"Buy and Sell Properties\" />\n\n                        </div>\n                    </div>\n                    <div class=\"g-media__body g-padding-x-20--xs\">\n                        <h3 class=\"g-font-size-18--xs g-margin-b-10--xs\">Buy / Sell Properties</h3>\n                        <p class=\"g-margin-b-0--xs\">Perform basic Real Estate transactions on the platform, buy properties and sell them with Ease.</p>\n                    </div>\n                </div>\n                <!-- End Media -->\n            </div>\n        </div>\n\n        <div class=\"row g-margin-b-60--xs g-margin-b-70--md\">\n            <div class=\"col-sm-4 g-margin-b-60--xs g-margin-b-0--md\">\n                <!-- Media -->\n                <div class=\"clearfix\">\n                    <div class=\"g-media g-width-60--xs\">\n                        <div class=\"wow fadeInUp\" data-wow-duration=\".3\" data-wow-delay=\".4s\">\n                            <img class=\"img-responsive\" src=\"assets/img/icons/secure-asset.png\" alt=\"Secure Transaction\" />\n                        </div>\n                    </div>\n                    <div class=\"g-media__body g-padding-x-20--xs\">\n                        <h3 class=\"g-font-size-18--xs g-margin-b-10--xs\">Secure Transactions</h3>\n                        <p class=\"g-margin-b-0--xs\">All Transactions are carried on the blockchain network and they are secured and safe.</p>\n                    </div>\n                </div>\n                <!-- End Media -->\n            </div>\n            <div class=\"col-sm-4 g-margin-b-60--xs g-margin-b-0--md\">\n                <!-- Media -->\n                <div class=\"clearfix\">\n                    <div class=\"g-media g-width-60--xs\">\n                        <div class=\"wow fadeInUp\" data-wow-duration=\".3\" data-wow-delay=\".5s\">\n                            <img class=\"img-responsive\" src=\"assets/img/icons/insight-asset.png\" alt=\"Obtain Data Driven Insight on Properties\" />\n                        </div>\n                    </div>\n                    <div class=\"g-media__body g-padding-x-20--xs\">\n                        <h3 class=\"g-font-size-18--xs g-margin-b-10--xs\">Obtain Data Driven Insights</h3>\n                        <p class=\"g-margin-b-0--xs\">Engaging the power of Artificial Intelligence, data driven insights could be pulled from all asset data to help with Real Estate Investment decisions.</p>\n                    </div>\n                </div>\n                <!-- End Media -->\n            </div>\n            <div class=\"col-sm-4\">\n                <!-- Media -->\n                <div class=\"clearfix\">\n                    <div class=\"g-media g-width-60--xs\">\n                        <div class=\"wow fadeInUp\" data-wow-duration=\".3\" data-wow-delay=\".6s\">\n                            <img class=\"img-responsive\" src=\"assets/img/icons/getfunding-asset.png\" alt=\"Get Funding Properties\" />\n                        </div>\n                    </div>\n                    <div class=\"g-media__body g-padding-x-20--xs\">\n                        <h3 class=\"g-font-size-18--xs g-margin-b-10--xs\">Obtaining Funding</h3>\n                        <p class=\"g-margin-b-0--xs\">Financial Service Institutions would find it easy to verify properties which are to be used to obtain funding.</p>\n                    </div>\n                </div>\n                <!-- End Media -->\n            </div>\n        </div>\n    </div>\n</div>\n<!-- End Features -->\n\n<!-- Parallax -->\n<div class=\"s-promo-block-v5 g-bg-position--center js__parallax-window\" style=\"background: url(assets/img/1920x1080/real-estate-bg.jpg) 50% 0 no-repeat fixed;\">\n    <div class=\"container g-text-center--xs g-padding-y-80--xs g-padding-y-125--sm\">\n        <div class=\"g-margin-b-80--xs\">\n            <h2 class=\"g-font-size-40--xs g-font-size-50--sm g-font-size-60--md g-color--white\">Real Estate Transactions made easy</h2>\n        </div>\n        <a [routerLink]=\"['/register']\" class=\"text-uppercase s-btn s-btn--md s-btn--white-brd g-radius--50\">Get Started</a>\n    </div>\n</div>\n<!-- End Parallax -->\n\n<!--========== END PAGE CONTENT ==========-->\n"
 
 /***/ }),
 
@@ -447,7 +661,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--========== top header ==========-->\n<div class=\"general-top-header\">\n    <!-- Swiper Wrapper -->\n    <div class=\"swiper-wrapper\">\n        <div class=\"s-promo-block-v4 g-fullheight--xs g-bg-position--center swiper-slide\" style=\"background: url('assets/img/1920x1080/real-estate-bg-dark.jpg');\">\n            <div class=\"container g-ver-center--xs\">\n                <div class=\"row\">\n                    <div class=\"col-md-7\">\n                        <div class=\"g-margin-b-50--xs\">\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n    <!-- End Swiper Wrapper -->\n</div>\n\n<!-- Form -->\n<div id=\"js__scroll-to-appointment\" class=\"g-bg-color--sky-light g-padding-y-80--xs g-padding-y-125--sm\">\n    <div class=\"container flashmsg\">\n      <ng-flash-message></ng-flash-message>\n    </div>\n\n    <div class=\"container g-bg-color--white g-box-shadow__dark-lightest-v3 custom-sm-form-container\">\n        <div class=\"row\">\n            <!-- Form -->\n            <div class=\"col-md-12 js__form-eqaul-height-v1\">\n                <div class=\"g-padding-x-40--xs g-padding-y-50--xs\">\n                    <h2 class=\"g-font-size-24--xs g-color--primary g-margin-b-50--xs\">Sign In</h2>\n                    <form (submit)=\"onLoginSubmit()\" class=\"custom-form\">\n                        <div class=\"row g-margin-b-30--xs g-margin-b-50--md\">\n                            <div class=\"col-sm-12\">\n                                <input type=\"text\" [(ngModel)]=\"username\" name=\"username\" class=\"form-control s-form-v4__input g-padding-l-0--xs\" placeholder=\"* Username\">\n                            </div>\n\n                            <div class=\"col-sm-12 g-margin-b-30--xs g-margin-b-0--md\">\n                                <input type=\"password\" [(ngModel)]=\"password\" name=\"password\" class=\"form-control s-form-v4__input g-padding-l-0--xs\" placeholder=\"* Password\">\n                            </div>\n                        </div>\n                        <div class=\"g-text-center--xs\">\n                            <button type=\"submit\" class=\"text-uppercase s-btn s-btn--md s-btn--primary-bg g-radius--50 g-padding-x-70--xs g-margin-b-20--xs\">SIGN IN</button>\n                        </div>\n                    </form>\n                </div>\n            </div>\n            <!-- End Form -->\n\n\n        </div>\n    </div>\n</div>\n<!-- End Form -->\n"
+module.exports = "<app-navbar></app-navbar>\n\n<!--========== top header ==========-->\n<div class=\"general-top-header\">\n    <!-- Swiper Wrapper -->\n    <div class=\"swiper-wrapper\">\n        <div class=\"s-promo-block-v4 g-fullheight--xs g-bg-position--center swiper-slide\" style=\"background: url('assets/img/1920x1080/real-estate-bg-dark.jpg');\">\n            <div class=\"container g-ver-center--xs\">\n                <div class=\"row\">\n                    <div class=\"col-md-7\">\n                        <div class=\"g-margin-b-50--xs\">\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n    <!-- End Swiper Wrapper -->\n</div>\n\n<!-- Form -->\n<div id=\"js__scroll-to-appointment\" class=\"g-bg-color--sky-light g-padding-y-80--xs g-padding-y-125--sm\">\n    <div class=\"container flashmsg\">\n      <ng-flash-message></ng-flash-message>\n    </div>\n\n    <div class=\"container g-bg-color--white g-box-shadow__dark-lightest-v3 custom-sm-form-container\">\n        <div class=\"row\">\n            <!-- Form -->\n            <div class=\"col-md-12 js__form-eqaul-height-v1\">\n                <div class=\"g-padding-x-40--xs g-padding-y-50--xs\">\n                    <h2 class=\"g-font-size-24--xs g-color--primary g-margin-b-50--xs\">Sign In</h2>\n                    <form (submit)=\"onLoginSubmit()\" class=\"custom-form\">\n                        <div class=\"row g-margin-b-30--xs g-margin-b-50--md\">\n                            <div class=\"col-sm-12\">\n                                <input type=\"text\" [(ngModel)]=\"username\" name=\"username\" class=\"form-control s-form-v4__input g-padding-l-0--xs\" placeholder=\"* Username\">\n                            </div>\n\n                            <div class=\"col-sm-12 g-margin-b-30--xs g-margin-b-0--md\">\n                                <input type=\"password\" [(ngModel)]=\"password\" name=\"password\" class=\"form-control s-form-v4__input g-padding-l-0--xs\" placeholder=\"* Password\">\n                            </div>\n                        </div>\n                        <div class=\"g-text-center--xs\">\n                            <button type=\"submit\" class=\"text-uppercase s-btn s-btn--md s-btn--primary-bg g-radius--50 g-padding-x-70--xs g-margin-b-20--xs\">SIGN IN</button>\n                        </div>\n                    </form>\n                </div>\n            </div>\n            <!-- End Form -->\n\n\n        </div>\n    </div>\n</div>\n<!-- End Form -->\n"
 
 /***/ }),
 
@@ -599,6 +813,69 @@ var NavbarComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/components/navbar2/navbar2.component.css":
+/*!**********************************************************!*\
+  !*** ./src/app/components/navbar2/navbar2.component.css ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvbmF2YmFyMi9uYXZiYXIyLmNvbXBvbmVudC5jc3MifQ== */"
+
+/***/ }),
+
+/***/ "./src/app/components/navbar2/navbar2.component.html":
+/*!***********************************************************!*\
+  !*** ./src/app/components/navbar2/navbar2.component.html ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<!--========== HEADER V2 ==========-->\n<header class=\"navbar-fixed-top s-header-v2 js__header-sticky\">\n    <!-- Navbar -->\n    <nav class=\"s-header-v2__navbar\">\n        <div class=\"container g-display-table--lg\">\n            <!-- Navbar Row -->\n            <div class=\"s-header-v2__navbar-row\">\n                <!-- Brand and toggle get grouped for better mobile display -->\n                <div class=\"s-header-v2__navbar-col\">\n                    <button type=\"button\" class=\"collapsed s-header-v2__toggle\" data-toggle=\"collapse\" data-target=\"#nav-collapse\" aria-expanded=\"false\">\n                        <span class=\"s-header-v2__toggle-icon-bar\"></span>\n                    </button>\n                </div>\n\n                <div class=\"s-header-v2__navbar-col s-header-v2__navbar-col-width--180\">\n                    <!-- Logo -->\n                    <div class=\"s-header-v2__logo\">\n                        <a [routerLink]=\"['/']\" class=\"s-header-v2__logo-link\">\n                            <img class=\"s-header-v2__logo-img s-header-v2__logo-img--default\" src=\"assets/img/hammock-logo-sm.png\" alt=\"Hammock Logo\">\n                            <img class=\"s-header-v2__logo-img s-header-v2__logo-img--shrink\" src=\"assets/img/hammock-logo-sm-1.png\" alt=\"Hammock Logo\">\n                        </a>\n                    </div>\n                    <!-- End Logo -->\n                </div>\n\n                <div class=\"s-header-v2__navbar-col s-header-v2__navbar-col--right\">\n                    <!-- Collect the nav links, forms, and other content for toggling -->\n                    <div class=\"collapse navbar-collapse s-header-v2__navbar-collapse\" id=\"nav-collapse\">\n                        <ul class=\"s-header-v2__nav\">\n                            <!-- Home -->\n                            <li class=\"dropdown s-header-v2__nav-item\" >\n                                <a  [routerLinkActive]=\"['-is-active']\" [routerLinkActiveOptions] = \"{exact:true}\" [routerLink]=\"['/admin/property']\"  class=\"s-header-v2__nav-link\" data-toggle=\"dropdown\" role=\"button\">Property</a>\n                            </li>\n                            <!-- End Home -->\n                            <!-- Home -->\n                            <li class=\"dropdown s-header-v2__nav-item\" >\n                                <a  [routerLinkActive]=\"['-is-active']\" [routerLinkActiveOptions] = \"{exact:true}\" [routerLink]=\"['/admin/users']\"  class=\"s-header-v2__nav-link\" data-toggle=\"dropdown\" role=\"button\">Users</a>\n                            </li>\n                            <!-- End Home -->\n\n                        </ul>\n                    </div>\n                    <!-- End Nav Menu -->\n                </div>\n            </div>\n            <!-- End Navbar Row -->\n        </div>\n    </nav>\n    <!-- End Navbar -->\n</header>\n<!--========== END HEADER V2 ==========-->\n"
+
+/***/ }),
+
+/***/ "./src/app/components/navbar2/navbar2.component.ts":
+/*!*********************************************************!*\
+  !*** ./src/app/components/navbar2/navbar2.component.ts ***!
+  \*********************************************************/
+/*! exports provided: Navbar2Component */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Navbar2Component", function() { return Navbar2Component; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var Navbar2Component = /** @class */ (function () {
+    function Navbar2Component() {
+    }
+    Navbar2Component.prototype.ngOnInit = function () {
+    };
+    Navbar2Component = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-navbar2',
+            template: __webpack_require__(/*! ./navbar2.component.html */ "./src/app/components/navbar2/navbar2.component.html"),
+            styles: [__webpack_require__(/*! ./navbar2.component.css */ "./src/app/components/navbar2/navbar2.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], Navbar2Component);
+    return Navbar2Component;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/components/profile/profile.component.css":
 /*!**********************************************************!*\
   !*** ./src/app/components/profile/profile.component.css ***!
@@ -680,7 +957,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--========== top header ==========-->\n<div class=\"general-top-header\">\n    <!-- Swiper Wrapper -->\n    <div class=\"swiper-wrapper\">\n        <div class=\"s-promo-block-v4 g-fullheight--xs g-bg-position--center swiper-slide\" style=\"background: url('assets/img/1920x1080/real-estate-bg-dark.jpg');\">\n            <div class=\"container g-ver-center--xs\">\n                <div class=\"row\">\n                    <div class=\"col-md-7\">\n                        <div class=\"g-margin-b-50--xs\">\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n    <!-- End Swiper Wrapper -->\n</div>\n\n<!-- Form -->\n<div id=\"js__scroll-to-appointment\" class=\"g-bg-color--sky-light g-padding-y-80--xs g-padding-y-125--sm\">\n    <div class=\"container flashmsg\">\n      <ng-flash-message></ng-flash-message>\n    </div>\n\n    <div class=\"container g-bg-color--white g-box-shadow__dark-lightest-v3 custom-sm-form-container\">\n        <div class=\"row\">\n            <!-- Form -->\n            <div class=\"col-md-12 js__form-eqaul-height-v1\">\n                <div class=\"g-padding-x-40--xs g-padding-y-50--xs\">\n                    <h2 class=\"g-font-size-24--xs g-color--primary g-margin-b-50--xs\">Create an account</h2>\n                    <form (submit)=\"onRegisterSubmit()\" class=\"custom-form\">\n                        <div class=\"row g-margin-b-30--xs g-margin-b-50--md\">\n                            <div class=\"col-sm-12 g-margin-b-30--xs g-margin-b-0--md\">\n                                <input type=\"text\" [(ngModel)]=\"name\" name=\"name\" class=\"form-control s-form-v4__input g-padding-l-0--xs\" placeholder=\"* Full Name\">\n                            </div>\n                            <div class=\"col-sm-12\">\n                                <input type=\"text\" [(ngModel)]=\"username\" name=\"username\" class=\"form-control s-form-v4__input g-padding-l-0--xs\" placeholder=\"* Username\">\n                            </div>\n                            <div class=\"col-sm-12 g-margin-b-30--xs g-margin-b-0--md\">\n                                <input type=\"text\" [(ngModel)]=\"email\" name=\"email\" class=\"form-control s-form-v4__input g-padding-l-0--xs\" placeholder=\"* Email\">\n                            </div>\n                            <div class=\"col-sm-12 g-margin-b-30--xs g-margin-b-0--md\">\n                                <input type=\"password\" [(ngModel)]=\"password\" name=\"password\" class=\"form-control s-form-v4__input g-padding-l-0--xs\" placeholder=\"* Password\">\n                            </div>\n                        </div>\n                        <div class=\"g-text-center--xs\">\n                            <button type=\"submit\" class=\"text-uppercase s-btn s-btn--md s-btn--primary-bg g-radius--50 g-padding-x-70--xs g-margin-b-20--xs\">CREATE ACCOUNT</button>\n                        </div>\n                    </form>\n                </div>\n            </div>\n            <!-- End Form -->\n\n\n        </div>\n    </div>\n</div>\n<!-- End Form -->\n"
+module.exports = "<app-navbar></app-navbar>\n\n<!--========== top header ==========-->\n<div class=\"general-top-header\">\n    <!-- Swiper Wrapper -->\n    <div class=\"swiper-wrapper\">\n        <div class=\"s-promo-block-v4 g-fullheight--xs g-bg-position--center swiper-slide\" style=\"background: url('assets/img/1920x1080/real-estate-bg-dark.jpg');\">\n            <div class=\"container g-ver-center--xs\">\n                <div class=\"row\">\n                    <div class=\"col-md-7\">\n                        <div class=\"g-margin-b-50--xs\">\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n    <!-- End Swiper Wrapper -->\n</div>\n\n<!-- Form -->\n<div id=\"js__scroll-to-appointment\" class=\"g-bg-color--sky-light g-padding-y-80--xs g-padding-y-125--sm\">\n    <div class=\"container flashmsg\">\n      <ng-flash-message></ng-flash-message>\n    </div>\n\n    <div class=\"container g-bg-color--white g-box-shadow__dark-lightest-v3 custom-sm-form-container\">\n        <div class=\"row\">\n            <!-- Form -->\n            <div class=\"col-md-12 js__form-eqaul-height-v1\">\n                <div class=\"g-padding-x-40--xs g-padding-y-50--xs\">\n                    <h2 class=\"g-font-size-24--xs g-color--primary g-margin-b-50--xs\">Create an account</h2>\n                    <form (submit)=\"onRegisterSubmit()\" class=\"custom-form\">\n                        <div class=\"row g-margin-b-30--xs g-margin-b-50--md\">\n                            <div class=\"col-sm-12 g-margin-b-30--xs g-margin-b-0--md\">\n                                <input type=\"text\" [(ngModel)]=\"name\" name=\"name\" class=\"form-control s-form-v4__input g-padding-l-0--xs\" placeholder=\"* Full Name\">\n                            </div>\n                            <div class=\"col-sm-12\">\n                                <input type=\"text\" [(ngModel)]=\"username\" name=\"username\" class=\"form-control s-form-v4__input g-padding-l-0--xs\" placeholder=\"* Username\">\n                            </div>\n                            <div class=\"col-sm-12 g-margin-b-30--xs g-margin-b-0--md\">\n                                <input type=\"text\" [(ngModel)]=\"email\" name=\"email\" class=\"form-control s-form-v4__input g-padding-l-0--xs\" placeholder=\"* Email\">\n                            </div>\n                            <div class=\"col-sm-12 g-margin-b-30--xs g-margin-b-0--md\">\n                                <input type=\"password\" [(ngModel)]=\"password\" name=\"password\" class=\"form-control s-form-v4__input g-padding-l-0--xs\" placeholder=\"* Password\">\n                            </div>\n                        </div>\n                        <div class=\"g-text-center--xs\">\n                            <button type=\"submit\" class=\"text-uppercase s-btn s-btn--md s-btn--primary-bg g-radius--50 g-padding-x-70--xs g-margin-b-20--xs\">CREATE ACCOUNT</button>\n                        </div>\n                    </form>\n                </div>\n            </div>\n            <!-- End Form -->\n\n\n        </div>\n    </div>\n</div>\n<!-- End Form -->\n"
 
 /***/ }),
 
@@ -846,6 +1123,52 @@ var AuthService = /** @class */ (function () {
         __metadata("design:paramtypes", [_angular_http__WEBPACK_IMPORTED_MODULE_1__["Http"]])
     ], AuthService);
     return AuthService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/services/user.service.ts":
+/*!******************************************!*\
+  !*** ./src/app/services/user.service.ts ***!
+  \******************************************/
+/*! exports provided: UserService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserService", function() { return UserService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/http */ "./node_modules/@angular/http/fesm5/http.js");
+/* harmony import */ var rxjs_add_operator_map__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/add/operator/map */ "./node_modules/rxjs-compat/_esm5/add/operator/map.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var UserService = /** @class */ (function () {
+    function UserService(http) {
+        this.http = http;
+    }
+    UserService.prototype.getUsers = function () {
+        return this.http.get('list')
+            .map(function (res) { return res.json(); });
+    };
+    UserService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [_angular_http__WEBPACK_IMPORTED_MODULE_1__["Http"]])
+    ], UserService);
+    return UserService;
 }());
 
 
