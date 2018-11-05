@@ -487,34 +487,37 @@ router.post('/agreeloanrequest/', passport.authenticate('user-role', {session:fa
         if (err) throw err;
         const propertyId = loanRequest.propertyId;
         const bankname = loanRequest.bankname;
-        Asset.getAssetByPropertyId(propertyId, (err, asset)=>{
-            if (err) throw err;
-            if(asset.owner == debtor){
-                asset.price = loanRequest.amount;
-                asset.save();
-                assetCtrl.updateAsset(asset);
-            
-                User.getUserByUsername(debtor, (err, user)=>{
-                    if(err) throw err;
-                    Bank.getBankByBankName(bankname, (err, bank)=>{
-                        if (err) throw err;
-                        const loanId = randomstring.generate(12);
-                        let newLoanRequest = {  
-                            loanId: loanId,
-                            amount: loanRequest.amount,
-                            interestRate: loanRequest.interestRate,
-                            debtor: user.userId,
-                            bank: bank.bankId, 
-                            asset: loanRequest.propertyId,
-                            durationInMonths: loanRequest.duration 
-                        }
-                        assetCtrl.addLoan(newLoanRequest);
-                        loanRequest.agreed = true;
-                        loanRequest.save();
-                    });  
-                });
-            }
-        });
+        if(loanRequest.accepted){
+            Asset.getAssetByPropertyId(propertyId, (err, asset)=>{
+                if (err) throw err;
+                if(asset.owner == debtor){
+                    asset.price = loanRequest.amount;
+                    asset.save();
+                    assetCtrl.updateAsset(asset);
+                
+                    User.getUserByUsername(debtor, (err, user)=>{
+                        if(err) throw err;
+                        Bank.getBankByBankName(bankname, (err, bank)=>{
+                            if (err) throw err;
+                            const loanId = randomstring.generate(12);
+                            let newLoanRequest = {  
+                                loanId: loanId,
+                                amount: loanRequest.amount,
+                                interestRate: loanRequest.interestRate,
+                                debtor: user.userId,
+                                bank: bank.bankId, 
+                                asset: loanRequest.propertyId,
+                                durationInMonths: loanRequest.duration 
+                            }
+                            assetCtrl.addLoan(newLoanRequest);
+                            loanRequest.agreed = true;
+                            loanRequest.save();
+                            res.json({success:true, msg:'Loan Activated'})
+                        });  
+                    });
+                }
+            });
+        }
     });
 });
 
