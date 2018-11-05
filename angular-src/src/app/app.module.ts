@@ -26,7 +26,8 @@ import { AdminpanelComponent } from './components/adminpanel/adminpanel.componen
 import { AdminpropertyComponent } from './components/adminproperty/adminproperty.component';
 import { AdminusersComponent } from './components/adminusers/adminusers.component';
 
-import { HashLocationStrategy, LocationStrategy } from '@angular/common'
+//import { HashLocationStrategy, LocationStrategy } from '@angular/common'
+//{provide: LocationStrategy, useClass: HashLocationStrategy }
 
 
 const appRoutes: Routes = [
@@ -63,7 +64,7 @@ const appRoutes: Routes = [
     NgFlashMessagesModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [ValidService,AuthService,UserService, {provide: LocationStrategy, useClass: HashLocationStrategy }],
+  providers: [ValidService,AuthService,UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

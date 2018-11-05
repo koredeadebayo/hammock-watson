@@ -94,9 +94,6 @@ const root = path.join(__dirname, "public");
     //Set static folder
     app.use(express.static(root));
 
-    //fallback
-    //app.use(fallback('index.html', { root }));
-
     //Passport Middlware
     app.use(passport.initialize());
     app.use(passport.session());
@@ -110,12 +107,18 @@ app.use('/assets', asset);
 //app.use('/login', asset);
 //app.use('/register', asset);
 
+//fallback
+app.use(fallback('index.html', { root }));
 // Index Route
 
 app.get('/', (req, res) => {
     res.send('Just another end point');
   });
-  
+
+  /*app.get("/:page", function(req, res) {
+      res.sendFile(site_public+"/"+req.params.page+".html")
+  });*/
+
 
 
 // Start Server

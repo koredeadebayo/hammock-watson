@@ -13,7 +13,7 @@ export class UserService {
    }
 
   getUsers(){
-      return this.http.get('http://localhost:6001/list')
+      return this.http.get('http://localhost:6001/users/list')
         .map(res =>res.json());
   }
 
