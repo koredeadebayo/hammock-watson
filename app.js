@@ -92,7 +92,12 @@ const root = path.join(__dirname, "public");
     //Passport Middlware
 
     //Set static folder
+<<<<<<< HEAD
     app.use(express.static(root));
+=======
+    // app.use(express.static(root));
+    // app.use(fallback('index.html', { root }));
+>>>>>>> cd14a447737b5df5aa209d27439c1168726ab5e6
 
     //Passport Middlware
     app.use(passport.initialize());

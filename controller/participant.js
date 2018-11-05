@@ -103,9 +103,59 @@ async function addGov(gov) {
         console.error(error);
         process.exit(1);
     }
+
+}
+
+    async function addBank(bank) {
+    
+        //console.log(bank);
+    
+        try {
+            let type = 'Bank';
+            let bankId = bank.bankId; //Government Id generated at registration
+            let username = bank.username; //Username generated inputed at registration
+            
+            let bizNetDefination = await businessNetworkConnection.connect(hyperConfig.networkAdminCard);
+            let factory = businessNetworkConnection.getBusinessNetwork().getFactory();
+    
+            let participant = factory.newResource(hyperConfig.ns, type, bankId);
+    
+            participant.username = username;
+    
+            let participantRegistry = await businessNetworkConnection.getParticipantRegistry(`${hyperConfig.ns}.${type}`);
+            await participantRegistry.add(participant);
+    
+             let identity = await businessNetworkConnection.issueIdentity(`${hyperConfig.ns}.${type}#${bankId}`, username);
+             //'net.biz.digitalPropertyNetwork.Person#mae@biznet.org', 'maeid1'
+            console.log(`userID = ${identity.userID}`);
+            console.log(`userSecret = ${identity.userSecret}`);
+    
+            bank.blockUserID = identity.userID;
+            //console.log(user);
+            bank.blockUserSecret = identity.userSecret; 
+            bank.save();
+    
+            await cardService.create(identity);
+            identity.type = type;
+            await businessNetworkConnection.disconnect();
+            // //await mongoService.insert(identity)
+    
+    
+    
+            //return responseModel.successResponse("Player created", identity);
+        } catch(error) {
+            console.error(error);
+            process.exit(1);
+        }
 }
 
 module.exports = {
     addUser,
+<<<<<<< HEAD
     addGov
 }
+=======
+    addGov,
+    addBank
+}
+>>>>>>> cd14a447737b5df5aa209d27439c1168726ab5e6

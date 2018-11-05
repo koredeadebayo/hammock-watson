@@ -9,7 +9,9 @@ const router = express.Router();
 const passport = require('passport');
 const assetCtrl = require('../controller/asset');
 const Gov = require('../models/gov');
+const Bank = require('../models/bank');
 const TradeRequest = require('../models/traderequest');
+const LoanRequest = require('../models/loanrequest');
 const randomstring = require('randomstring');
 
 
@@ -18,18 +20,7 @@ router.post('/add', passport.authenticate('user-role', {session:false}), async (
     let user = req.user;
     //console.log(user);
     const newpropertyId = randomstring.generate(12);
-    // "$class": "org.hammock.network.realEstate",
-    // "propertyId": "string",
-    // "address": "string",
-    // "squareMeters": 0,
-    // "price": 0,
-    // "imagelink": "string",
-    // "description": "string",
-    // "dateOfRegistration": "string",
-    // "landSurveyLink": "string",
-    // "coordinates": [],
-    // "owner": {},
-    // "government": {}
+
 
     let newAsset = new Asset({
          _userId: user._id,
@@ -87,8 +78,8 @@ router.post('/approve', passport.authenticate('gov-role', {session:false}),  (re
                     description: asset.description,
                     dateOfRegistration: "Todays date",
                     coordinates: [],
-                    owner: userId, //replace with owner username (asset.owner)
-                    government:govId, // replace with the government (capture from the post req)
+                    owner: userId, 
+                    government:govId, 
                     certificateno : asset.certificateno
                 }
             //console.log(blockAsset.propertyId);
@@ -103,10 +94,53 @@ router.post('/approve', passport.authenticate('gov-role', {session:false}),  (re
         res.json({success: true, msg: 'Registration Successful Listed'});
         //console.log(blockAsset.propertyId);
     });
-    
-    
-
 });
+
+//Government Registering Property on the Platform
+router.post('/govadd', passport.authenticate('gov-role', {session:false}),  (req, res, next)=>{
+        let gov = req.user.name;
+        let username = req.body.username;
+ 
+    
+    const newpropertyId = randomstring.generate(12);
+    User.getUserByUsername(username, (err, user)=>{
+        if(err) throw err;
+        let newAsset = new Asset({
+            _userId: user._id,
+            owner: user.username,
+            certificateno: req.body.certificateno,
+            propertyId: newpropertyId,
+            squareMeters: req.body.squareMeters,
+            description: req.body.description,
+            occupation: req.body.occupation,
+            government: gov,
+            approved: true
+        }); 
+        Asset.addAsset(newAsset, (err, asset)=>{
+            if(err){
+                //console.log(err);
+                res.json({success: false, msg: 'Asset Application Falied '});
+            }else{
+                let blockAsset ={
+                    propertyId: newpropertyId,
+                    address: [], //Make Array
+                    squareMeters: req.body.squareMeters,
+                    price: 0,
+                    description: req.body.description,
+                    dateOfRegistration: "Todays date",
+                    coordinates: [],
+                    owner: user.userId, //replace with owner username (asset.owner)
+                    government:req.user.govId, // replace with the government (capture from the post req)
+                    certificateno : req.body.certificateno
+                }
+                assetCtrl.addAsset(blockAsset);
+                res.json({success: true, msg: 'Asset Filing Completed'});
+                
+            }
+        });  
+    });
+});
+
 //
 router.get('/list', passport.authenticate('user-role', {session:false}), async (req, res) => {
         //List all approve properties     
@@ -254,8 +288,9 @@ router.post('/acceptrequest', passport.authenticate('user-role', {session:false}
             console.log(tradeRequest.price)
             tradeRequest.accepted = true;
             tradeRequest.save();
-            res.json({success: true, msg:"Trade Accepted"});
             assetCtrl.updateAsset(asset);
+            res.json({success: true, msg:"Trade Accepted"});
+            
         });
 
         
@@ -342,6 +377,158 @@ router.post('/transferasset', passport.authenticate('user-role', {session:false}
             }); 
         });
 
+    }); 
+});
+
+router.post('/makeloanrequest', passport.authenticate('user-role', {session:false}), async (req, res)=>{
+    const debtor = req.user.username;
+    const bankname = req.body.bankname;
+    const amount = req.body.amount;
+    const duration = req.body.duration;
+    const propertyId = req.body.propertyId;
+    const requestId = req.body.requestId;
+    
+    Asset.getAssetByPropertyId(propertyId, (err, asset)=>{
+        if(err)throw err;
+        if(!asset){
+            return res.json({success: false, msg:"Asset not found"});
+        }
+        if(!asset.approved){
+            return res.json({success: false, msg:"Asset not approved"});
+        }
+ 
+        
+
+        let newLoanRequest = new LoanRequest({
+            debtor: debtor,
+            bankname: bankname,
+            amount: amount, 
+            duration: duration,
+            propertyId: propertyId,
+            requestId: requestId
+        });
+ 
+
+        LoanRequest.addLoanRequest(newLoanRequest, (err,LoanRequest)=>{
+                if(err){
+                    console.log(err);
+                    res.json({success: false, msg: 'Loan Request Falied '});
+                }else{
+                    res.json({success: true, msg: 'Loan Request successful'});
+                }
+        });
+    });
+
+});
+
+//List Loan request for banks
+router.get('/listloanrequest', passport.authenticate('bank-role', {session:false}), async(req, res)=>{
+    const bankname = req.user.bankname;
+
+    LoanRequest.find({bankname:bankname}, (err, loanRequests)=>{
+        if(err) throw err;
+        res.json({success:true, msg:loanRequests});
+    });
+
+});
+
+router.post('/acceptloanrequest', passport.authenticate('bank-role', {session:false}), async(req, res)=>{
+    const bankname = req.user.bankname;
+    const amount = req.body.amount;
+    const interestRate = req.body.interestRate;
+    const duration = req.body.duration;
+    const requestId = req.body.requestId; 
+    
+    LoanRequest.getLoanRequestByRequestId(requestId, (err, loanRequest)=>{
+        if (err) throw err;
+         if(loanRequest){
+            loanRequest.accepted = true;
+            loanRequest.amount = amount;
+            loanRequest.interestRate = interestRate;
+            loanRequest.duration = duration;
+            loanRequest.save(); 
+        }
+        res.json({success:true, msg:"Loan Request Successful" });
+    });
+});
+
+router.post('/rejectloanrequest', passport.authenticate('bank-role', {session:false}), async(req, res)=>{
+    const bankname = req.user.bankname;
+    const requestId = req.body.requestId;
+    
+    LoanRequest.getLoanRequestByRequestId(requestId, (err, loanRequest)=>{ 
+        if (err) throw err;
+        if(loanRequest.accepted){
+            res.json({success:false, msg:'Loan Application already accepted'});
+        }else{
+            loanRequest.rejected = true;
+            loanRequest.save();
+            res.json({success:true, msg:'Loan Application Rejected'});
+        }
+    });
+});
+
+//List Loan request for Users
+router.get('/listloanrequest', passport.authenticate('user-role', {session:false}), async(req, res)=>{
+    const debtor = req.user.username;
+
+    LoanRequest.find({debtor:debtor}, (err, loanRequests)=>{
+        if(err) throw err;
+        res.json({success:true, msg:loanRequests});
+    });
+
+});
+
+router.post('/agreeloanrequest/', passport.authenticate('user-role', {session:false}), async(req, res)=>{
+    const debtor = req.user.username;
+    const requestId = req.body.requestId; 
+    
+    LoanRequest.getLoanRequestByRequestId(requestId, (err, loanRequest)=>{ 
+        if (err) throw err;
+        const propertyId = loanRequest.propertyId;
+        const bankname = loanRequest.bankname;
+        if(loanRequest.accepted){
+            Asset.getAssetByPropertyId(propertyId, (err, asset)=>{
+                if (err) throw err;
+                if(asset.owner == debtor){
+                    asset.price = loanRequest.amount;
+                    asset.save();
+                    assetCtrl.updateAsset(asset);
+                
+                    User.getUserByUsername(debtor, (err, user)=>{
+                        if(err) throw err;
+                        Bank.getBankByBankName(bankname, (err, bank)=>{
+                            if (err) throw err;
+                            const loanId = randomstring.generate(12);
+                            let newLoanRequest = {  
+                                loanId: loanId,
+                                amount: loanRequest.amount,
+                                interestRate: loanRequest.interestRate,
+                                debtor: user.userId,
+                                bank: bank.bankId, 
+                                asset: loanRequest.propertyId,
+                                durationInMonths: loanRequest.duration 
+                            }
+                            assetCtrl.addLoan(newLoanRequest);
+                            loanRequest.agreed = true;
+                            loanRequest.save();
+                            res.json({success:true, msg:'Loan Activated'})
+                        });  
+                    });
+                }
+            });
+        }
+    });
+});
+
+router.post('/disagreeloanrequest', passport.authenticate('user-role', {session:false}), async(req, res)=>{
+    const debtor = req.user.username;
+    const requestId = req.body.requestId; 
+    
+    LoanRequest.find({debtor: debtor, agreed:true, requestId:requestId, accepted:true}, (err, loanRequest)=>{
+        if (err) throw err;
+        loanRequest.disagreed = true;
+        loanRequest.save();
     });
 });
 

@@ -2,6 +2,7 @@ const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 const User = require('../models/user');
 const Gov = require('../models/gov');
+const Bank = require('../models/bank');
 const config = require('../config/database');
 const SP = require('../models/sp');
 
@@ -46,6 +47,19 @@ module.exports = function(passport){
             }
             if(gov){
                 return done(null, gov);
+            }else{
+                return done(null, false);
+            }
+        });
+    }));
+    passport.use('bank-role', new JwtStrategy(opts, (jwt_payload, done)=>{
+        //console.log(jwt_payload.data._id);
+        Bank.getBankById(jwt_payload.data._id, (err, bank)=>{
+            if(err){
+                return done(err, false);
+            }
+            if(bank){
+                return done(null, bank);
             }else{
                 return done(null, false);
             }
