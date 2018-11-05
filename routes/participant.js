@@ -185,12 +185,14 @@ const participantCtrl = require('../controller/participant');
     //List All users
     router.get('/list',  async (req, res) => {
         //List all approve properties     
-        User.find({active:true}, function(err, users) {
+        User.find( function(err, users) {
             if (err) throw err;
             res.json({success: true, msg: users});
         });
 
     });
+
+
     
     //Get user with username
     router.get('/list/:username',  async (req, res) => {
