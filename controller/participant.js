@@ -31,15 +31,15 @@ async function addUser(user) {
         console.log(`userSecret = ${identity.userSecret}`);
 
         //Add the above Card Details to the user
-<<<<<<< HEAD
+
         user.blockUserID = identity.userID;
         //console.log(user);
         user.blockUserSecret = identity.userSecret;
-=======
-        user.blockUserID = identity.userID; 
-        //console.log(user); 
-        user.blockUserSecret = identity.userSecret; 
->>>>>>> fce07b4c6b73a8bc3c0c5453fd99298858253720
+
+        user.blockUserID = identity.userID;
+        //console.log(user);
+        user.blockUserSecret = identity.userSecret;
+
         user.save();
         let result = await cardService.create(identity);
         //identity.type = type;
@@ -52,7 +52,7 @@ async function addUser(user) {
         return response.successResponse('User was created');
 
     } catch(error) {
-        
+
         console.error(error);
         return response.failResponse('User wasn\'t created');
     }

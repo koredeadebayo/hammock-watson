@@ -21,7 +21,6 @@ const participantCtrl = require('../controller/participant');
     //Register
     router.post('/register', (req, res, next) =>{
         //res.send('Register User');
-
         //Secret Token for each user
         const newUserId = randomstring.generate(12);
 
@@ -42,21 +41,15 @@ const participantCtrl = require('../controller/participant');
                 res.json({success: true, msg: 'User registered'});
             }
         });
-
-
     });
-
 
     //Authenticate - Passport-jwt enables the authentication works fluidly
     router.post('/auth', (req, res, next) =>{
         const username = req.body.username;
         const password = req.body.password;
 
-
-
         User.getUserByUsername(username, (err, user)=>{
             if(err)throw err;
-
             if(!user){
                 return  res.json({success:false, message:'User not found'});
             }
@@ -162,7 +155,7 @@ const participantCtrl = require('../controller/participant');
                 //   });
                   //Add Blockchain participant to the network
                   let result = participantCtrl.addUser(user, (err)=>{
-                    if (err) throw err; 
+                    if (err) throw err;
                     user.active = true;
                     user.save();
                     res.status(200).send({msg:"The account has been verified. Please log in."})
@@ -173,13 +166,13 @@ const participantCtrl = require('../controller/participant');
     });
 
     //List All users
-<<<<<<< HEAD
-    router.get('/list',  async (req, res) => {
+
+    router.get('/list',  async (req, res) => {});
         //List all approve properties
-=======
+
     router.post('/list',  async (req, res) => {
-        //List all approve properties     
->>>>>>> fce07b4c6b73a8bc3c0c5453fd99298858253720
+        //List all approve properties
+
         User.find({active:true}, function(err, users) {
             if (err) throw err;
             res.json({success: true, msg: users});
@@ -188,13 +181,13 @@ const participantCtrl = require('../controller/participant');
     });
 
     //Get user with username
-<<<<<<< HEAD
-    router.get('/list:username',  async (req, res) => {
+
+    router.get('/list:username',  async (req, res) => {});
         //List all approve properties
-=======
+
     router.post('/list/:username',  async (req, res) => {
-        //List all approve properties 
->>>>>>> fce07b4c6b73a8bc3c0c5453fd99298858253720
+        //List all approve properties
+
         const username = req.params.username;
 
         User.find({active:true, username:username}, function(err, user) {

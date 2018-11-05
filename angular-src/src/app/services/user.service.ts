@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+//import { HttpClient } from '@angular/common/http';
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 
@@ -12,8 +13,8 @@ export class UserService {
    }
 
   getUsers(){
-    return this.http.get('http://localhost:6001/list')
-      .map( res=>res.json() );
+      return this.http.get('http://localhost:6001/list')
+        .map(res =>res.json());
   }
 
 }
