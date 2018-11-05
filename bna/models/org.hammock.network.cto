@@ -57,7 +57,6 @@ participant Government identified by govId {
 participant Bank identified by bankId {
   o String bankId
   o String username
-  o Double balance default = 0.0
 }
 
 
@@ -74,6 +73,17 @@ asset realEstate identified by propertyId {
   --> User owner
   --> Government government
 }
+
+asset Loan identified by loanId {
+   o String loanId
+   o Double amount
+   o Double interestRate
+  --> User debtor
+  --> Bank bank
+  --> realEstate realEstate
+   o Integer durationInMonths
+}
+
 transaction BuyingRealEstate {
   --> User buyer
   --> User seller
@@ -81,3 +91,10 @@ transaction BuyingRealEstate {
   --> realEstate realEstate
 }
 
+transaction  ContractingLoan {
+  --> User debtor
+  --> Bank bank
+  --> realEstate realEstate
+  o Double interestRate
+  o Integer durationInMonths
+}

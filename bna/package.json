@@ -3,7 +3,7 @@
     "composer": "^0.20.0"
   },
   "name": "hammock-watson",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Asset registry network",
   "scripts": {
     "prepublish": "mkdirp ./dist && composer archive create --sourceType dir --sourceName . -a ./dist/hammock-watson.bna",

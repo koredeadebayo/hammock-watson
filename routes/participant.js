@@ -7,6 +7,7 @@ const passport = require('passport');
 const User = require('../models/user');
 const SP =  require('../models/sp');
 const Gov = require('../models/gov');
+const Bank = require('../models/bank');
 const Token = require('../models/token');
 const config = require('../config/database');
 const jwt = require('jsonwebtoken');
@@ -92,7 +93,8 @@ const participantCtrl = require('../controller/participant');
                             id:user._id,
                             name: user.name,
                             username: user.username,
-                            email: user.email
+                            email: user.email,
+                            userId: user.userId
                             }
                         });
                 }else{
@@ -299,13 +301,6 @@ const participantCtrl = require('../controller/participant');
 
 
 
-//Banks Management
-    //Register
-
-    //Authenticate
-
-    //Dashboard
-
 //Goverment Management
     //Register
     router.post('/addgov', (req, res, next) =>{
@@ -327,9 +322,10 @@ const participantCtrl = require('../controller/participant');
             if(err){
                 res.json({success: false, msg: 'Falied to register the Government account'});
             }else{
+                participantCtrl.addGov(gov);
                 res.json({success: true, msg: 'Government registered'});
             }
-            participantCtrl.addGov(gov);
+            
         });
 
 
@@ -360,7 +356,75 @@ const participantCtrl = require('../controller/participant');
                         token: 'JWT '+token,
                         user:{
                             id:gov._id,
-                            name: gov.name
+                            name: gov.name,
+                            govId: gov.govId                            }
+                        });
+                }else{
+                    return res.json({success: false, msg:'Wrong Password'});
+                }
+            });
+        });
+    });
+
+    //Dashboard
+
+
+    //Bank Management
+    //Register
+    router.post('/addbank', (req, res, next) =>{
+        //res.send('Register User');
+
+        //Secret Token for each user
+        const newBankId = randomstring.generate(10);
+
+        let newBank = new Bank({
+           bankId: newBankId,
+           bankname: req.body.bankname,
+           username: req.body.username,
+           password: req.body.password
+         });
+
+
+
+         Bank.addBank(newBank, (err, bank)=>{
+            if(err){
+                //console.log(err);
+                res.json({success: false, msg: 'Falied to register the Bank account'});
+            }else{
+                participantCtrl.addBank(bank);
+                res.json({success: true, msg: 'Bank registered'});
+            } 
+        });
+
+    }); 
+
+    //Authenticate
+    router.post('/bankauth', (req, res, next) =>{
+        const username = req.body.username;
+        const password = req.body.password;
+
+
+
+        Bank.getBankByUsername(username, (err, bank)=>{
+            if(err)throw err;
+            if(!bank){
+                return  res.json({success:false, message:'Bank not found'});
+            }
+
+            Bank.comparePassword(password, bank.password, (err, isMatch) =>{
+                if(err)  throw err;
+                if(isMatch){
+                        const token = jwt.sign({data:bank}, config.secret,{
+                            expiresIn: 604800 //1 week
+                        });
+
+                    res.json({
+                        success:true,
+                        token: 'JWT '+token,
+                        user:{
+                            id:bank._id,
+                            username: bank.username,
+                            bankname: bank.bankname
                             }
                         });
                 }else{

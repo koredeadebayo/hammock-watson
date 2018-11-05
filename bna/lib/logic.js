@@ -54,4 +54,23 @@ async function buyingRealEstate(trade){
   
   }
 
-  
+/**
+ * Buying Real Estate
+ * @param {org.hammock.network.ContractingLoan} loan
+ * @transaction
+ */
+function contractingLoan( loan ){
+  return getAssetRegistry('org.hammock.network.Loan')
+    .then(function(assetRegistry){
+    var factory = getFactory()
+    var loanAsset = factory.newResource('org.hammock.network', 'Loan', loan.loanId) 
+    loanAsset.debtor = loan.debtor
+    loanAsset.bank = loan.bank
+    loanAsset.interestRate = loan.interestRate
+    loanAsset.durationInMonths = loan.durationInMonths
+    loanAsset.realEstate = loan.realEstate
+    loanAsset.amount = loan.amount
+
+    return assetRegistry.add(loanAsset)
+  })
+}

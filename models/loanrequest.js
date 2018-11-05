@@ -3,7 +3,12 @@ const config = require('../config/database');
 const Schema = mongoose.Schema;
 
 const loanRequestSchema = new Schema({
-    borrower: { 
+    requestId:{
+        type: String,
+        required: true
+    },
+    //Username of the Potential Debtor
+    debtor: { 
         type: String, 
         required: true 
     },
@@ -11,7 +16,8 @@ const loanRequestSchema = new Schema({
         type: String,
         required: true
     },
-    bank:{
+    //Bankname as in the bank model
+    bankname:{
         type: String,
         required: true
     },
@@ -27,40 +33,57 @@ const loanRequestSchema = new Schema({
         type: Boolean,
         default: false
     },
+    disagreed:{
+        type: Boolean,
+        default: false
+    },
     amount:{
         type: Number,
         required: true
     },
     interestRate:{
-        type: Number,
-        required: true
+        type: Number
     },
     createdAt: {
         type: Date, 
         required: true,
         default: Date.now,
-        expires: 43200 
+    },
+    agreedAt:{
+        type: Date
+    },
+    duration:{
+        type: Number
     }
 
 });
 
-const LoanRequest = module.exports = mongoose.model('TradeRequest', tradeRequestSchema, 'TradeRequest');
+const LoanRequest = module.exports = mongoose.model('LoanRequest', loanRequestSchema, 'LoanRequest');
 
 
-module.exports.getTradeRequestById = function(Id, callback){
-    TradeRequest.findById(Id, callback);
+module.exports.getLoanRequestById = function(Id, callback){
+    LoanRequest.findById(Id, callback);
 }
 
-module.exports.getTradeRequestByBuyer = function(buyer, callback){
-    const query = {buyer:buyer};
-    TradeRequest.findOne(query, callback);
+module.exports.getLoanRequestByDebtor = function(debtor, callback){
+    const query = {debtor:debtor};
+    LoanRequest.findOne(query, callback);
 }
 
-module.exports.getTradeRequestByPropertyId = function(propertyId, callback){
+module.exports.getLoanRequestByBank = function(bankname, callback){
+    const query = {bankname:bankname};
+    LoanRequest.findOne(query, callback);
+}
+
+module.exports.getLoanRequestByPropertyId = function(propertyId, callback){
     const query = {propertyId:propertyId};
-    TradeRequest.findOne(query, callback);
+    LoanRequest.findOne(query, callback);
 }
 
-module.exports.addTradeRequest= function(newTradeRequest, callback){
-    newTradeRequest.save(callback);
+module.exports.getLoanRequestByRequestId = function(requestId, callback){
+    const query = {requestId:requestId};
+    LoanRequest.findOne(query, callback);
+}
+module.exports.addLoanRequest= function(newLoanRequest, callback){
+    newLoanRequest.save(callback);
  }
