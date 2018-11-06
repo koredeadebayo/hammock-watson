@@ -5,11 +5,6 @@ const cardService = require('../services/cardService');
 const response = require('../services/response');
 
 async function addUser(user) {
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 8c4d989ab2a15cd1b8ed448108a574be080d73bb
 
     try {
         let type = 'User';
@@ -32,20 +27,8 @@ async function addUser(user) {
         console.log(`userSecret = ${identity.userSecret}`);
 
         //Add the above Card Details to the user
-<<<<<<< HEAD
-
-        user.blockUserID = identity.userID;
-        //console.log(user);
-        user.blockUserSecret = identity.userSecret;
-
-        user.blockUserID = identity.userID;
-        //console.log(user);
-        user.blockUserSecret = identity.userSecret;
-
-=======
         user.blockUserID = identity.userID; 
         user.blockUserSecret = identity.userSecret; 
->>>>>>> 8c4d989ab2a15cd1b8ed448108a574be080d73bb
         user.save();
         let result = await cardService.create(identity);
         await businessNetworkConnection.disconnect();
@@ -59,8 +42,6 @@ async function addUser(user) {
     }
 }
 
-<<<<<<< HEAD
-=======
 async function creditUser(userData){
     try{
         let businessNetDefination = await businessNetworkConnection.connect(hyperConfig.networkAdminCard);
@@ -76,7 +57,6 @@ async function creditUser(userData){
     }
 } 
 
->>>>>>> 8c4d989ab2a15cd1b8ed448108a574be080d73bb
 async function addGov(gov) {
 
     console.log(gov);
@@ -170,12 +150,7 @@ async function addGov(gov) {
 
 module.exports = {
     addUser,
-<<<<<<< HEAD
-    addGov
-}
-=======
     addGov,
     addBank,
     creditUser
 }
->>>>>>> 8c4d989ab2a15cd1b8ed448108a574be080d73bb

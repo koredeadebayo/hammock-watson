@@ -39,12 +39,6 @@ const participantCtrl = require('../controller/participant');
         const name = req.body.username;
         const password = req.body.password;
 
-<<<<<<< HEAD
-    //Register
-    router.post('/register', (req, res, next) =>{
-        //res.send('Register User');
-        //Secret Token for each user
-=======
         Admin.getAdminByName(name, (err, admin)=>{
             if(err) throw err;
 
@@ -80,7 +74,6 @@ const participantCtrl = require('../controller/participant');
     //Register
     router.post('/register', (req, res, next) =>{
 
->>>>>>> 8c4d989ab2a15cd1b8ed448108a574be080d73bb
         const newUserId = randomstring.generate(12);
 
         let newUser = new User({
@@ -88,15 +81,8 @@ const participantCtrl = require('../controller/participant');
            email: req.body.email,
            password: req.body.password,
            username: req.body.username,
-<<<<<<< HEAD
-           userId: newUserId,
-           //address: req.body.address,
-           //secretToken : newSecretToken
-        });
-=======
            userId: newUserId
          });
->>>>>>> 8c4d989ab2a15cd1b8ed448108a574be080d73bb
 
         User.addUser(newUser, (err, user)=>{
             if(err){
@@ -205,18 +191,8 @@ const participantCtrl = require('../controller/participant');
     });
 
     //List All users
-<<<<<<< HEAD
-
-
-    //router.get('/list',  async (req, res) => {});
-        //List all approve properties
-
-    router.get('/list',  async (req, res) => {
-        //List all approve properties
-=======
     router.get('/list', passport.authenticate('admin-role', {session:false}),  async (req, res) => {
         //List all approve properties     
->>>>>>> 8c4d989ab2a15cd1b8ed448108a574be080d73bb
         User.find( function(err, users) {
             if (err) throw err;
             res.json({success: true, msg: users});
@@ -225,19 +201,11 @@ const participantCtrl = require('../controller/participant');
     });
 
     //Get user with username
-<<<<<<< HEAD
-    router.get('/list/:username',  async (req, res) => {
-        //List all approve properties
-        const username = req.params.username;
-
-        User.find({active:true, username:username}, function(err, user) {
-=======
     router.get('/list/:username', passport.authenticate('admin-role', {session:false}), async (req, res) => {
         //List all approve properties 
         const username = req.params.username;
         
         User.find({username:username}, function(err, user) {
->>>>>>> 8c4d989ab2a15cd1b8ed448108a574be080d73bb
             if (err) throw err;
             res.json({success: true, msg: user});
         });
@@ -284,12 +252,7 @@ const participantCtrl = require('../controller/participant');
            userId: req.body.userId,
            categories: req.body.categories,
            businessreg: req.body.businessreg,
-<<<<<<< HEAD
-           //secretToken : newSecretToken
-        });
-=======
          });
->>>>>>> 8c4d989ab2a15cd1b8ed448108a574be080d73bb
 
 
 
