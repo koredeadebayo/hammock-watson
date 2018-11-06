@@ -4,6 +4,7 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
+const Admin = require('../models/admin');
 const User = require('../models/user');
 const SP =  require('../models/sp');
 const Gov = require('../models/gov');
@@ -17,21 +18,62 @@ const nodemailer = require('nodemailer');
 const mailConfig = require('../config/email-setup');
 const participantCtrl = require('../controller/participant');
 
-// User Management
+//Admin Management
+    //Register
+    router.post('/adminreg', (req, res, next)=>{
+        let newAdmin = new Admin({
+            name: "hammock-admin",
+            password: "WatsonBuild2018"
+        });
 
-  //get
-  router.get('/register',  (req, res, next) =>{
-      res.send("REGISTER HERE");
+        Admin.addAdmin(newAdmin, (err, admin)=>{
+            if(err){
+                res.json({success:false, msg:'Admin not Created'});
+            }else{
+                res.json({success:true, msg:'Admin Created Successfully'});
+            }
+        });
+    });
+    //Authentication 
+    router.post('/adminauth', (req, res, next)=>{
+        const name = req.body.username;
+        const password = req.body.password;
 
-  });
+        Admin.getAdminByName(name, (err, admin)=>{
+            if(err) throw err;
+
+            if(!admin){
+                return res.json({success: false, msg:'Admin not found'});
+            }
+
+            Admin.comparePassword(password, admin.password, (err, isMatch)=>{
+                if (err) throw err;
+                if(isMatch){
+                    const token = jwt.sign({data: admin}, config.secret,{
+                        expiresIn: 604800 // 1 Week
+                    });
+                    res.json({
+                        success: true,
+                        token: 'JWT ' + token,
+                        user:{
+                            id: admin._id,
+                            name: admin.name
+                        }
+                    });
+                }else{
+                    return res.json({success: false, msg:'Wrong Password'})
+                }
+            });
+        });
+    });
+    
+    
 
 // User Management
 
     //Register
     router.post('/register', (req, res, next) =>{
-        //res.send('Register User');
 
-        //Secret Token for each user
         const newUserId = randomstring.generate(12);
 
         let newUser = new User({
@@ -39,9 +81,7 @@ const participantCtrl = require('../controller/participant');
            email: req.body.email,
            password: req.body.password,
            username: req.body.username,
-           userId: newUserId,
-           //address: req.body.address,
-           //secretToken : newSecretToken
+           userId: newUserId
          });
 
          User.addUser(newUser, (err, user)=>{
@@ -51,8 +91,6 @@ const participantCtrl = require('../controller/participant');
                 res.json({success: true, msg: 'User registered'});
             }
         });
-
-
     });
 
 
@@ -61,18 +99,12 @@ const participantCtrl = require('../controller/participant');
         const username = req.body.username;
         const password = req.body.password;
 
-
-
         User.getUserByUsername(username, (err, user)=>{
             if(err)throw err;
 
             if(!user){
                 return  res.json({success:false, message:'User not found'});
             }
-
-            // console.log('mailTransporter');
-            //Check if the user is active and ready to login
-            //console.log(user.active);
 
             if(!user.active){
                 return res.json({success:false, message:'User account not verified'});
@@ -84,7 +116,6 @@ const participantCtrl = require('../controller/participant');
                         const token = jwt.sign({data:user}, config.secret,{
                             expiresIn: 604800 //1 week
                         });
-
 
                     res.json({
                         success:true,
@@ -101,8 +132,6 @@ const participantCtrl = require('../controller/participant');
                     return res.json({success: false, msg:'Wrong Password'});
                 }
             });
-
-
         });
     });
 
@@ -115,8 +144,6 @@ const participantCtrl = require('../controller/participant');
             if(!user){
                 return  res.json({success:false, message:'User not found'});
             }
-            //console.log(user);
-            //generate the token and
             //Create a verification token for this user
              const token = new Token({ _userId: user._id, token: crypto.randomBytes(16).toString('hex') });
              token.save(function (err) {
@@ -138,23 +165,12 @@ const participantCtrl = require('../controller/participant');
                 }
                 res.status(200).send('A verification email has been sent to ' + user.email + '.');
             });
-
-
-
             });
          });
-
     });
 
     //Confirm Token
     router.get('/confirm', async  (req, res) =>{
-        //console.log(req.query.token);
-        //const url = require('url');
-        //const querystring = require('querystring');
-
-        //const token = req.body.token;
-        //console.log(token);
-
          Token.findOne({ token: req.query.token }, function (err, token) {
              if (!token)
                  return res.status(400).send({ type: 'not-verified', msg: 'We were unable to find a valid token. Your token may have expired.' });
@@ -164,12 +180,6 @@ const participantCtrl = require('../controller/participant');
                   if (!user) return res.status(400).send({ msg: 'We were unable to find a user for this token.' });
                   if (user.active) return res.status(400).send({ type: 'already-verified', msg: 'This user has already been verified.' });
 
-                //  // Verify and save the user
-                //   user.active = true;
-                //   user.save(function (err) {
-                //     if (err) { return res.status(500).send({ msg: err.message }); }
-                //       res.status(200).send();
-                //   });
                   //Add Blockchain participant to the network
                   let result = participantCtrl.addUser(user, (err)=>{
                     if (err) throw err; 
@@ -183,7 +193,7 @@ const participantCtrl = require('../controller/participant');
     });
 
     //List All users
-    router.get('/list',  async (req, res) => {
+    router.get('/list', passport.authenticate('admin-role', {session:false}),  async (req, res) => {
         //List all approve properties     
         User.find( function(err, users) {
             if (err) throw err;
@@ -195,11 +205,11 @@ const participantCtrl = require('../controller/participant');
 
     
     //Get user with username
-    router.get('/list/:username',  async (req, res) => {
+    router.get('/list/:username', passport.authenticate('admin-role', {session:false}), async (req, res) => {
         //List all approve properties 
         const username = req.params.username;
         
-        User.find({active:true, username:username}, function(err, user) {
+        User.find({username:username}, function(err, user) {
             if (err) throw err;
             res.json({success: true, msg: user});
         });
@@ -215,14 +225,26 @@ const participantCtrl = require('../controller/participant');
     router.get('/user', async (req, res) =>{
 
     });
+    
+    //Credit the 
+    router.post('/credituser', passport.authenticate('admin-role', {session:false}), (req, res, next)=>{
+        const username = req.body.username;
+        const creditamount = req.body.creditamount;
 
-    //Notary Management
+        User.getUserByUsername(username, (err, user)=>{
+            if (err) throw err;
+            if(user){
+                user.balance = creditamount;
+                participantCtrl.creditUser(user);
+                res.json({success:true, msg:'Successful, '+ username +' credited with '+ creditamount});
+            }
+        });
+    });
+
+
+    //Sevice Provider Management
     //Register
     router.post('/spreg', (req, res, next) =>{
-        //res.send('Register User');
-
-        //Secret Token for each user
-        //const newSecretToken = randomstring.generate();
 
         let newSP= new SP({
            name: req.body.name,
@@ -231,10 +253,8 @@ const participantCtrl = require('../controller/participant');
            businessname: req.body.businessname,
            username: req.body.username,
            userId: req.body.userId,
-           //address: req.body.address,
            categories: req.body.categories,
            businessreg: req.body.businessreg,
-           //secretToken : newSecretToken
          });
 
 
@@ -262,20 +282,12 @@ const participantCtrl = require('../controller/participant');
                 return  res.json({success:false, message:'Service Provider not found'});
             }
 
-            // console.log('mailTransporter');
-            //Check if the user is active and ready to login
-            //console.log(sp.active);
-            //  if(!sp.active){
-            //      return res.json({success:false, message:'Service Provider account not verified'});
-            //  }
             SP.comparePassword(password, sp.password, (err, isMatch) =>{
                 if(err)  throw err;
                 if(isMatch){
                         const token = jwt.sign({data:sp}, config.secret,{
                             expiresIn: 604800 //1 week
                         });
-
-
                     res.json({
                         success:true,
                         token: 'JWT '+token,
@@ -305,11 +317,7 @@ const participantCtrl = require('../controller/participant');
 
 //Goverment Management
     //Register
-    router.post('/addgov', (req, res, next) =>{
-        //res.send('Register User');
-
-        //Secret Token for each user
-        //const newSecretToken = randomstring.generate();
+    router.post('/addgov', passport.authenticate('admin-role', {session:false}), (req, res, next) =>{
 
         let newGov = new Gov({
            govId: req.body.govId,
@@ -373,8 +381,7 @@ const participantCtrl = require('../controller/participant');
 
     //Bank Management
     //Register
-    router.post('/addbank', (req, res, next) =>{
-        //res.send('Register User');
+    router.post('/addbank', passport.authenticate('admin-role', {session:false}), (req, res, next) =>{
 
         //Secret Token for each user
         const newBankId = randomstring.generate(10);
@@ -404,8 +411,6 @@ const participantCtrl = require('../controller/participant');
     router.post('/bankauth', (req, res, next) =>{
         const username = req.body.username;
         const password = req.body.password;
-
-
 
         Bank.getBankByUsername(username, (err, bank)=>{
             if(err)throw err;

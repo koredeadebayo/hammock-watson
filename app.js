@@ -32,38 +32,8 @@ else{
 }
 
 
-
-
-
-
-// //Connect to Mongodb
-// mongoose.connect(config.database, { useNewUrlParser: true });
-
-//  //Checking if connection worked well
-//  mongoose.connection.on('connected', ()=>{
-//     console.log('Database successfully connected');
-//  });
-
-// //Checking if connection worked well
-//  mongoose.connection.on('error', (err)=>{
-//     console.log('Database error:' +err);
-//  });
-
-
-
 //Set application
 const app = express();
-
-//Use SSL connection provided by Bluemix. No setup required besides redirecting all HTTP requests to HTTPS
-// if (!appEnv.isLocal) {
-//     app.use(function (req, res, next) {
-//         if (req.secure) // returns true is protocol = https
-//             next();
-//         else
-//             res.redirect('https://' + req.headers.host + req.url);
-//     });
-// }
-
 
 //Instantiate user
 const user = require('./routes/participant');
@@ -78,18 +48,6 @@ const root = path.join(__dirname, "public");
     app.use(bodyParser.json());
     //CORS for Domain protection
     app.use(cors());
-    // app.use(cookieParser());
-    // app.use(session({
-    // secret: config.secret || 'this_is_a_default_session_secret_in_case_one_is_not_defined',
-    // resave: true,
-    // store: new MongoStore({
-    //     url: sessionDB,
-    //     autoReconnect: true
-    // }),
-    // saveUninitialized : false,
-    // cookie: { secure: true }
-    // }));
-    //Passport Middlware
 
     //Set static folder
     // app.use(express.static(root));
@@ -105,8 +63,6 @@ app.use('/users', user);
 // Index Route
 
 app.use('/assets', asset);
-//app.use('/login', asset);
-//app.use('/register', asset);
 
 // Index Route
 
@@ -116,9 +72,6 @@ app.get('/', (req, res) => {
 
 
 // Start Server
-/*app.listen(port, () => {
-    console.log('Server started on port '+ port);
-  });*/
 app.listen(appEnv.port, appEnv.bind, () => {
     console.log('Server started on port '+ appEnv.url);
   });

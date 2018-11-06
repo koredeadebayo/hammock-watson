@@ -2,10 +2,8 @@ const hyperConfig = require('../config/hyperconfig');
 //const cardService = require('../services/cardService');
 const BusinessNetworkConnection = require('composer-client').BusinessNetworkConnection;
 let businessNetworkConnection  = new BusinessNetworkConnection();
-//console.log(businessNetworkConnection);
 
 async function addAsset(assetData) {
-        //console.log(assetData);
     try {
 
         let type = "realEstate";
@@ -27,11 +25,10 @@ async function addAsset(assetData) {
         newRealEstate.owner = ownerRelations;
         newRealEstate.government = governmentRelations;
 
-        //console.log("on the way");
         newRealEstate = Object.assign(newRealEstate, assetData);
 
         let result = await assetRegistry.add(newRealEstate);
-        //console.log(result);
+
         await businessNetworkConnection.disconnect();
         console.log("succesful");
         //res.json({success: true, msg: 'Your real estate registered'});
@@ -121,60 +118,59 @@ async function updateAsset(assetData){
 
         
         asset.price = assetData.price;
-        console.log(asset);
         assetRegistry.update(asset);
 
-
+        await businessNetworkConnection.disconnect();
 
     }catch(err){
         console.log(err);
         process.exit(1);
     }
-}
+} 
 
 async function addLoan(loanData) {
-    //console.log(loanData);
-try {
 
-    let type = "Loan";
-    let assetType = "realEstate";
-    let userType = "User";
-    let bankType = "Government";
+    try {
 
-    let businessNetDefination = await businessNetworkConnection.connect(hyperConfig.networkAdminCard);
-    let factory = businessNetworkConnection.getBusinessNetwork().getFactory();
+        let type = "Loan";
+        let assetType = "realEstate";
+        let userType = "User";
+        let bankType = "Bank";
+ 
+        let businessNetDefination = await businessNetworkConnection.connect(hyperConfig.networkAdminCard);
+        let factory = businessNetworkConnection.getBusinessNetwork().getFactory();
 
-    let assetRegistry = await businessNetworkConnection.getAssetRegistry(`${hyperConfig.ns}.${type}`);
+        let assetRegistry = await businessNetworkConnection.getAssetRegistry(`${hyperConfig.ns}.${type}`);
 
-    let debtorRelations = factory.newRelationship(hyperConfig.ns, userType, loanData.debtor);
-    let bankRelations = factory.newRelationship(hyperConfig.ns, bankType, loanData.bank);
-    let assetRelations = factory.newRelationship(hyperConfig.ns, assetType, loanData.asset);
-    let newLoan = factory.newResource(hyperConfig.ns, type, loanData.loanId);
+        let debtorRelations = factory.newRelationship(hyperConfig.ns, userType, loanData.debtor);
+        let bankRelations = factory.newRelationship(hyperConfig.ns, bankType, loanData.bank);
+        let assetRelations = factory.newRelationship(hyperConfig.ns, assetType, loanData.asset);
+        let newLoan = factory.newResource(hyperConfig.ns, type, loanData.loanId);
+        delete loanData.debtor;
+        delete loanData.bank;
+        delete loanData.asset;
 
-    delete loanData.owner;
-    delete loanData.government;
-    delete loanData.asset;
+        newLoan.debtor = debtorRelations;
+        newLoan.bank = bankRelations;
+        newLoan.realEstate = assetRelations;
 
-    newLoan.debtor = debtorRelations;
-    newLoan.bank = bankRelations;
-    newLoan.realEstate = assetRelations;
 
-    //console.log("on the way");
-    newLoan = Object.assign(newLoan, loanData);
+        newLoan = Object.assign(newLoan, loanData);
+ 
+        let result = await assetRegistry.add(newLoan);
 
-    let result = await assetRegistry.add(newLoan);
-    //console.log(result);
-    await businessNetworkConnection.disconnect();
-    console.log("succesful");
-    //res.json({success: true, msg: 'Your real estate registered'});
-} catch (err) {
+        await businessNetworkConnection.disconnect();
+        console.log("succesful");
+        //res.json({success: true, msg: 'Your real estate registered'});
+    } catch (err) {
 
-    errMessage = typeof err == 'string' ? err : err.message;
-    //res.json({success: true, msg: "Create Real Estate failed"});
+        errMessage = typeof err == 'string' ? err : err.message;
+        console.log(errMessage);
+        //res.json({success: true, msg: "Create Real Estate failed"});
+    }
 }
-}
 
-
+ 
 module.exports = {
     addAsset,
     tradeAsset,

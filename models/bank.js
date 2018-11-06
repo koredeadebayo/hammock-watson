@@ -3,14 +3,8 @@ const bcrypt = require('bcryptjs');
 const config = require('../config/database');
 
 const BankSchema = new mongoose.Schema({
-    // participant Bank identified by bankId {
-    //     o String bankId
-    //     o String username
-    //   }
-
-    bankId: {
+     bankId: {
         type: String
-        
     },
     bankname: {
         type: String,

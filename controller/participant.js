@@ -4,11 +4,7 @@ let businessNetworkConnection = new BusinessNetworkConnection();
 const cardService = require('../services/cardService');
 const response = require('../services/response');
 
-//console.log(businessNetworkConnection);
-
 async function addUser(user) {
-    
-    
 
     try {
         let type = 'User';
@@ -32,17 +28,11 @@ async function addUser(user) {
         
         //Add the above Card Details to the user
         user.blockUserID = identity.userID; 
-        //console.log(user); 
         user.blockUserSecret = identity.userSecret; 
         user.save();
         let result = await cardService.create(identity);
-        //identity.type = type;
-        //console.log(result)
         await businessNetworkConnection.disconnect();
-        // //await mongoService.insert(identity)
-
-
-
+       
         return response.successResponse('User was created');
 
     } catch(error) {
@@ -51,7 +41,23 @@ async function addUser(user) {
         return response.failResponse('User wasn\'t created');
     }
 }
- 
+
+async function creditUser(userData){
+    try{
+        console.log(userData);
+        let businessNetDefination = await businessNetworkConnection.connect(hyperConfig.networkAdminCard);
+        participantRegistry = await businessNetworkConnection.getParticipantRegistry('org.hammock.network.User')
+        user = await participantRegistry.get(userData.userId);
+        let factory = businessNetworkConnection.getBusinessNetwork().getFactory();
+        
+        user.balance = userData.balance;
+        result = await participantRegistry.update(user);
+        await businessNetworkConnection.disconnect();
+    }catch(err){
+        console.log(err);
+    }
+} 
+
 async function addGov(gov) {
     
     console.log(gov);
@@ -146,5 +152,6 @@ async function addGov(gov) {
 module.exports = {
     addUser,
     addGov,
-    addBank
+    addBank,
+    creditUser
 }
