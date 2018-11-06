@@ -1,1 +1,45 @@
 <app-navbar2></app-navbar2>
+
+<!--========== top header ==========-->
+<div class="general-top-header dashboard-header">
+    <!-- Swiper Wrapper -->
+    <div class="swiper-wrapper">
+        <div class="s-promo-block-v4 g-fullheight--xs g-bg-position--center swiper-slide" style="background: url('assets/img/1920x1080/real-estate-bg-dark.jpg');">
+            <div class="container g-ver-center--xs">
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="g-margin-b-50--xs">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Swiper Wrapper -->
+</div>
+
+<div class="g-hor-divider__dashed--sky-light">
+    <div class="container g-padding-y-80--xs g-padding-y-125--sm">
+        <div class="row">
+          <h2 class="g-font-size-32--xs g-font-size-36--sm g-margin-b-30--xs">Users</h2>
+
+          <div *ngFor="let user of users" class="user-list row" >
+
+            <!--<div class="col-md-1">
+              <input type="checkbox" [checked]="task.isDone" (click)="updateStatus(task)">
+            </div>-->
+            <div class="col-md-7">
+              <h2>{{user.name}}</h2>
+              <h4>{{user.username}}</h4>
+              <p>{{user.email}}</p>
+            </div>
+            <div class="col-md-4">
+              <input type="button" (click)="verifyUser(user._id)" value="Activate" class="btn btn-info">
+              <a [routerLink]="['/admin/user/'+user._id]"  class="btn btn-succes">View</a>
+            </div>
+
+          </div>
+
+        </div>
+    </div>
+  </div>

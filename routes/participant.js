@@ -33,9 +33,9 @@ const participantCtrl = require('../controller/participant');
            userId: newUserId,
            //address: req.body.address,
            //secretToken : newSecretToken
-         });
+        });
 
-         User.addUser(newUser, (err, user)=>{
+        User.addUser(newUser, (err, user)=>{
             if(err){
                 res.json({success: false, msg: 'Falied to register the account'});
             }else{
@@ -168,42 +168,23 @@ const participantCtrl = require('../controller/participant');
     });
 
     //List All users
-<<<<<<< HEAD
+
 
     //router.get('/list',  async (req, res) => {});
         //List all approve properties
 
     router.get('/list',  async (req, res) => {
         //List all approve properties
-
-        User.find({active:true}, function(err, users) {
-=======
-    router.get('/list',  async (req, res) => {
-        //List all approve properties     
         User.find( function(err, users) {
->>>>>>> cd14a447737b5df5aa209d27439c1168726ab5e6
             if (err) throw err;
             res.json({success: true, msg: users});
         });
 
     });
 
-<<<<<<< HEAD
-    //Get user with username
-
-    //router.get('/list:username',  async (req, res) => {});
-        //List all approve properties
-
-    router.get('/list/:username',  async (req, res) => {
-        //List all approve properties
-
-=======
-
-    
     //Get user with username
     router.get('/list/:username',  async (req, res) => {
-        //List all approve properties 
->>>>>>> cd14a447737b5df5aa209d27439c1168726ab5e6
+        //List all approve properties
         const username = req.params.username;
 
         User.find({active:true, username:username}, function(err, user) {
@@ -242,18 +223,17 @@ const participantCtrl = require('../controller/participant');
            categories: req.body.categories,
            businessreg: req.body.businessreg,
            //secretToken : newSecretToken
-         });
+        });
 
 
 
-         SP.addSP(newSP, (err, sp)=>{
+        SP.addSP(newSP, (err, sp)=>{
             if(err){
                 res.json({success: false, msg: 'Falied to register the account'});
             }else{
                 res.json({success: true, msg: 'Service Provider registered'});
             }
         });
-
 
     });
     //Authenticate - Passport-jwt enables the authentication works fluidly
@@ -323,21 +303,19 @@ const participantCtrl = require('../controller/participant');
            name: req.body.name,
            password: req.body.password,
            govRate: req.body.govRate
-         });
+        });
 
 
 
-         Gov.addGov(newGov, (err, gov)=>{
+        Gov.addGov(newGov, (err, gov)=>{
             if(err){
                 res.json({success: false, msg: 'Falied to register the Government account'});
             }else{
                 participantCtrl.addGov(gov);
                 res.json({success: true, msg: 'Government registered'});
             }
-            
+
         });
-
-
     });
 
     //Authenticate
@@ -402,10 +380,9 @@ const participantCtrl = require('../controller/participant');
             }else{
                 participantCtrl.addBank(bank);
                 res.json({success: true, msg: 'Bank registered'});
-            } 
+            }
         });
-
-    }); 
+    });
 
     //Authenticate
     router.post('/bankauth', (req, res, next) =>{

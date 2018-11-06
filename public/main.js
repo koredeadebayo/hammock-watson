@@ -340,7 +340,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-navbar2></app-navbar2>\n"
+module.exports = "<app-navbar2></app-navbar2>\n\n<!--========== top header ==========-->\n<div class=\"general-top-header dashboard-header\">\n    <!-- Swiper Wrapper -->\n    <div class=\"swiper-wrapper\">\n        <div class=\"s-promo-block-v4 g-fullheight--xs g-bg-position--center swiper-slide\" style=\"background: url('assets/img/1920x1080/real-estate-bg-dark.jpg');\">\n            <div class=\"container g-ver-center--xs\">\n                <div class=\"row\">\n                    <div class=\"col-md-7\">\n                        <div class=\"g-margin-b-50--xs\">\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n    <!-- End Swiper Wrapper -->\n</div>\n\n<div class=\"g-hor-divider__dashed--sky-light\">\n    <div class=\"container g-padding-y-80--xs g-padding-y-125--sm\">\n        <div class=\"row\">\n          <h2 class=\"g-font-size-32--xs g-font-size-36--sm g-margin-b-30--xs\">Users</h2>\n\n          <div *ngFor=\"let user of users\" class=\"user-list row\" >\n\n            <!--<div class=\"col-md-1\">\n              <input type=\"checkbox\" [checked]=\"task.isDone\" (click)=\"updateStatus(task)\">\n            </div>-->\n            <div class=\"col-md-7\">\n              <h2>{{user.name}}</h2>\n              <h4>{{user.username}}</h4>\n              <p>{{user.email}}</p>\n            </div>\n            <div class=\"col-md-4\">\n              <input type=\"button\" (click)=\"verifyUser(user._id)\" value=\"Activate\" class=\"btn btn-info\">\n              <a [routerLink]=\"['/admin/user/'+user._id]\"  class=\"btn btn-succes\">View</a>\n            </div>\n\n          </div>\n\n        </div>\n    </div>\n  </div>\n"
 
 /***/ }),
 
@@ -369,12 +369,11 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 var AdminusersComponent = /** @class */ (function () {
     function AdminusersComponent(userService) {
+        var _this = this;
         this.userService = userService;
         this.userService.getUsers()
             .subscribe(function (users) {
-            console.log("Data delivered");
-            console.log(users);
-            //this.users = users;
+            _this.users = users;
         });
     }
     AdminusersComponent.prototype.ngOnInit = function () {
@@ -1163,7 +1162,7 @@ var UserService = /** @class */ (function () {
         this.http = http;
     }
     UserService.prototype.getUsers = function () {
-        return this.http.get('http://localhost:6001/users/list')
+        return this.http.get('users/list')
             .map(function (res) { return res.json(); });
     };
     UserService = __decorate([
