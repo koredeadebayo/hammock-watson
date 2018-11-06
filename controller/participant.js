@@ -44,7 +44,6 @@ async function addUser(user) {
 
 async function creditUser(userData){
     try{
-        console.log(userData);
         let businessNetDefination = await businessNetworkConnection.connect(hyperConfig.networkAdminCard);
         participantRegistry = await businessNetworkConnection.getParticipantRegistry('org.hammock.network.User')
         user = await participantRegistry.get(userData.userId);
