@@ -34,7 +34,7 @@ const participantCtrl = require('../controller/participant');
             }
         });
     });
-    //Authentication 
+    //Authentication
     router.post('/adminauth', (req, res, next)=>{
         const name = req.body.username;
         const password = req.body.password;
@@ -66,11 +66,10 @@ const participantCtrl = require('../controller/participant');
             });
         });
     });
-    
-    
+
+
 
 // User Management
-
     //Register
     router.post('/register', (req, res, next) =>{
 
@@ -161,7 +160,7 @@ const participantCtrl = require('../controller/participant');
                 if (err) {
                     return res.status(500).send({ msg: err.message });
                 }
-                res.status(200).send('A verification email has been sent to ' + user.email + '.');
+                res.json({success: true, msg:'A verification email has been sent to ' + user.email + '.'});
             });
             });
          });
@@ -191,8 +190,9 @@ const participantCtrl = require('../controller/participant');
     });
 
     //List All users
-    router.get('/list', passport.authenticate('admin-role', {session:false}),  async (req, res) => {
-        //List all approve properties     
+    router.get('/list',  async (req, res) => {
+        //List all approve properties
+    //router.get('/list', passport.authenticate('admin-role', {session:false}),  async (req, res) => {
         User.find( function(err, users) {
             if (err) throw err;
             res.json({success: true, msg: users});
@@ -201,10 +201,11 @@ const participantCtrl = require('../controller/participant');
     });
 
     //Get user with username
-    router.get('/list/:username', passport.authenticate('admin-role', {session:false}), async (req, res) => {
-        //List all approve properties 
+    router.get('/list/:username',  async (req, res) => {
+    //router.get('/list/:username', passport.authenticate('admin-role', {session:false}), async (req, res) => {
+        //List all approve properties
         const username = req.params.username;
-        
+
         User.find({username:username}, function(err, user) {
             if (err) throw err;
             res.json({success: true, msg: user});
@@ -221,8 +222,8 @@ const participantCtrl = require('../controller/participant');
     router.get('/user', async (req, res) =>{
 
     });
-    
-    //Credit the 
+
+    //Credit the
     router.post('/credituser', passport.authenticate('admin-role', {session:false}), (req, res, next)=>{
         const username = req.body.username;
         const creditamount = req.body.creditamount;

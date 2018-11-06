@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
-import {Users} from '../../../user';
+import { User } from '../../../../user';
+import { NgFlashMessageService } from 'ng-flash-messages';
 
 @Component({
   selector: 'app-adminusers',
@@ -8,13 +9,18 @@ import {Users} from '../../../user';
   styleUrls: ['./adminusers.component.css']
 })
 export class AdminusersComponent implements OnInit {
-  users: Users[];
+  public all_users : any;
+  public users: User[];
 
-  constructor(private userService:UserService){
+  constructor(
+    private userService: UserService,
+    private ngFlashMessageService: NgFlashMessageService
+  ){
 
     this.userService.getUsers()
-      .subscribe(users => {
-        this.users = users;
+      .subscribe(data => {
+        this.users = data.msg;
+        //console.log(data);
       });
   }
 

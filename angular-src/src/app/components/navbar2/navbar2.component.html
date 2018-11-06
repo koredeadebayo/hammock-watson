@@ -1,5 +1,5 @@
 <!--========== HEADER V2 ==========-->
-<header class="navbar-fixed-top s-header-v2 js__header-sticky">
+<header class="navbar-fixed-top s-header-v2 js__header-sticky navbar-v2">
     <!-- Navbar -->
     <nav class="s-header-v2__navbar">
         <div class="container g-display-table--lg">
@@ -29,14 +29,15 @@
                         <ul class="s-header-v2__nav">
                             <!-- Home -->
                             <li class="dropdown s-header-v2__nav-item" >
-                                <a  [routerLinkActive]="['-is-active']" [routerLinkActiveOptions] = "{exact:true}" [routerLink]="['/admin/property']"  class="s-header-v2__nav-link" data-toggle="dropdown" role="button">Property</a>
+                                <a [routerLinkActive]="['-is-active']" [routerLinkActiveOptions] = "{exact:true}" [routerLink]="['/admin']"  class="s-header-v2__nav-link" data-toggle="dropdown" role="button">Admin Dashboard</a>
                             </li>
-                            <!-- End Home -->
-                            <!-- Home -->
+                            <li class="dropdown s-header-v2__nav-item" >
+                                <a [routerLinkActive]="['-is-active']" [routerLinkActiveOptions] = "{exact:true}" [routerLink]="['/admin/properties']"  class="s-header-v2__nav-link" data-toggle="dropdown" role="button">Property</a>
+                            </li>
+
                             <li class="dropdown s-header-v2__nav-item" >
                                 <a  [routerLinkActive]="['-is-active']" [routerLinkActiveOptions] = "{exact:true}" [routerLink]="['/admin/users']"  class="s-header-v2__nav-link" data-toggle="dropdown" role="button">Users</a>
                             </li>
-                            <!-- End Home -->
 
                         </ul>
                     </div>

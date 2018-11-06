@@ -1,0 +1,10 @@
+.user-data-container {
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 1px 0.5px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.user-data-container p, .user-data-container h4, .user-data-container h5 {
+    margin: 0px;
+}

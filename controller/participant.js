@@ -32,7 +32,7 @@ async function addUser(user) {
         user.save();
         let result = await cardService.create(identity);
         await businessNetworkConnection.disconnect();
-       
+
         return response.successResponse('User was created');
 
     } catch(error) {
@@ -48,14 +48,14 @@ async function creditUser(userData){
         participantRegistry = await businessNetworkConnection.getParticipantRegistry('org.hammock.network.User')
         user = await participantRegistry.get(userData.userId);
         let factory = businessNetworkConnection.getBusinessNetwork().getFactory();
-        
+
         user.balance = userData.balance;
         result = await participantRegistry.update(user);
         await businessNetworkConnection.disconnect();
     }catch(err){
         console.log(err);
     }
-} 
+}
 
 async function addGov(gov) {
 

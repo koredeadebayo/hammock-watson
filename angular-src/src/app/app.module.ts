@@ -3,6 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -25,6 +26,9 @@ import { Navbar2Component } from './components/navbar2/navbar2.component';
 import { AdminpanelComponent } from './components/adminpanel/adminpanel.component';
 import { AdminpropertyComponent } from './components/adminproperty/adminproperty.component';
 import { AdminusersComponent } from './components/adminusers/adminusers.component';
+import { AdminuserComponent } from './components/adminuser/adminuser.component';
+import { Header2Component } from './components/header2/header2.component';
+import { AdmindashbreadcombComponent } from './components/admindashbreadcomb/admindashbreadcomb.component';
 
 //import { HashLocationStrategy, LocationStrategy } from '@angular/common'
 //{provide: LocationStrategy, useClass: HashLocationStrategy }
@@ -36,9 +40,10 @@ const appRoutes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'dashboard',component:DashboardComponent},
   {path:'profile',component:ProfileComponent},
-  {path:'adminpanel',component:AdminpanelComponent},
+  {path:'admin',component:AdminpanelComponent},
   {path:'admin/property',component:AdminpropertyComponent},
-  {path:'admin/users',component:AdminusersComponent}
+  {path:'admin/users',component:AdminusersComponent},
+  {path:'admin/user/:id',component:AdminuserComponent}
 ]
 @NgModule({
   declarations: [
@@ -54,12 +59,16 @@ const appRoutes: Routes = [
     Navbar2Component,
     AdminpanelComponent,
     AdminpropertyComponent,
-    AdminusersComponent
+    AdminusersComponent,
+    AdminuserComponent,
+    Header2Component,
+    AdmindashbreadcombComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     NgFlashMessagesModule,
     RouterModule.forRoot(appRoutes)

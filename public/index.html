@@ -35,9 +35,97 @@
 
 
   <link rel="icon" type="image/x-icon" href="assets/img/hamock-logo-white.png">
+
+  <!--DAshboard styles -->
+  <!-- Google Fonts
+  ============================================ -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
+  <!-- Bootstrap CSS
+  ============================================ -->
+  <link rel="stylesheet" href="assets/dashboard/css/bootstrap.min.css">
+  <!-- Bootstrap CSS
+  ============================================ -->
+  <link rel="stylesheet" href="assets/dashboard/css/font-awesome.min.css">
+  <!-- owl.carousel CSS
+  ============================================ -->
+  <link rel="stylesheet" href="assets/dashboard/css/owl.carousel.css">
+  <link rel="stylesheet" href="assets/dashboard/css/owl.theme.css">
+  <link rel="stylesheet" href="assets/dashboard/css/owl.transitions.css">
+  <!-- meanmenu CSS
+  ============================================ -->
+  <link rel="stylesheet" href="assets/dashboard/css/meanmenu/meanmenu.min.css">
+  <!-- animate CSS
+  ============================================ -->
+  <link rel="stylesheet" href="assets/dashboard/css/animate.css">
+  <!-- normalize CSS
+  ============================================ -->
+  <link rel="stylesheet" href="assets/dashboard/css/normalize.css">
+  <!-- mCustomScrollbar CSS
+  ============================================ -->
+  <link rel="stylesheet" href="assets/dashboard/css/scrollbar/jquery.mCustomScrollbar.min.css">
+  <!-- jvectormap CSS
+  ============================================ -->
+  <link rel="stylesheet" href="assets/dashboard/css/jvectormap/jquery-jvectormap-2.0.3.css">
+  <!-- notika icon CSS
+  ============================================ -->
+  <link rel="stylesheet" href="assets/dashboard/css/notika-custom-icon.css">
+  <!-- wave CSS
+  ============================================ -->
+  <link rel="stylesheet" href="assets/dashboard/css/wave/waves.min.css">
+  <!-- main CSS
+  ============================================ -->
+  <link rel="stylesheet" href="assets/dashboard/css/main.css">
+  <!-- style CSS
+  ============================================ -->
+  <link rel="stylesheet" href="assets/dashboard/style.css">
+  <!-- responsive CSS
+  ============================================ -->
+  <link rel="stylesheet" href="assets/dashboard/css/responsive.css">
+  <!-- modernizr JS
+  ============================================ -->
 </head>
 <body>
 
-  <app-root>Loading...</app-root>
+  <app-root>
+    <style>
+      .preloader-custom {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        background-color: white;
+        height: 100%;
+      }
+      .preloader-content{
+        position:absolute;
+        top:0px;
+        left:0px;
+        width:100%;
+        background-color:white;
+        height:100%;
+      }
+      .preloader-content img {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%,-50%);
+          -webkit-transform: translate(-50%,-50%);
+          -ms-transform: translate(-50%,-50%);
+          -moz-transform: translate(-50%,-50%);
+      }
+    </style>
+    <div class="preloader-custom">
+      <div class="preloader-content">
+        <img src="assets/img/gif/square-loader.gif" alt="Loading"/>
+      </div>
+    </div>
+  </app-root>
+  <script type="text/javascript">
+      window._chatlio = window._chatlio||[];
+      !function(){ var t=document.getElementById("chatlio-widget-embed");if(t&&window.ChatlioReact&&_chatlio.init)return void _chatlio.init(t,ChatlioReact);for(var e=function(t){return function(){_chatlio.push([t].concat(arguments)) }},i=["configure","identify","track","show","hide","isShown","isOnline", "page", "open", "showOrHide"],a=0;a<i.length;a++)_chatlio[i[a]]||(_chatlio[i[a]]=e(i[a]));var n=document.createElement("script"),c=document.getElementsByTagName("script")[0];n.id="chatlio-widget-embed",n.src="https://w.chatlio.com/w.chatlio-widget.js",n.async=!0,n.setAttribute("data-embed-version","2.3");
+         n.setAttribute('data-widget-id','f4441262-6b56-4f10-5a04-61b09848799b');
+         c.parentNode.insertBefore(n,c);
+      }();
+  </script>
 <script type="text/javascript" src="runtime.js"></script><script type="text/javascript" src="polyfills.js"></script><script type="text/javascript" src="styles.js"></script><script type="text/javascript" src="scripts.js"></script><script type="text/javascript" src="vendor.js"></script><script type="text/javascript" src="main.js"></script></body>
 </html>
