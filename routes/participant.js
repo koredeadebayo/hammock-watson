@@ -230,6 +230,7 @@ const participantCtrl = require('../controller/participant');
             if (err) throw err;
             if(user){
                 user.balance = creditamount;
+                user.save();
                 participantCtrl.creditUser(user);
                 res.json({success:true, msg:'Successful, '+ username +' credited with '+ creditamount});
             }
