@@ -96,31 +96,36 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _angular_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/http */ "./node_modules/@angular/http/fesm5/http.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _components_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/navbar/navbar.component */ "./src/app/components/navbar/navbar.component.ts");
-/* harmony import */ var _components_login_login_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/login/login.component */ "./src/app/components/login/login.component.ts");
-/* harmony import */ var _components_register_register_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/register/register.component */ "./src/app/components/register/register.component.ts");
-/* harmony import */ var _components_home_home_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/home/home.component */ "./src/app/components/home/home.component.ts");
-/* harmony import */ var _components_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/dashboard/dashboard.component */ "./src/app/components/dashboard/dashboard.component.ts");
-/* harmony import */ var _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/profile/profile.component */ "./src/app/components/profile/profile.component.ts");
-/* harmony import */ var _components_header_header_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/header/header.component */ "./src/app/components/header/header.component.ts");
-/* harmony import */ var _components_footer_footer_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/footer/footer.component */ "./src/app/components/footer/footer.component.ts");
-/* harmony import */ var _services_valid_service__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./services/valid.service */ "./src/app/services/valid.service.ts");
-/* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./services/auth.service */ "./src/app/services/auth.service.ts");
-/* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./services/user.service */ "./src/app/services/user.service.ts");
-/* harmony import */ var ng_flash_messages__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ng-flash-messages */ "./node_modules/ng-flash-messages/ng-flash-messages.umd.js");
-/* harmony import */ var ng_flash_messages__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(ng_flash_messages__WEBPACK_IMPORTED_MODULE_18__);
-/* harmony import */ var _components_navbar2_navbar2_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/navbar2/navbar2.component */ "./src/app/components/navbar2/navbar2.component.ts");
-/* harmony import */ var _components_adminpanel_adminpanel_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/adminpanel/adminpanel.component */ "./src/app/components/adminpanel/adminpanel.component.ts");
-/* harmony import */ var _components_adminproperty_adminproperty_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/adminproperty/adminproperty.component */ "./src/app/components/adminproperty/adminproperty.component.ts");
-/* harmony import */ var _components_adminusers_adminusers_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/adminusers/adminusers.component */ "./src/app/components/adminusers/adminusers.component.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _components_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/navbar/navbar.component */ "./src/app/components/navbar/navbar.component.ts");
+/* harmony import */ var _components_login_login_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/login/login.component */ "./src/app/components/login/login.component.ts");
+/* harmony import */ var _components_register_register_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/register/register.component */ "./src/app/components/register/register.component.ts");
+/* harmony import */ var _components_home_home_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/home/home.component */ "./src/app/components/home/home.component.ts");
+/* harmony import */ var _components_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/dashboard/dashboard.component */ "./src/app/components/dashboard/dashboard.component.ts");
+/* harmony import */ var _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/profile/profile.component */ "./src/app/components/profile/profile.component.ts");
+/* harmony import */ var _components_header_header_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/header/header.component */ "./src/app/components/header/header.component.ts");
+/* harmony import */ var _components_footer_footer_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/footer/footer.component */ "./src/app/components/footer/footer.component.ts");
+/* harmony import */ var _services_valid_service__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./services/valid.service */ "./src/app/services/valid.service.ts");
+/* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./services/auth.service */ "./src/app/services/auth.service.ts");
+/* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./services/user.service */ "./src/app/services/user.service.ts");
+/* harmony import */ var ng_flash_messages__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ng-flash-messages */ "./node_modules/ng-flash-messages/ng-flash-messages.umd.js");
+/* harmony import */ var ng_flash_messages__WEBPACK_IMPORTED_MODULE_19___default = /*#__PURE__*/__webpack_require__.n(ng_flash_messages__WEBPACK_IMPORTED_MODULE_19__);
+/* harmony import */ var _components_navbar2_navbar2_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/navbar2/navbar2.component */ "./src/app/components/navbar2/navbar2.component.ts");
+/* harmony import */ var _components_adminpanel_adminpanel_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/adminpanel/adminpanel.component */ "./src/app/components/adminpanel/adminpanel.component.ts");
+/* harmony import */ var _components_adminproperty_adminproperty_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/adminproperty/adminproperty.component */ "./src/app/components/adminproperty/adminproperty.component.ts");
+/* harmony import */ var _components_adminusers_adminusers_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./components/adminusers/adminusers.component */ "./src/app/components/adminusers/adminusers.component.ts");
+/* harmony import */ var _components_adminuser_adminuser_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./components/adminuser/adminuser.component */ "./src/app/components/adminuser/adminuser.component.ts");
+/* harmony import */ var _components_header2_header2_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./components/header2/header2.component */ "./src/app/components/header2/header2.component.ts");
+/* harmony import */ var _components_admindashbreadcomb_admindashbreadcomb_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./components/admindashbreadcomb/admindashbreadcomb.component */ "./src/app/components/admindashbreadcomb/admindashbreadcomb.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -145,17 +150,21 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
+
+
 //import { HashLocationStrategy, LocationStrategy } from '@angular/common'
 //{provide: LocationStrategy, useClass: HashLocationStrategy }
 var appRoutes = [
-    { path: '', component: _components_home_home_component__WEBPACK_IMPORTED_MODULE_10__["HomeComponent"] },
-    { path: 'register', component: _components_register_register_component__WEBPACK_IMPORTED_MODULE_9__["RegisterComponent"] },
-    { path: 'login', component: _components_login_login_component__WEBPACK_IMPORTED_MODULE_8__["LoginComponent"] },
-    { path: 'dashboard', component: _components_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_11__["DashboardComponent"] },
-    { path: 'profile', component: _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_12__["ProfileComponent"] },
-    { path: 'adminpanel', component: _components_adminpanel_adminpanel_component__WEBPACK_IMPORTED_MODULE_20__["AdminpanelComponent"] },
-    { path: 'admin/property', component: _components_adminproperty_adminproperty_component__WEBPACK_IMPORTED_MODULE_21__["AdminpropertyComponent"] },
-    { path: 'admin/users', component: _components_adminusers_adminusers_component__WEBPACK_IMPORTED_MODULE_22__["AdminusersComponent"] }
+    { path: '', component: _components_home_home_component__WEBPACK_IMPORTED_MODULE_11__["HomeComponent"] },
+    { path: 'register', component: _components_register_register_component__WEBPACK_IMPORTED_MODULE_10__["RegisterComponent"] },
+    { path: 'login', component: _components_login_login_component__WEBPACK_IMPORTED_MODULE_9__["LoginComponent"] },
+    { path: 'dashboard', component: _components_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_12__["DashboardComponent"] },
+    { path: 'profile', component: _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_13__["ProfileComponent"] },
+    { path: 'admin', component: _components_adminpanel_adminpanel_component__WEBPACK_IMPORTED_MODULE_21__["AdminpanelComponent"] },
+    { path: 'admin/property', component: _components_adminproperty_adminproperty_component__WEBPACK_IMPORTED_MODULE_22__["AdminpropertyComponent"] },
+    { path: 'admin/users', component: _components_adminusers_adminusers_component__WEBPACK_IMPORTED_MODULE_23__["AdminusersComponent"] },
+    { path: 'admin/user/:id', component: _components_adminuser_adminuser_component__WEBPACK_IMPORTED_MODULE_24__["AdminuserComponent"] }
 ];
 var AppModule = /** @class */ (function () {
     function AppModule() {
@@ -163,33 +172,100 @@ var AppModule = /** @class */ (function () {
     AppModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
             declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"],
-                _components_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_7__["NavbarComponent"],
-                _components_login_login_component__WEBPACK_IMPORTED_MODULE_8__["LoginComponent"],
-                _components_register_register_component__WEBPACK_IMPORTED_MODULE_9__["RegisterComponent"],
-                _components_home_home_component__WEBPACK_IMPORTED_MODULE_10__["HomeComponent"],
-                _components_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_11__["DashboardComponent"],
-                _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_12__["ProfileComponent"],
-                _components_header_header_component__WEBPACK_IMPORTED_MODULE_13__["HeaderComponent"],
-                _components_footer_footer_component__WEBPACK_IMPORTED_MODULE_14__["FooterComponent"],
-                _components_navbar2_navbar2_component__WEBPACK_IMPORTED_MODULE_19__["Navbar2Component"],
-                _components_adminpanel_adminpanel_component__WEBPACK_IMPORTED_MODULE_20__["AdminpanelComponent"],
-                _components_adminproperty_adminproperty_component__WEBPACK_IMPORTED_MODULE_21__["AdminpropertyComponent"],
-                _components_adminusers_adminusers_component__WEBPACK_IMPORTED_MODULE_22__["AdminusersComponent"]
+                _app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"],
+                _components_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_8__["NavbarComponent"],
+                _components_login_login_component__WEBPACK_IMPORTED_MODULE_9__["LoginComponent"],
+                _components_register_register_component__WEBPACK_IMPORTED_MODULE_10__["RegisterComponent"],
+                _components_home_home_component__WEBPACK_IMPORTED_MODULE_11__["HomeComponent"],
+                _components_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_12__["DashboardComponent"],
+                _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_13__["ProfileComponent"],
+                _components_header_header_component__WEBPACK_IMPORTED_MODULE_14__["HeaderComponent"],
+                _components_footer_footer_component__WEBPACK_IMPORTED_MODULE_15__["FooterComponent"],
+                _components_navbar2_navbar2_component__WEBPACK_IMPORTED_MODULE_20__["Navbar2Component"],
+                _components_adminpanel_adminpanel_component__WEBPACK_IMPORTED_MODULE_21__["AdminpanelComponent"],
+                _components_adminproperty_adminproperty_component__WEBPACK_IMPORTED_MODULE_22__["AdminpropertyComponent"],
+                _components_adminusers_adminusers_component__WEBPACK_IMPORTED_MODULE_23__["AdminusersComponent"],
+                _components_adminuser_adminuser_component__WEBPACK_IMPORTED_MODULE_24__["AdminuserComponent"],
+                _components_header2_header2_component__WEBPACK_IMPORTED_MODULE_25__["Header2Component"],
+                _components_admindashbreadcomb_admindashbreadcomb_component__WEBPACK_IMPORTED_MODULE_26__["AdmindashbreadcombComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
                 _angular_http__WEBPACK_IMPORTED_MODULE_4__["HttpModule"],
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_5__["HttpClientModule"],
                 _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_1__["BrowserAnimationsModule"],
-                ng_flash_messages__WEBPACK_IMPORTED_MODULE_18__["NgFlashMessagesModule"],
-                _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterModule"].forRoot(appRoutes)
+                ng_flash_messages__WEBPACK_IMPORTED_MODULE_19__["NgFlashMessagesModule"],
+                _angular_router__WEBPACK_IMPORTED_MODULE_6__["RouterModule"].forRoot(appRoutes)
             ],
-            providers: [_services_valid_service__WEBPACK_IMPORTED_MODULE_15__["ValidService"], _services_auth_service__WEBPACK_IMPORTED_MODULE_16__["AuthService"], _services_user_service__WEBPACK_IMPORTED_MODULE_17__["UserService"]],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"]]
+            providers: [_services_valid_service__WEBPACK_IMPORTED_MODULE_16__["ValidService"], _services_auth_service__WEBPACK_IMPORTED_MODULE_17__["AuthService"], _services_user_service__WEBPACK_IMPORTED_MODULE_18__["UserService"]],
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/components/admindashbreadcomb/admindashbreadcomb.component.css":
+/*!********************************************************************************!*\
+  !*** ./src/app/components/admindashbreadcomb/admindashbreadcomb.component.css ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvYWRtaW5kYXNoYnJlYWRjb21iL2FkbWluZGFzaGJyZWFkY29tYi5jb21wb25lbnQuY3NzIn0= */"
+
+/***/ }),
+
+/***/ "./src/app/components/admindashbreadcomb/admindashbreadcomb.component.html":
+/*!*********************************************************************************!*\
+  !*** ./src/app/components/admindashbreadcomb/admindashbreadcomb.component.html ***!
+  \*********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n<!-- Breadcomb area Start-->\n\t<div class=\"breadcomb-area\">\n\t\t<div class=\"container\">\n\t\t\t<div class=\"row\">\n\t\t\t\t<div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n\t\t\t\t\t<div class=\"breadcomb-list\">\n\t\t\t\t\t\t<div class=\"row\">\n\t\t\t\t\t\t\t<div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-12\">\n\t\t\t\t\t\t\t\t<div class=\"breadcomb-wp\">\n\t\t\t\t\t\t\t\t\t<div class=\"breadcomb-icon\">\n\t\t\t\t\t\t\t\t\t\t<i class=\"notika-icon notika-windows\"></i>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t<div class=\"breadcomb-ctn\">\n\t\t\t\t\t\t\t\t\t\t<h2>Admin Dashboard</h2>\n\t\t\t\t\t\t\t\t\t\t<p>Hamock</p>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-3\">\n\t\t\t\t\t\t\t\t<!--<div class=\"breadcomb-report\">\n\t\t\t\t\t\t\t\t\t<button data-toggle=\"tooltip\" data-placement=\"left\" title=\"Download Report\" class=\"btn\"><i class=\"notika-icon notika-sent\"></i></button>\n\t\t\t\t\t\t\t\t</div>-->\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\t<!-- Breadcomb area End-->\n"
+
+/***/ }),
+
+/***/ "./src/app/components/admindashbreadcomb/admindashbreadcomb.component.ts":
+/*!*******************************************************************************!*\
+  !*** ./src/app/components/admindashbreadcomb/admindashbreadcomb.component.ts ***!
+  \*******************************************************************************/
+/*! exports provided: AdmindashbreadcombComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AdmindashbreadcombComponent", function() { return AdmindashbreadcombComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var AdmindashbreadcombComponent = /** @class */ (function () {
+    function AdmindashbreadcombComponent() {
+    }
+    AdmindashbreadcombComponent.prototype.ngOnInit = function () {
+    };
+    AdmindashbreadcombComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-admindashbreadcomb',
+            template: __webpack_require__(/*! ./admindashbreadcomb.component.html */ "./src/app/components/admindashbreadcomb/admindashbreadcomb.component.html"),
+            styles: [__webpack_require__(/*! ./admindashbreadcomb.component.css */ "./src/app/components/admindashbreadcomb/admindashbreadcomb.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], AdmindashbreadcombComponent);
+    return AdmindashbreadcombComponent;
 }());
 
 
@@ -214,7 +290,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-navbar2></app-navbar2>\n"
+module.exports = "<app-navbar2></app-navbar2>\n<app-header2></app-header2>\n<app-admindashbreadcomb></app-admindashbreadcomb>\n\n<!-- Start Status area -->\n<div class=\"notika-status-area\">\n    <div class=\"container\">\n        <div class=\"row\">\n            <div class=\"col-lg-3 col-md-6 col-sm-6 col-xs-12\">\n                <div class=\"wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30\">\n                    <div class=\"website-traffic-ctn\">\n                        <h2><span class=\"counter\">8</span></h2>\n                        <p>Total Users</p>\n                    </div>\n                    <!--<div class=\"sparkline-bar-stats1\">9,4,8,6,5,6,4,8,3,5,9,5</div>-->\n                </div>\n            </div>\n            <div class=\"col-lg-3 col-md-6 col-sm-6 col-xs-12\">\n                <div class=\"wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30\">\n                    <div class=\"website-traffic-ctn\">\n                        <h2><span class=\"counter\">30</span></h2>\n                        <p>Total Properties</p>\n                    </div>\n                    <!--<div class=\"sparkline-bar-stats2\">1,4,8,3,5,6,4,8,3,3,9,5</div>-->\n                </div>\n            </div>\n            <div class=\"col-lg-3 col-md-6 col-sm-6 col-xs-12\">\n                <div class=\"wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30\">\n                    <div class=\"website-traffic-ctn\">\n                        <h2><span class=\"counter\">20</span></h2>\n                        <p>Total Transactions</p>\n                    </div>\n                    <!--<div class=\"sparkline-bar-stats3\">4,2,8,2,5,6,3,8,3,5,9,5</div>-->\n                </div>\n            </div>\n            <div class=\"col-lg-3 col-md-6 col-sm-6 col-xs-12\">\n                <div class=\"wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30\">\n                    <div class=\"website-traffic-ctn\">\n                        <h2><span class=\"counter\">1,000</span></h2>\n                        <p>Total Support Tickets</p>\n                    </div>\n                    <!--<div class=\"sparkline-bar-stats4\">2,4,8,4,5,7,4,7,3,5,7,5</div>-->\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n<!-- End Status area-->\n\n<!-- Start Email Statistic area-->\n    <div class=\"notika-email-post-area mg-tb-40\">\n        <div class=\"container\">\n            <div class=\"row\">\n                <div class=\"col-lg-8 col-md-6 col-sm-6 col-xs-12\">\n                    <div class=\"recent-post-wrapper notika-shadow sm-res-mg-t-30 tb-res-ds-n dk-res-ds\">\n                        <div class=\"recent-post-ctn\">\n                            <div class=\"recent-post-title\">\n                                <h2>Users</h2>\n                            </div>\n                        </div>\n                        <div class=\"recent-post-items\">\n                            <div class=\"recent-post-signle rct-pt-mg-wp\">\n                                <a href=\"#\">\n                                    <div class=\"recent-post-flex\">\n                                        <div class=\"recent-post-img\">\n                                            <img src=\"img/post/2.jpg\" alt=\"\" />\n                                        </div>\n                                        <div class=\"recent-post-it-ctn\">\n                                            <h2>{{user.name}}</h2>\n                                            <p>{{user.email}}</p>\n                                        </div>\n                                    </div>\n                                </a>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n                <div class=\"col-lg-4 col-md-6 col-sm-6 col-xs-12\">\n                    <div class=\"recent-items-wp notika-shadow sm-res-mg-t-30\">\n                        <div class=\"rc-it-ltd\">\n                            <div class=\"recent-items-ctn\">\n                                <div class=\"recent-items-title\">\n                                    <h2>Properties</h2>\n                                </div>\n                            </div>\n                            <div class=\"recent-items-inn\">\n                                <table class=\"table table-inner table-vmiddle\">\n                                    <thead>\n                                        <tr>\n                                            <th></th>\n                                            <th></th>\n                                            <th style=\"width: 60px\"></th>\n                                        </tr>\n                                    </thead>\n                                    <tbody>\n\n                                    </tbody>\n                                </table>\n                            </div>\n\t\t\t\t\t\t\t<div id=\"recent-items-chart\" class=\"flot-chart-items flot-chart vt-ct-it tb-rc-it-res\"></div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n    <!-- End Email Statistic area-->\n"
 
 /***/ }),
 
@@ -229,6 +305,10 @@ module.exports = "<app-navbar2></app-navbar2>\n"
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AdminpanelComponent", function() { return AdminpanelComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../services/user.service */ "./src/app/services/user.service.ts");
+/* harmony import */ var ng_flash_messages__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ng-flash-messages */ "./node_modules/ng-flash-messages/ng-flash-messages.umd.js");
+/* harmony import */ var ng_flash_messages__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(ng_flash_messages__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -239,8 +319,14 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
+
 var AdminpanelComponent = /** @class */ (function () {
-    function AdminpanelComponent() {
+    function AdminpanelComponent(userService, ngFlashMessageService, router) {
+        this.userService = userService;
+        this.ngFlashMessageService = ngFlashMessageService;
+        this.router = router;
     }
     AdminpanelComponent.prototype.ngOnInit = function () {
     };
@@ -250,7 +336,9 @@ var AdminpanelComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./adminpanel.component.html */ "./src/app/components/adminpanel/adminpanel.component.html"),
             styles: [__webpack_require__(/*! ./adminpanel.component.css */ "./src/app/components/adminpanel/adminpanel.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_services_user_service__WEBPACK_IMPORTED_MODULE_1__["UserService"],
+            ng_flash_messages__WEBPACK_IMPORTED_MODULE_2__["NgFlashMessageService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
     ], AdminpanelComponent);
     return AdminpanelComponent;
 }());
@@ -277,7 +365,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-navbar2></app-navbar2>\n"
+module.exports = "<app-navbar2></app-navbar2>\n<app-header2></app-header2>\n<app-admindashbreadcomb></app-admindashbreadcomb>\n"
 
 /***/ }),
 
@@ -322,6 +410,123 @@ var AdminpropertyComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/components/adminuser/adminuser.component.css":
+/*!**************************************************************!*\
+  !*** ./src/app/components/adminuser/adminuser.component.css ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".single-user-view {\n    text-align: center;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9hZG1pbnVzZXIvYWRtaW51c2VyLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxtQkFBbUI7Q0FDdEIiLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnRzL2FkbWludXNlci9hZG1pbnVzZXIuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5zaW5nbGUtdXNlci12aWV3IHtcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG4iXX0= */"
+
+/***/ }),
+
+/***/ "./src/app/components/adminuser/adminuser.component.html":
+/*!***************************************************************!*\
+  !*** ./src/app/components/adminuser/adminuser.component.html ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<app-navbar2></app-navbar2>\n\n<app-header2></app-header2>\n<app-admindashbreadcomb></app-admindashbreadcomb>\n\n<div class=\"contact-area\">\n  <div class=\"container\">\n    <div class=\"row\">\n      <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n        <ng-flash-message></ng-flash-message>\n        <div class=\"contact-list single-user-view\">\n          <div class=\"contact-win\">\n            <div class=\"contact-img\">\n            </div>\n            <!--<div class=\"conct-sc-ic\">\n                <a class=\"btn\" href=\"#\"><i class=\"notika-icon notika-facebook\"></i></a>\n                <a class=\"btn\" href=\"#\"><i class=\"notika-icon notika-twitter\"></i></a>\n                <a class=\"btn\" href=\"#\"><i class=\"notika-icon notika-pinterest\"></i></a>\n            </div>-->\n          </div>\n          <div class=\"contact-ctn\">\n            <div class=\"contact-ad-hd\">\n\t\t\t\t\t\t        <h2>{{user.name}}</h2>\n                    <p>{{user.username}}</p>\n\t\t\t\t\t          <p class=\"ctn-ads\">{{user.email}}</p>\n\t\t\t\t\t\t</div>\n          </div>\n          <div class=\"social-st-list\">\n          </div>\n          <div class=\"\">\n              <h5>Balance:</h5>\n              <p>{{user.balance}}</p>\n          </div>\n          <div class=\"\">\n              <h5></h5>\n              <p><button class=\"btn btn-success notika-btn-primary waves-effect\" (click)=\"activateUser(user)\" >Send Activation Link</button></p>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
+
+/***/ }),
+
+/***/ "./src/app/components/adminuser/adminuser.component.ts":
+/*!*************************************************************!*\
+  !*** ./src/app/components/adminuser/adminuser.component.ts ***!
+  \*************************************************************/
+/*! exports provided: AdminuserComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AdminuserComponent", function() { return AdminuserComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/user.service */ "./src/app/services/user.service.ts");
+/* harmony import */ var ng_flash_messages__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ng-flash-messages */ "./node_modules/ng-flash-messages/ng-flash-messages.umd.js");
+/* harmony import */ var ng_flash_messages__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(ng_flash_messages__WEBPACK_IMPORTED_MODULE_3__);
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var AdminuserComponent = /** @class */ (function () {
+    function AdminuserComponent(userService, route, ngFlashMessageService, router) {
+        var _this = this;
+        this.userService = userService;
+        this.route = route;
+        this.ngFlashMessageService = ngFlashMessageService;
+        this.router = router;
+        /*this.userService.getUser(id)
+          .subscribe(data => {
+            this.users = data.msg;
+            //console.log(data);
+          });*/
+        this.route.params.subscribe(function (params) {
+            //console.log(params);
+            _this.userService.getUser(params['id'])
+                .subscribe(function (data) {
+                _this.user = data.msg[0];
+                //console.log(data);
+            });
+        });
+    }
+    AdminuserComponent.prototype.ngOnInit = function () {
+    };
+    AdminuserComponent.prototype.activateUser = function (user) {
+        var _this = this;
+        this.userService.activateUser(user)
+            .subscribe(function (data) {
+            //console.log("My Res - "+data.message);
+            if (data.success) {
+                ///user.active = true;
+                _this.ngFlashMessageService.showFlashMessage({
+                    messages: [data.msg + ""],
+                    dismissible: true,
+                    timeout: 3000,
+                    type: 'success'
+                });
+                _this.router.navigate(['/admin/users']);
+            }
+            else {
+                _this.ngFlashMessageService.showFlashMessage({
+                    messages: [data.msg + ""],
+                    dismissible: true,
+                    timeout: 3000,
+                    type: 'danger'
+                });
+            }
+        });
+    };
+    AdminuserComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-adminuser',
+            template: __webpack_require__(/*! ./adminuser.component.html */ "./src/app/components/adminuser/adminuser.component.html"),
+            styles: [__webpack_require__(/*! ./adminuser.component.css */ "./src/app/components/adminuser/adminuser.component.css")]
+        }),
+        __metadata("design:paramtypes", [_services_user_service__WEBPACK_IMPORTED_MODULE_2__["UserService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"],
+            ng_flash_messages__WEBPACK_IMPORTED_MODULE_3__["NgFlashMessageService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
+    ], AdminuserComponent);
+    return AdminuserComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/components/adminusers/adminusers.component.css":
 /*!****************************************************************!*\
   !*** ./src/app/components/adminusers/adminusers.component.css ***!
@@ -329,7 +534,7 @@ var AdminpropertyComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvYWRtaW51c2Vycy9hZG1pbnVzZXJzLmNvbXBvbmVudC5jc3MifQ== */"
+module.exports = ".user-data-container {\n    padding: 10px;\n    border-radius: 5px;\n    box-shadow: 0px 0px 1px 0.5px rgba(0,0,0,0.1);\n    margin-bottom: 20px;\n}\n\n.user-data-container p, .user-data-container h4, .user-data-container h5 {\n    margin: 0px;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9hZG1pbnVzZXJzL2FkbWludXNlcnMuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLGNBQWM7SUFDZCxtQkFBbUI7SUFDbkIsOENBQThDO0lBQzlDLG9CQUFvQjtDQUN2Qjs7QUFFRDtJQUNJLFlBQVk7Q0FDZiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvYWRtaW51c2Vycy9hZG1pbnVzZXJzLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIudXNlci1kYXRhLWNvbnRhaW5lciB7XG4gICAgcGFkZGluZzogMTBweDtcbiAgICBib3JkZXItcmFkaXVzOiA1cHg7XG4gICAgYm94LXNoYWRvdzogMHB4IDBweCAxcHggMC41cHggcmdiYSgwLDAsMCwwLjEpO1xuICAgIG1hcmdpbi1ib3R0b206IDIwcHg7XG59XG5cbi51c2VyLWRhdGEtY29udGFpbmVyIHAsIC51c2VyLWRhdGEtY29udGFpbmVyIGg0LCAudXNlci1kYXRhLWNvbnRhaW5lciBoNSB7XG4gICAgbWFyZ2luOiAwcHg7XG59XG4iXX0= */"
 
 /***/ }),
 
@@ -340,7 +545,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-navbar2></app-navbar2>\n\n<!--========== top header ==========-->\n<div class=\"general-top-header dashboard-header\">\n    <!-- Swiper Wrapper -->\n    <div class=\"swiper-wrapper\">\n        <div class=\"s-promo-block-v4 g-fullheight--xs g-bg-position--center swiper-slide\" style=\"background: url('assets/img/1920x1080/real-estate-bg-dark.jpg');\">\n            <div class=\"container g-ver-center--xs\">\n                <div class=\"row\">\n                    <div class=\"col-md-7\">\n                        <div class=\"g-margin-b-50--xs\">\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n    <!-- End Swiper Wrapper -->\n</div>\n\n<div class=\"g-hor-divider__dashed--sky-light\">\n    <div class=\"container g-padding-y-80--xs g-padding-y-125--sm\">\n        <div class=\"row\">\n          <h2 class=\"g-font-size-32--xs g-font-size-36--sm g-margin-b-30--xs\">Users</h2>\n\n          <div *ngFor=\"let user of users\" class=\"user-list row\" >\n\n            <!--<div class=\"col-md-1\">\n              <input type=\"checkbox\" [checked]=\"task.isDone\" (click)=\"updateStatus(task)\">\n            </div>-->\n            <div class=\"col-md-7\">\n              <h2>{{user.name}}</h2>\n              <h4>{{user.username}}</h4>\n              <p>{{user.email}}</p>\n            </div>\n            <div class=\"col-md-4\">\n              <input type=\"button\" (click)=\"verifyUser(user._id)\" value=\"Activate\" class=\"btn btn-info\">\n              <a [routerLink]=\"['/admin/user/'+user._id]\"  class=\"btn btn-succes\">View</a>\n            </div>\n\n          </div>\n\n        </div>\n    </div>\n  </div>\n"
+module.exports = "<app-navbar2></app-navbar2>\n<app-header2></app-header2>\n<app-admindashbreadcomb></app-admindashbreadcomb>\n    <!-- Data Table area Start-->\n    <div class=\"data-table-area\">\n        <div class=\"container\">\n            <div class=\"row\">\n                <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n                  <ng-flash-message></ng-flash-message>\n                    <div class=\"data-table-list\">\n                        <div class=\"basic-tb-hd\">\n                            <h2>Users</h2>\n                            <p>All Registered Users on the Hamock platform.</p>\n                        </div>\n                        <div class=\"table-responsive\">\n                            <table id=\"data-table-basic\" class=\"table table-striped\">\n                                <thead>\n                                    <tr>\n                                        <th>Full Name</th>\n                                        <th>Username</th>\n                                        <th>Email</th>\n                                        <th></th>\n                                    </tr>\n                                </thead>\n                                <tbody>\n                                    <tr *ngFor=\"let user of users\">\n                                        <td>{{user.name}}</td>\n                                        <td>{{user.username}}</td>\n                                        <td>{{user.email}}</td>\n                                        <td><a class=\"btn btn-success notika-btn-success waves-effect\" [routerLink]=\"['/admin/user/'+user.username]\"  >View</a></td>\n\n                                    </tr>\n                                </tbody>\n                                <tfoot>\n                                    <tr>\n                                        <th>Full Name</th>\n                                        <th>Username</th>\n                                        <th>Email</th>\n                                        <th></th>\n\n                                    </tr>\n                                </tfoot>\n                            </table>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n    <!-- Data Table area End-->\n\n              <!--<input type=\"button\" (click)=\"verifyUser(user._id)\" value=\"Activate\" class=\"btn btn-info\"> -->\n"
 
 /***/ }),
 
@@ -356,6 +561,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AdminusersComponent", function() { return AdminusersComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../services/user.service */ "./src/app/services/user.service.ts");
+/* harmony import */ var ng_flash_messages__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ng-flash-messages */ "./node_modules/ng-flash-messages/ng-flash-messages.umd.js");
+/* harmony import */ var ng_flash_messages__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(ng_flash_messages__WEBPACK_IMPORTED_MODULE_2__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -367,13 +574,16 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
 var AdminusersComponent = /** @class */ (function () {
-    function AdminusersComponent(userService) {
+    function AdminusersComponent(userService, ngFlashMessageService) {
         var _this = this;
         this.userService = userService;
+        this.ngFlashMessageService = ngFlashMessageService;
         this.userService.getUsers()
-            .subscribe(function (users) {
-            _this.users = users;
+            .subscribe(function (data) {
+            _this.users = data.msg;
+            //console.log(data);
         });
     }
     AdminusersComponent.prototype.ngOnInit = function () {
@@ -384,7 +594,8 @@ var AdminusersComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./adminusers.component.html */ "./src/app/components/adminusers/adminusers.component.html"),
             styles: [__webpack_require__(/*! ./adminusers.component.css */ "./src/app/components/adminusers/adminusers.component.css")]
         }),
-        __metadata("design:paramtypes", [_services_user_service__WEBPACK_IMPORTED_MODULE_1__["UserService"]])
+        __metadata("design:paramtypes", [_services_user_service__WEBPACK_IMPORTED_MODULE_1__["UserService"],
+            ng_flash_messages__WEBPACK_IMPORTED_MODULE_2__["NgFlashMessageService"]])
     ], AdminusersComponent);
     return AdminusersComponent;
 }());
@@ -576,6 +787,69 @@ var HeaderComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [])
     ], HeaderComponent);
     return HeaderComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/components/header2/header2.component.css":
+/*!**********************************************************!*\
+  !*** ./src/app/components/header2/header2.component.css ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvaGVhZGVyMi9oZWFkZXIyLmNvbXBvbmVudC5jc3MifQ== */"
+
+/***/ }),
+
+/***/ "./src/app/components/header2/header2.component.html":
+/*!***********************************************************!*\
+  !*** ./src/app/components/header2/header2.component.html ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n<!--========== top header ==========-->\n<div class=\"general-top-header dashboard-header\">\n    <!-- Swiper Wrapper -->\n    <div class=\"swiper-wrapper\">\n        <div class=\"s-promo-block-v4 g-fullheight--xs g-bg-position--center swiper-slide\" style=\"background: url('assets/img/1920x1080/real-estate-bg-dark.jpg');\">\n            <div class=\"container g-ver-center--xs\">\n                <div class=\"row\">\n                    <div class=\"col-md-7\">\n                        <div class=\"g-margin-b-50--xs\">\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n<!-- End Swiper Wrapper -->\n"
+
+/***/ }),
+
+/***/ "./src/app/components/header2/header2.component.ts":
+/*!*********************************************************!*\
+  !*** ./src/app/components/header2/header2.component.ts ***!
+  \*********************************************************/
+/*! exports provided: Header2Component */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Header2Component", function() { return Header2Component; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var Header2Component = /** @class */ (function () {
+    function Header2Component() {
+    }
+    Header2Component.prototype.ngOnInit = function () {
+    };
+    Header2Component = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-header2',
+            template: __webpack_require__(/*! ./header2.component.html */ "./src/app/components/header2/header2.component.html"),
+            styles: [__webpack_require__(/*! ./header2.component.css */ "./src/app/components/header2/header2.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], Header2Component);
+    return Header2Component;
 }());
 
 
@@ -833,7 +1107,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--========== HEADER V2 ==========-->\n<header class=\"navbar-fixed-top s-header-v2 js__header-sticky\">\n    <!-- Navbar -->\n    <nav class=\"s-header-v2__navbar\">\n        <div class=\"container g-display-table--lg\">\n            <!-- Navbar Row -->\n            <div class=\"s-header-v2__navbar-row\">\n                <!-- Brand and toggle get grouped for better mobile display -->\n                <div class=\"s-header-v2__navbar-col\">\n                    <button type=\"button\" class=\"collapsed s-header-v2__toggle\" data-toggle=\"collapse\" data-target=\"#nav-collapse\" aria-expanded=\"false\">\n                        <span class=\"s-header-v2__toggle-icon-bar\"></span>\n                    </button>\n                </div>\n\n                <div class=\"s-header-v2__navbar-col s-header-v2__navbar-col-width--180\">\n                    <!-- Logo -->\n                    <div class=\"s-header-v2__logo\">\n                        <a [routerLink]=\"['/']\" class=\"s-header-v2__logo-link\">\n                            <img class=\"s-header-v2__logo-img s-header-v2__logo-img--default\" src=\"assets/img/hamock-text-logo-sm-white.png\" alt=\"Hamock Logo\">\n                            <img class=\"s-header-v2__logo-img s-header-v2__logo-img--shrink\" src=\"assets/img/hamock-text-logo-sm-cx.png\" alt=\"Hamock Logo\">\n                        </a>\n                    </div>\n                    <!-- End Logo -->\n                </div>\n\n                <div class=\"s-header-v2__navbar-col s-header-v2__navbar-col--right\">\n                    <!-- Collect the nav links, forms, and other content for toggling -->\n                    <div class=\"collapse navbar-collapse s-header-v2__navbar-collapse\" id=\"nav-collapse\">\n                        <ul class=\"s-header-v2__nav\">\n                            <!-- Home -->\n                            <li class=\"dropdown s-header-v2__nav-item\" >\n                                <a  [routerLinkActive]=\"['-is-active']\" [routerLinkActiveOptions] = \"{exact:true}\" [routerLink]=\"['/admin/property']\"  class=\"s-header-v2__nav-link\" data-toggle=\"dropdown\" role=\"button\">Property</a>\n                            </li>\n                            <!-- End Home -->\n                            <!-- Home -->\n                            <li class=\"dropdown s-header-v2__nav-item\" >\n                                <a  [routerLinkActive]=\"['-is-active']\" [routerLinkActiveOptions] = \"{exact:true}\" [routerLink]=\"['/admin/users']\"  class=\"s-header-v2__nav-link\" data-toggle=\"dropdown\" role=\"button\">Users</a>\n                            </li>\n                            <!-- End Home -->\n\n                        </ul>\n                    </div>\n                    <!-- End Nav Menu -->\n                </div>\n            </div>\n            <!-- End Navbar Row -->\n        </div>\n    </nav>\n    <!-- End Navbar -->\n</header>\n<!--========== END HEADER V2 ==========-->\n"
+module.exports = "<!--========== HEADER V2 ==========-->\n<header class=\"navbar-fixed-top s-header-v2 js__header-sticky navbar-v2\">\n    <!-- Navbar -->\n    <nav class=\"s-header-v2__navbar\">\n        <div class=\"container g-display-table--lg\">\n            <!-- Navbar Row -->\n            <div class=\"s-header-v2__navbar-row\">\n                <!-- Brand and toggle get grouped for better mobile display -->\n                <div class=\"s-header-v2__navbar-col\">\n                    <button type=\"button\" class=\"collapsed s-header-v2__toggle\" data-toggle=\"collapse\" data-target=\"#nav-collapse\" aria-expanded=\"false\">\n                        <span class=\"s-header-v2__toggle-icon-bar\"></span>\n                    </button>\n                </div>\n\n                <div class=\"s-header-v2__navbar-col s-header-v2__navbar-col-width--180\">\n                    <!-- Logo -->\n                    <div class=\"s-header-v2__logo\">\n                        <a [routerLink]=\"['/']\" class=\"s-header-v2__logo-link\">\n                            <img class=\"s-header-v2__logo-img s-header-v2__logo-img--default\" src=\"assets/img/hamock-text-logo-sm-white.png\" alt=\"Hamock Logo\">\n                            <img class=\"s-header-v2__logo-img s-header-v2__logo-img--shrink\" src=\"assets/img/hamock-text-logo-sm-cx.png\" alt=\"Hamock Logo\">\n                        </a>\n                    </div>\n                    <!-- End Logo -->\n                </div>\n\n                <div class=\"s-header-v2__navbar-col s-header-v2__navbar-col--right\">\n                    <!-- Collect the nav links, forms, and other content for toggling -->\n                    <div class=\"collapse navbar-collapse s-header-v2__navbar-collapse\" id=\"nav-collapse\">\n                        <ul class=\"s-header-v2__nav\">\n                            <!-- Home -->\n                            <li class=\"dropdown s-header-v2__nav-item\" >\n                                <a [routerLinkActive]=\"['-is-active']\" [routerLinkActiveOptions] = \"{exact:true}\" [routerLink]=\"['/admin']\"  class=\"s-header-v2__nav-link\" data-toggle=\"dropdown\" role=\"button\">Admin Dashboard</a>\n                            </li>\n                            <li class=\"dropdown s-header-v2__nav-item\" >\n                                <a [routerLinkActive]=\"['-is-active']\" [routerLinkActiveOptions] = \"{exact:true}\" [routerLink]=\"['/admin/properties']\"  class=\"s-header-v2__nav-link\" data-toggle=\"dropdown\" role=\"button\">Property</a>\n                            </li>\n\n                            <li class=\"dropdown s-header-v2__nav-item\" >\n                                <a  [routerLinkActive]=\"['-is-active']\" [routerLinkActiveOptions] = \"{exact:true}\" [routerLink]=\"['/admin/users']\"  class=\"s-header-v2__nav-link\" data-toggle=\"dropdown\" role=\"button\">Users</a>\n                            </li>\n\n                        </ul>\n                    </div>\n                    <!-- End Nav Menu -->\n                </div>\n            </div>\n            <!-- End Navbar Row -->\n        </div>\n    </nav>\n    <!-- End Navbar -->\n</header>\n<!--========== END HEADER V2 ==========-->\n"
 
 /***/ }),
 
@@ -1142,7 +1416,7 @@ var AuthService = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserService", function() { return UserService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/http */ "./node_modules/@angular/http/fesm5/http.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var rxjs_add_operator_map__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/add/operator/map */ "./node_modules/rxjs-compat/_esm5/add/operator/map.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1154,22 +1428,48 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-//import { HttpClient } from '@angular/common/http';
 
 
+//import { Observable } from 'rxjs/Observable';
+//import { catchError, map, tap } from 'rxjs/operators';
 var UserService = /** @class */ (function () {
     function UserService(http) {
         this.http = http;
     }
+    /*getUsers(): Observable<User[]>{
+      return this.http.get<User[]>('http://localhost:6001/users/list')
+        .pipe(
+          tap(_ => console.log('fetched users'))
+        );
+        //return this.http.get('http://localhost:6001/users/list')
+          //.map(res =>res.json());
+    }
+  
+    getUser(id): Observable<User[]>{
+      return this.http.get<User[]>('http://localhost:6001/users/list/'+id)
+        .pipe(
+          tap(_ => console.log('Fetch this user'))
+        );
+    }*/
     UserService.prototype.getUsers = function () {
-        return this.http.get('users/list')
-            .map(function (res) { return res.json(); });
+        return this.http.get('users/list');
+        //.map(res => console.log(res));
+        //return this.http.get('http://localhost:6001/users/list')
+        //.map(res =>res.json());
+    };
+    UserService.prototype.getUser = function (id) {
+        return this.http.get('users/list/' + id);
+    };
+    UserService.prototype.activateUser = function (user) {
+        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]();
+        headers.append('Content-Type', 'application/json');
+        return this.http.post('users/verify', user, { headers: headers });
     };
     UserService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
             providedIn: 'root'
         }),
-        __metadata("design:paramtypes", [_angular_http__WEBPACK_IMPORTED_MODULE_1__["Http"]])
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
     ], UserService);
     return UserService;
 }());

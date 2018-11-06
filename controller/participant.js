@@ -5,11 +5,6 @@ const cardService = require('../services/cardService');
 const response = require('../services/response');
 
 async function addUser(user) {
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 8c4d989ab2a15cd1b8ed448108a574be080d73bb
 
     try {
         let type = 'User';
@@ -32,24 +27,12 @@ async function addUser(user) {
         console.log(`userSecret = ${identity.userSecret}`);
 
         //Add the above Card Details to the user
-<<<<<<< HEAD
-
         user.blockUserID = identity.userID;
-        //console.log(user);
         user.blockUserSecret = identity.userSecret;
-
-        user.blockUserID = identity.userID;
-        //console.log(user);
-        user.blockUserSecret = identity.userSecret;
-
-=======
-        user.blockUserID = identity.userID; 
-        user.blockUserSecret = identity.userSecret; 
->>>>>>> 8c4d989ab2a15cd1b8ed448108a574be080d73bb
         user.save();
         let result = await cardService.create(identity);
         await businessNetworkConnection.disconnect();
-       
+
         return response.successResponse('User was created');
 
     } catch(error) {
@@ -59,8 +42,6 @@ async function addUser(user) {
     }
 }
 
-<<<<<<< HEAD
-=======
 async function creditUser(userData){
     try{
         console.log(userData);
@@ -68,16 +49,15 @@ async function creditUser(userData){
         participantRegistry = await businessNetworkConnection.getParticipantRegistry('org.hammock.network.User')
         user = await participantRegistry.get(userData.userId);
         let factory = businessNetworkConnection.getBusinessNetwork().getFactory();
-        
+
         user.balance = userData.balance;
         result = await participantRegistry.update(user);
         await businessNetworkConnection.disconnect();
     }catch(err){
         console.log(err);
     }
-} 
+}
 
->>>>>>> 8c4d989ab2a15cd1b8ed448108a574be080d73bb
 async function addGov(gov) {
 
     console.log(gov);
@@ -171,12 +151,7 @@ async function addGov(gov) {
 
 module.exports = {
     addUser,
-<<<<<<< HEAD
-    addGov
-}
-=======
     addGov,
     addBank,
     creditUser
 }
->>>>>>> 8c4d989ab2a15cd1b8ed448108a574be080d73bb

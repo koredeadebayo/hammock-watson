@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../services/user.service';
+import { NgFlashMessageService } from 'ng-flash-messages';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-adminpanel',
@@ -6,8 +9,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./adminpanel.component.css']
 })
 export class AdminpanelComponent implements OnInit {
+  public user: any;
 
-  constructor() { }
+  constructor(
+    private userService: UserService,
+    private ngFlashMessageService: NgFlashMessageService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }

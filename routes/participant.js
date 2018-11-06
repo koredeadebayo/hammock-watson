@@ -34,17 +34,10 @@ const participantCtrl = require('../controller/participant');
             }
         });
     });
-    //Authentication 
+    //Authentication
     router.post('/adminauth', (req, res, next)=>{
         const name = req.body.username;
         const password = req.body.password;
-
-<<<<<<< HEAD
-    //Register
-    router.post('/register', (req, res, next) =>{
-        //res.send('Register User');
-        //Secret Token for each user
-=======
         Admin.getAdminByName(name, (err, admin)=>{
             if(err) throw err;
 
@@ -72,15 +65,12 @@ const participantCtrl = require('../controller/participant');
             });
         });
     });
-    
-    
+
+
 
 // User Management
-
     //Register
     router.post('/register', (req, res, next) =>{
-
->>>>>>> 8c4d989ab2a15cd1b8ed448108a574be080d73bb
         const newUserId = randomstring.generate(12);
 
         let newUser = new User({
@@ -88,15 +78,8 @@ const participantCtrl = require('../controller/participant');
            email: req.body.email,
            password: req.body.password,
            username: req.body.username,
-<<<<<<< HEAD
-           userId: newUserId,
-           //address: req.body.address,
-           //secretToken : newSecretToken
-        });
-=======
            userId: newUserId
          });
->>>>>>> 8c4d989ab2a15cd1b8ed448108a574be080d73bb
 
         User.addUser(newUser, (err, user)=>{
             if(err){
@@ -175,7 +158,7 @@ const participantCtrl = require('../controller/participant');
                 if (err) {
                     return res.status(500).send({ msg: err.message });
                 }
-                res.status(200).send('A verification email has been sent to ' + user.email + '.');
+                res.json({success: true, msg:'A verification email has been sent to ' + user.email + '.'});
             });
             });
          });
@@ -205,18 +188,9 @@ const participantCtrl = require('../controller/participant');
     });
 
     //List All users
-<<<<<<< HEAD
-
-
-    //router.get('/list',  async (req, res) => {});
-        //List all approve properties
-
     router.get('/list',  async (req, res) => {
         //List all approve properties
-=======
-    router.get('/list', passport.authenticate('admin-role', {session:false}),  async (req, res) => {
-        //List all approve properties     
->>>>>>> 8c4d989ab2a15cd1b8ed448108a574be080d73bb
+    //router.get('/list', passport.authenticate('admin-role', {session:false}),  async (req, res) => {
         User.find( function(err, users) {
             if (err) throw err;
             res.json({success: true, msg: users});
@@ -225,19 +199,12 @@ const participantCtrl = require('../controller/participant');
     });
 
     //Get user with username
-<<<<<<< HEAD
     router.get('/list/:username',  async (req, res) => {
+    //router.get('/list/:username', passport.authenticate('admin-role', {session:false}), async (req, res) => {
         //List all approve properties
         const username = req.params.username;
 
-        User.find({active:true, username:username}, function(err, user) {
-=======
-    router.get('/list/:username', passport.authenticate('admin-role', {session:false}), async (req, res) => {
-        //List all approve properties 
-        const username = req.params.username;
-        
         User.find({username:username}, function(err, user) {
->>>>>>> 8c4d989ab2a15cd1b8ed448108a574be080d73bb
             if (err) throw err;
             res.json({success: true, msg: user});
         });
@@ -253,8 +220,8 @@ const participantCtrl = require('../controller/participant');
     router.get('/user', async (req, res) =>{
 
     });
-    
-    //Credit the 
+
+    //Credit the
     router.post('/credituser', passport.authenticate('admin-role', {session:false}), (req, res, next)=>{
         const username = req.body.username;
         const creditamount = req.body.creditamount;
@@ -283,14 +250,8 @@ const participantCtrl = require('../controller/participant');
            userId: req.body.userId,
            categories: req.body.categories,
            businessreg: req.body.businessreg,
-<<<<<<< HEAD
            //secretToken : newSecretToken
         });
-=======
-         });
->>>>>>> 8c4d989ab2a15cd1b8ed448108a574be080d73bb
-
-
 
         SP.addSP(newSP, (err, sp)=>{
             if(err){

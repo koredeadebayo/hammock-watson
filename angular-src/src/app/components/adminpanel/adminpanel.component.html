@@ -1,1 +1,107 @@
 <app-navbar2></app-navbar2>
+<app-header2></app-header2>
+<app-admindashbreadcomb></app-admindashbreadcomb>
+
+<!-- Start Status area -->
+<div class="notika-status-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30">
+                    <div class="website-traffic-ctn">
+                        <h2><span class="counter">8</span></h2>
+                        <p>Total Users</p>
+                    </div>
+                    <!--<div class="sparkline-bar-stats1">9,4,8,6,5,6,4,8,3,5,9,5</div>-->
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30">
+                    <div class="website-traffic-ctn">
+                        <h2><span class="counter">30</span></h2>
+                        <p>Total Properties</p>
+                    </div>
+                    <!--<div class="sparkline-bar-stats2">1,4,8,3,5,6,4,8,3,3,9,5</div>-->
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30">
+                    <div class="website-traffic-ctn">
+                        <h2><span class="counter">20</span></h2>
+                        <p>Total Transactions</p>
+                    </div>
+                    <!--<div class="sparkline-bar-stats3">4,2,8,2,5,6,3,8,3,5,9,5</div>-->
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30">
+                    <div class="website-traffic-ctn">
+                        <h2><span class="counter">1,000</span></h2>
+                        <p>Total Support Tickets</p>
+                    </div>
+                    <!--<div class="sparkline-bar-stats4">2,4,8,4,5,7,4,7,3,5,7,5</div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Status area-->
+
+<!-- Start Email Statistic area-->
+    <div class="notika-email-post-area mg-tb-40">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-6 col-sm-6 col-xs-12">
+                    <div class="recent-post-wrapper notika-shadow sm-res-mg-t-30 tb-res-ds-n dk-res-ds">
+                        <div class="recent-post-ctn">
+                            <div class="recent-post-title">
+                                <h2>Users</h2>
+                            </div>
+                        </div>
+                        <div class="recent-post-items">
+                            <div class="recent-post-signle rct-pt-mg-wp">
+                                <a href="#">
+                                    <div class="recent-post-flex">
+                                        <div class="recent-post-img">
+                                            <img src="img/post/2.jpg" alt="" />
+                                        </div>
+                                        <div class="recent-post-it-ctn">
+                                            <h2>{{user.name}}</h2>
+                                            <p>{{user.email}}</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                    <div class="recent-items-wp notika-shadow sm-res-mg-t-30">
+                        <div class="rc-it-ltd">
+                            <div class="recent-items-ctn">
+                                <div class="recent-items-title">
+                                    <h2>Properties</h2>
+                                </div>
+                            </div>
+                            <div class="recent-items-inn">
+                                <table class="table table-inner table-vmiddle">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th></th>
+                                            <th style="width: 60px"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    </tbody>
+                                </table>
+                            </div>
+							<div id="recent-items-chart" class="flot-chart-items flot-chart vt-ct-it tb-rc-it-res"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Email Statistic area-->
