@@ -2,10 +2,9 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const config = require('../config/database');
 
-const GovSchema = new mongoose.Schema({
-    govId: {
+const AdminSchema = new mongoose.Schema({
+    adminId: {
         type: String
-        
     },
     name: {
         type: String,
@@ -14,39 +13,29 @@ const GovSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
-    },
-    govRate: {
-        type:Number,
-        required: true
-    },
-    blockUserID: {
-        type: String
-    },
-    blockUserSecret:{
-        type: String
     }
-    
 });
 
 //Third argument here is naming the collection in which the data would be stored
-const Gov = module.exports = mongoose.model('Gov', GovSchema, 'Gov');
+const Admin = module.exports = mongoose.model('Admin', AdminSchema, 'Admin');
 
 
-module.exports.getGovById = function(Id, callback){
-    Gov.findById(Id, callback);
+module.exports.getAdminById = function(Id, callback){
+    Admin.findById(Id, callback);
 }
 
-module.exports.getGovByName = function(name, callback){
+module.exports.getAdminByName = function(name, callback){
     const query = {name:name};
-    Gov.findOne(query, callback);
+    Admin.findOne(query, callback);
 }
 
-module.exports.addGov= function(newGov, callback){
+module.exports.addAdmin= function(newAdmin, callback){
     bcrypt.genSalt(10, (err, salt)=>{
-        bcrypt.hash(newGov.password, salt, (err, hash)=>{
+        bcrypt.hash(newAdmin.password, salt, (err, hash)=>{
             if(err) throw err; 
-            newGov.password = hash;
-            newGov.save(callback);
+            newAdmin.password = hash;
+            newAdmin.save(callback);
+
         });
     });
 }

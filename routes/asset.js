@@ -492,6 +492,7 @@ router.post('/agreeloanrequest/', passport.authenticate('user-role', {session:fa
                 if (err) throw err;
                 if(asset.owner == debtor){
                     asset.price = loanRequest.amount;
+                    console.log(asset.price);
                     asset.save();
                     assetCtrl.updateAsset(asset);
                 
