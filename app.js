@@ -50,6 +50,9 @@ const root = path.join(__dirname, "public");
     app.use(cors());
 
     //Set static folder
+
+    app.use(express.static(root));
+
     // app.use(express.static(root));
     // app.use(fallback('index.html', { root }));
 
@@ -64,11 +67,18 @@ app.use('/users', user);
 
 app.use('/assets', asset);
 
+//fallback
+app.use(fallback('index.html', { root }));
 // Index Route
 
 app.get('/', (req, res) => {
     res.send('Just another end point');
   });
+
+  /*app.get("/:page", function(req, res) {
+      res.sendFile(site_public+"/"+req.params.page+".html")
+  });*/
+
 
 
 // Start Server

@@ -39,6 +39,12 @@ const participantCtrl = require('../controller/participant');
         const name = req.body.username;
         const password = req.body.password;
 
+<<<<<<< HEAD
+    //Register
+    router.post('/register', (req, res, next) =>{
+        //res.send('Register User');
+        //Secret Token for each user
+=======
         Admin.getAdminByName(name, (err, admin)=>{
             if(err) throw err;
 
@@ -74,6 +80,7 @@ const participantCtrl = require('../controller/participant');
     //Register
     router.post('/register', (req, res, next) =>{
 
+>>>>>>> 8c4d989ab2a15cd1b8ed448108a574be080d73bb
         const newUserId = randomstring.generate(12);
 
         let newUser = new User({
@@ -81,10 +88,17 @@ const participantCtrl = require('../controller/participant');
            email: req.body.email,
            password: req.body.password,
            username: req.body.username,
+<<<<<<< HEAD
+           userId: newUserId,
+           //address: req.body.address,
+           //secretToken : newSecretToken
+        });
+=======
            userId: newUserId
          });
+>>>>>>> 8c4d989ab2a15cd1b8ed448108a574be080d73bb
 
-         User.addUser(newUser, (err, user)=>{
+        User.addUser(newUser, (err, user)=>{
             if(err){
                 res.json({success: false, msg: 'Falied to register the account'});
             }else{
@@ -93,7 +107,6 @@ const participantCtrl = require('../controller/participant');
         });
     });
 
-
     //Authenticate - Passport-jwt enables the authentication works fluidly
     router.post('/auth', (req, res, next) =>{
         const username = req.body.username;
@@ -101,7 +114,6 @@ const participantCtrl = require('../controller/participant');
 
         User.getUserByUsername(username, (err, user)=>{
             if(err)throw err;
-
             if(!user){
                 return  res.json({success:false, message:'User not found'});
             }
@@ -182,7 +194,7 @@ const participantCtrl = require('../controller/participant');
 
                   //Add Blockchain participant to the network
                   let result = participantCtrl.addUser(user, (err)=>{
-                    if (err) throw err; 
+                    if (err) throw err;
                     user.active = true;
                     user.save();
                     res.status(200).send({msg:"The account has been verified. Please log in."})
@@ -193,8 +205,18 @@ const participantCtrl = require('../controller/participant');
     });
 
     //List All users
+<<<<<<< HEAD
+
+
+    //router.get('/list',  async (req, res) => {});
+        //List all approve properties
+
+    router.get('/list',  async (req, res) => {
+        //List all approve properties
+=======
     router.get('/list', passport.authenticate('admin-role', {session:false}),  async (req, res) => {
         //List all approve properties     
+>>>>>>> 8c4d989ab2a15cd1b8ed448108a574be080d73bb
         User.find( function(err, users) {
             if (err) throw err;
             res.json({success: true, msg: users});
@@ -202,14 +224,20 @@ const participantCtrl = require('../controller/participant');
 
     });
 
-
-    
     //Get user with username
+<<<<<<< HEAD
+    router.get('/list/:username',  async (req, res) => {
+        //List all approve properties
+        const username = req.params.username;
+
+        User.find({active:true, username:username}, function(err, user) {
+=======
     router.get('/list/:username', passport.authenticate('admin-role', {session:false}), async (req, res) => {
         //List all approve properties 
         const username = req.params.username;
         
         User.find({username:username}, function(err, user) {
+>>>>>>> 8c4d989ab2a15cd1b8ed448108a574be080d73bb
             if (err) throw err;
             res.json({success: true, msg: user});
         });
@@ -256,18 +284,22 @@ const participantCtrl = require('../controller/participant');
            userId: req.body.userId,
            categories: req.body.categories,
            businessreg: req.body.businessreg,
+<<<<<<< HEAD
+           //secretToken : newSecretToken
+        });
+=======
          });
+>>>>>>> 8c4d989ab2a15cd1b8ed448108a574be080d73bb
 
 
 
-         SP.addSP(newSP, (err, sp)=>{
+        SP.addSP(newSP, (err, sp)=>{
             if(err){
                 res.json({success: false, msg: 'Falied to register the account'});
             }else{
                 res.json({success: true, msg: 'Service Provider registered'});
             }
         });
-
 
     });
     //Authenticate - Passport-jwt enables the authentication works fluidly
@@ -325,21 +357,19 @@ const participantCtrl = require('../controller/participant');
            name: req.body.name,
            password: req.body.password,
            govRate: req.body.govRate
-         });
+        });
 
 
 
-         Gov.addGov(newGov, (err, gov)=>{
+        Gov.addGov(newGov, (err, gov)=>{
             if(err){
                 res.json({success: false, msg: 'Falied to register the Government account'});
             }else{
                 participantCtrl.addGov(gov);
                 res.json({success: true, msg: 'Government registered'});
             }
-            
+
         });
-
-
     });
 
     //Authenticate
@@ -403,10 +433,9 @@ const participantCtrl = require('../controller/participant');
             }else{
                 participantCtrl.addBank(bank);
                 res.json({success: true, msg: 'Bank registered'});
-            } 
+            }
         });
-
-    }); 
+    });
 
     //Authenticate
     router.post('/bankauth', (req, res, next) =>{
